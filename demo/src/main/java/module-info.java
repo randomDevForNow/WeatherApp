@@ -4,6 +4,10 @@ module com.example {
     requires javafx.web;
     requires jxbrowser;
     requires jxbrowser.javafx;
+    requires javafx.graphics;
 
     exports com.example;
+    exports com.example.Controller;
+
+    opens com.example.Controller to javafx.fxml;
 }

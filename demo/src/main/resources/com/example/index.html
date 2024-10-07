@@ -21,16 +21,11 @@
     function initMap() {
       // Create a new map instance
       const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 }, // Set your default center
-        zoom: 8, // Set your default zoom level
+        center: { lat: 14.566526616029208, lng: 121.01504209325368 }, // Set your default center
+        zoom: 18, // Set your default zoom level
+        disableDefaultUI: true,
       });
 
-      // Optionally, add a marker
-      const marker = new google.maps.Marker({
-        position: { lat: -34.397, lng: 150.644 },
-        map: map,
-        title: "Hello World!",
-      });
     }
   </script>
 </head>
