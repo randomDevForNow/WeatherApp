@@ -1,24 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>Google Maps</title>
+  <title>Google Maps Integration</title>
   <style>
-    .map {
-      width: 100%;
-      height: 100vh;
+    /* Set the size of the map container */
+    #map {
+      height: 100%;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
     }
   </style>
-  <script type="module" crossorigin src="assets/index-BghrBb-R.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index-DennjAfo.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"></script>
+  <script>
+    function initMap() {
+      // Create a new map instance
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 }, // Set your default center
+        zoom: 8, // Set your default zoom level
+      });
+
+      // Optionally, add a marker
+      const marker = new google.maps.Marker({
+        position: { lat: -34.397, lng: 150.644 },
+        map: map,
+        title: "Hello World!",
+      });
+    }
+  </script>
 </head>
 
-<body>
-  <div id="map" class="map">
-  </div>
-
-
+<body onload="initMap()">
+  <div id="map"></div>
 </body>
 
 </html>
