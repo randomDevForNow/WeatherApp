@@ -5,6 +5,9 @@ module com.example {
     requires jxbrowser;
     requires jxbrowser.javafx;
     requires javafx.graphics;
+    requires com.fasterxml.jackson.core;
+    requires com.fasterxml.jackson.databind;
+
 
     exports com.example;
     exports com.example.Controller;
