@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class DialogController {
-
+//test
     @FXML
     private CheckBox locationCheckBox;  
     @FXML
