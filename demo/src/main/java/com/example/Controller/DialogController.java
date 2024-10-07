@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class DialogController {
-//test
     @FXML
     private CheckBox locationCheckBox;  
     @FXML
@@ -17,17 +16,31 @@ public class DialogController {
 
     @FXML
     public void initialize() {
+        System.out.println("Initializing dialog controller...");
+        if (getStartedButton != null) {
+            System.out.println("Button is not null");
+              getStartedButton.setDisable(true);
+            initButtonEvent();
+            locationCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+                getStartedButton.setDisable(!newValue);
+            });
+        } else {
+            System.out.println("Button is null");
+        }
+    }
+
+    private void initButtonEvent() {
+        System.out.println("Initializing button event...");
         getStartedButton.setOnAction(event -> {
-            if (locationCheckBox.isSelected()) {
-                openNextWindow();
-            } else {
-                System.out.println("Checkbox not selected, cannot proceed.");
-            }
+            openNextWindow();
+            System.out.println("Working");
         });
     }
+
     private void openNextWindow() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("FirstWindow.fxml"));
+            System.out.println("Hellows");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/FirstWindow.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
