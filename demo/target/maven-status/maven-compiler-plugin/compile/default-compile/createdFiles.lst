@@ -1,4 +1,4 @@
-com/example/App.class
 module-info.class
-com/example/Controller/MapController.class
-com/example/Model/ConnectingModel.class
+com\example\App.class
+com\example\Controller\MapController.class
+com\example\Model\ConnectingModel.class
