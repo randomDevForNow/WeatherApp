@@ -8,9 +8,9 @@ module com.example {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
 
-
     exports com.example;
     exports com.example.Controller;
+    exports com.example.Model;
 
     opens com.example.Controller to javafx.fxml;
 }

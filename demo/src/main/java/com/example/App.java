@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import com.example.Controller.MapController;
 import com.example.Controller.SearchController;
+import com.example.Controller.InfoPanelController; // Import InfoPanelController
+import com.example.Model.ConnectingModel; // Import ConnectingModel
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,10 +22,21 @@ public class App extends Application {
             // Create the root container for the scenes
             HBox root = new HBox();
 
+            // Create an instance of the ConnectingModel
+            ConnectingModel connectingModel = new ConnectingModel();
+
             // Load Map scene
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MapView.fxml"));
             Parent mapPane = fxmlLoader.load();
             MapController mapController = fxmlLoader.getController();
+            mapController.setModel(connectingModel); // Set the model for MapController
+
+            // Load Info Panel scene (assuming it has its own FXML file)
+            FXMLLoader infoPanelLoader = new FXMLLoader(App.class.getResource("InfoPanelView.fxml")); 
+ 
+            Parent infoPanelPane = infoPanelLoader.load();
+            InfoPanelController infoPanelController = infoPanelLoader.getController();
+            infoPanelController.setModel(connectingModel); // Set the model for InfoPanelController
 
             // Load Search scene
             FXMLLoader searchLoader = new FXMLLoader(App.class.getResource("places_search.fxml"));
@@ -38,7 +51,7 @@ public class App extends Application {
             });
 
             // Add both panes to the root container
-            root.getChildren().addAll(mapPane, searchPane);
+            root.getChildren().addAll(mapPane, infoPanelPane, searchPane); // Add infoPanelPane to the root
 
             // Set up the main scene
             Scene scene = new Scene(root, 1280, 800);

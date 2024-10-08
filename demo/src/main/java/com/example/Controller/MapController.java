@@ -2,6 +2,7 @@ package com.example.Controller;
 
 import javafx.util.Duration;
 
+import com.example.Model.ConnectingModel;
 import com.teamdev.jxbrowser.browser.Browser;
 import com.teamdev.jxbrowser.browser.event.ConsoleMessageReceived;
 import com.teamdev.jxbrowser.engine.Engine;
@@ -44,6 +45,7 @@ public class MapController {
     private BrowserView view;
 
     // User Variables
+    private ConnectingModel model;
     private String center;
 
     @FXML
@@ -52,6 +54,10 @@ public class MapController {
         addListeners(); // change move to setupBrowser
 
         appendScenes();
+    }
+
+    public void setModel(ConnectingModel model) {
+        this.model = model; // Set the model
     }
 
     private void setupBrowser() {
@@ -119,6 +125,7 @@ public class MapController {
 
                 System.out.println("Latitude: " + lat);
                 System.out.println("Longitude: " + lng);
+                model.setCenterCoordinates(lat, lng);
             } catch (NumberFormatException e) {
                 System.out.println("Error: Failed to parse latitude or longitude.");
             }
