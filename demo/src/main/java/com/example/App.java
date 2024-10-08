@@ -18,7 +18,7 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Dialog.fxml"));
         Parent pane = fxmlLoader.load();
         root.getChildren().addAll(pane);
-
+        
         Scene scene = new Scene(root, 879, 544);
         primaryStage.setTitle("JxBrowser JavaFX");
         primaryStage.setScene(scene);
