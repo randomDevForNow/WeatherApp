@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.example.Controller.MapController;
 import com.example.Controller.SearchController;
+import com.example.Controller.DialogController;
 import com.example.Controller.InfoPanelController; // Import InfoPanelController
 import com.example.Model.ConnectingModel; // Import ConnectingModel
 
@@ -51,10 +52,15 @@ public class App extends Application {
             });
 
             // Add both panes to the root container
-            root.getChildren().addAll(mapPane, infoPanelPane, searchPane); // Add infoPanelPane to the root
+            FXMLLoader fxmlLoader2 = new FXMLLoader(App.class.getResource("Dialog.fxml"));
+            Parent pane = fxmlLoader2.load();
+            root.getChildren().addAll(pane);
+
+            //root.getChildren().addAll(mapPane, infoPanelPane, searchPane); // Add infoPanelPane to the root
 
             // Set up the main scene
-            Scene scene = new Scene(root, 1280, 800);
+            Scene scene = new Scene(root, 879, 544);
+            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setTitle("JxBrowser JavaFX");
             primaryStage.setScene(scene);
             primaryStage.show();
