@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.image.Image?>
@@ -16,39 +17,42 @@
             <VBox prefHeight="31.0" prefWidth="15.0" />
             <VBox alignment="CENTER" prefHeight="27.0" prefWidth="60.0">
                <children>
-                  <ImageView fitHeight="22.0" fitWidth="64.0">
+                  <ImageView fitHeight="23.0" fitWidth="72.0" preserveRatio="true">
                      <image>
                         <Image url="@OnlyWapsLogo.png" />
                      </image>
                   </ImageView>
                </children>
             </VBox>
-            <VBox prefHeight="31.0" prefWidth="648.0" />
-            <VBox alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="47.0">
+            <VBox prefHeight="31.0" prefWidth="699.0" />
+            <VBox alignment="CENTER" prefHeight="31.0" prefWidth="29.0">
                <children>
-                  <ImageView fitHeight="25.0" fitWidth="24.0">
+                  <ImageView fitHeight="21.0" fitWidth="18.0" preserveRatio="true">
                      <image>
                         <Image url="@../../../../src/main/resources/com/example/icons/minimizebutton.png" />
                      </image>
                   </ImageView>
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="24.0" prefWidth="30.0">
+            <VBox alignment="CENTER" layoutX="737.0" layoutY="10.0" prefHeight="31.0" prefWidth="34.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="❒" textAlignment="RIGHT" wrappingWidth="1.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
+                  <ImageView fitHeight="18.0" fitWidth="21.0" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../src/main/resources/com/example/icons/maximizebutton.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets right="-2.0" />
+                     </VBox.margin>
+                  </ImageView>
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="24.0" prefWidth="45.0">
+            <VBox alignment="CENTER" layoutX="784.0" layoutY="10.0" prefHeight="31.0" prefWidth="31.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="✖" wrappingWidth="1.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
+                  <ImageView fitHeight="24.0" fitWidth="16.0" nodeOrientation="RIGHT_TO_LEFT" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../src/main/resources/com/example/icons/closebutton.png" />
+                     </image>
+                  </ImageView>
                </children>
             </VBox>
          </children>
@@ -69,7 +73,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The only weather + maps app you’ll need">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The only weather + map app you’ll need">
                            <font>
                               <Font size="13.0" />
                            </font>
