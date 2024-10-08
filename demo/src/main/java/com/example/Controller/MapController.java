@@ -1,18 +1,18 @@
 package com.example.Controller;
 
 import com.teamdev.jxbrowser.browser.Browser;
+import com.teamdev.jxbrowser.browser.event.ConsoleMessageReceived;
 import com.teamdev.jxbrowser.engine.Engine;
 import com.teamdev.jxbrowser.engine.EngineOptions;
 import com.teamdev.jxbrowser.engine.RenderingMode;
+import com.teamdev.jxbrowser.js.ConsoleMessage;
+import com.teamdev.jxbrowser.js.ConsoleMessageLevel;
 import com.teamdev.jxbrowser.view.javafx.BrowserView;
-//import com.example.Model.ConnectingModel;
-
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
 public class MapController {
-
-    // private ConnectingModel model;
 
     @FXML
     private BorderPane mapContainer; // Assuming a BorderPane is defined in FXML to hold the map
@@ -24,18 +24,26 @@ public class MapController {
             .build();
 
     public Engine engine = Engine.newInstance(options);
+    public Browser browser;
+    double[] coordinates = new double[2];
 
-    /*
-     * public void setModel(ConnectingModel model) {
-     * this.model = model;
-     * }
-     */
+    @FXML
+    private Button boton;
+
+    @FXML
+    private void getMapCen() {
+        browser.on(ConsoleMessageReceived.class, event -> {
+            ConsoleMessage consoleMessage = event.consoleMessage();
+            ConsoleMessageLevel level = consoleMessage.level();
+            String message = consoleMessage.message();
+            System.out.println(message);
+        });
+    }
 
     @FXML
     public void initialize() {
-
         // Create a Browser instance.
-        Browser browser = engine.newBrowser();
+        browser = engine.newBrowser();
 
         // Load the local HTML file containing the Google Maps API integration.
         String htmlFilePath = getClass().getResource("/com/example/index.html").toExternalForm();
@@ -46,6 +54,5 @@ public class MapController {
 
         // Add the BrowserView to the mapContainer defined in FXML
         mapContainer.setCenter(view);
-
     }
 }
