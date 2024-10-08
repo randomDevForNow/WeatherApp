@@ -15,6 +15,69 @@
       margin: 0;
       padding: 0;
     }
+
+    .card {
+      background-color: #f2f9ff;
+      /* Light background */
+      border: 1px solid #c1d3e0;
+      /* Subtle border */
+      border-radius: 8px;
+      /* Rounded corners */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      /* Light shadow */
+      padding: 20px;
+      /* Padding around the content */
+      max-width: 300px;
+      /* Maximum width of the card */
+      font-family: 'Arial', sans-serif;
+      /* Font style */
+    }
+
+    .card img {
+      width: 100%;
+      /* Full width for the image */
+      border-radius: 8px;
+      /* Rounded corners for the image */
+    }
+
+    .card h2 {
+      margin: 10px 0;
+      /* Margin for heading */
+      font-size: 20px;
+      /* Font size for the title */
+      color: #333;
+      /* Dark color for text */
+    }
+
+    .card .rating {
+      color: #f39c12;
+      /* Color for star rating */
+    }
+
+    .card p {
+      margin: 5px 0;
+      /* Margin for paragraphs */
+      color: #666;
+      /* Gray color for text */
+    }
+
+    .card .distance {
+      font-weight: bold;
+      /* Bold for distance text */
+    }
+
+    .card .status {
+      background-color: #e74c3c;
+      /* Red background for status */
+      color: white;
+      /* White text color */
+      padding: 5px;
+      /* Padding around status */
+      border-radius: 5px;
+      /* Rounded corners */
+      text-align: center;
+      /* Center text */
+    }
   </style>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"></script>
   <script>
@@ -362,25 +425,74 @@
         disableDefaultUI: true,
       });
 
-      // Event Listeners
-      google.maps.event.addListener(map, 'idle', function () {
-        console.log("123");
-      });
-
       // Map Style
       map.setOptions({ styles: mapStyle });
+
+      // Create the search button
+      const searchButton = document.createElement("button");
+      searchButton.textContent = "Search this area";
+      searchButton.classList.add("custom-map-control-button");
+      searchButton.style.display = "none";
+      map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchButton);
+
+      // Add event listeners to detect map movement
+      map.addListener("idle", () => {
+        searchButton.style.display = "block"; // Show button when map stops moving
+      });
+
+      searchButton.addEventListener("click", () => {
+        // Fetch center coordinates
+        const center = map.getCenter();
+        const lat = center.lat();
+        const lng = center.lng();
+
+        // Call your place search function here
+        console.log(`coor ${lat} ${lng}`);
+
+        // Hide the button again after search
+        searchButton.style.display = "none";
+      });
+    }
+    //replace with place
+    function createMarker(title, type, url, starRating, address, proximity, openingHours, status, position) {
+      const content = document.createElement("div");
+      content.classList.add("card"); // Apply the main card class
+
+      content.innerHTML = `
+        <div class="icon-ctr">
+            <img src="./styles/icons/${type.icon}.png" alt="${type.name}">
+        </div>
+        <div class="img-ctr">
+            <img id="${type.icon}" src="./styles/images/places/${url}" alt="${title}">
+        </div>
+        <div class="notes">
+            <h2 id="name">${title}</h2> <!-- Change to h2 for the title -->
+            <span id="type">${type.name}</span>
+            <span class="rating">${starRating} ★</span> <!-- Add the rating class -->
+            <span id="address">${address}</span>
+            <span class="distance">${proximity}m</span> <!-- Change to distance class -->
+            <span id="opening-hours">${openingHours}</span>
+            <span class="status">${status}</span> <!-- Change to status class -->
+        </div>
+    `;
+
+      // Create a marker on the map
+      const marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        title: title,
+        icon: `./styles/icons/${type.icon}.png`
+      });
+
+      // Attach a click listener to the marker
+      marker.addListener("click", () => {
+        const infoWindow = new google.maps.InfoWindow({
+          content: content
+        });
+        infoWindow.open(map, marker);
+      });
     }
 
-    function hey() {
-      const center = map.getCenter();
-
-      // Get the latitude and longitude
-      const lat = center.lat();
-      const lng = center.lng();
-
-      // Log the individual values
-      console.log(lat, lng);
-    }
 
   </script>
 </head>
