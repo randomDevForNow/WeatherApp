@@ -7,6 +7,8 @@
     blue5: #edf7fc;
 }
 
+
+/*Window Button Styles*/
 .windowBtn:hover {
     -fx-background-color: blue2;
 }
@@ -15,14 +17,24 @@
     -fx-background-color: #e19999;
 }
 
+
+/* Dialogue.fxml Styles */
+
 .getStartedBtn:hover {
     -fx-background-color: blue2; 
 }
 
 .privacyCheckbox {
-    -fx-border-color: transparent;
+    -fx-border-radius: 0; 
+    -fx-focus-color: transparent;
+}
+
+.privacyCheckbox:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent; 
 }
 
 .privacyCheckbox:selected .box .mark {
     -fx-background-color: blue1; 
 }
+

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.image.Image?>
@@ -83,9 +84,9 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bodyfont" text="The only weather + maps app you’ll need">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bodyfont" text="The only weather + map app you’ll need">
                            <font>
-                              <Font size="13.0" />
+                              <Font name="HelveticaNowText-Regular" size="13.0" />
                            </font>
                         </Text>
                      </children>
@@ -102,7 +103,7 @@
                               <VBox prefHeight="27.0" prefWidth="160.0" />
                               <VBox alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="121.0">
                                  <children>
-                                    <CheckBox fx:id="locationCheckBox" mnemonicParsing="false" styleClass="privacyCheckbox" />
+                                    <CheckBox fx:id="locationCheckBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="30.0" styleClass="privacyCheckbox" />
                                  </children>
                               </VBox>
                            </children>
@@ -111,7 +112,10 @@
                   </VBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="105.0" prefWidth="380.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="By checking the box, I authorize the app to access my location data" wrappingWidth="366.060546875" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="By checking the box, I authorize the app to access my location data" wrappingWidth="390.060546875">
+                           <font>
+                              <Font name="HelveticaNowText-Regular" size="12.0" />
+                           </font></Text>
                      </children>
                   </VBox>
                </children>
@@ -126,19 +130,25 @@
                                  <children>
                                     <VBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="144.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Get Started" wrappingWidth="94.9833984375">
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Get Started" wrappingWidth="106.183349609375">
                                              <font>
-                                                <Font size="17.0" />
+                                                <Font name="HelveticaNowText-Bold" size="17.0" />
                                              </font>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
                                           </Text>
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="45.0">
                                        <children>
-                                          <Text fill="#50b8e7" strokeType="OUTSIDE" strokeWidth="0.0" text="▶" wrappingWidth="9.0">
+                                          <Text fill="#50b8e7" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="triangle" text="▶" wrappingWidth="13.79998779296875">
                                              <font>
                                                 <Font size="28.0" />
                                              </font>
+                                             <VBox.margin>
+                                                <Insets bottom="2.0" />
+                                             </VBox.margin>
                                           </Text>
                                        </children>
                                     </VBox>
