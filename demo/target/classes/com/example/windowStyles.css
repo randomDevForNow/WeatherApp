@@ -8,5 +8,5 @@
 }
 
 .windowBtn:hover {
-    -fx-background-color: var(--blue1);
+    -fx-background-color: var(--blue3);
 }

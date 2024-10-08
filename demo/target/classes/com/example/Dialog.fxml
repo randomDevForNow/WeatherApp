@@ -24,11 +24,11 @@
                </children>
             </VBox>
             <VBox prefHeight="31.0" prefWidth="689.0" />
-            <VBox alignment="CENTER" prefHeight="31.0" prefWidth="39.0">
+            <VBox id="minimizeBtn" alignment="CENTER" prefHeight="31.0" prefWidth="39.0" styleClass="windowBtn">
                <children>
                   <ImageView fitHeight="19.0" fitWidth="18.0" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../src/main/resources/com/example/icons/minimizebutton.png" />
+                        <Image url="@icons/minimizebutton.png" />
                      </image>
                   </ImageView>
                </children>
@@ -37,7 +37,7 @@
                <children>
                   <ImageView fitHeight="21.0" fitWidth="20.0" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../src/main/resources/com/example/icons/maximizebutton.png" />
+                        <Image url="@icons/maximizebutton.png" />
                      </image>
                   </ImageView>
                </children>
@@ -46,7 +46,7 @@
                <children>
                   <ImageView fitHeight="20.0" fitWidth="20.0" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../src/main/resources/com/example/icons/closebutton.png" />
+                        <Image url="@icons/closebutton.png" />
                      </image>
                   </ImageView>
                </children>

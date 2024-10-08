@@ -17,11 +17,9 @@ public class App extends Application {
         HBox root = new HBox();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Dialog.fxml"));
         Parent pane = fxmlLoader.load();
-
         root.getChildren().addAll(pane);
 
         Scene scene = new Scene(root, 879, 544);
-        scene.getStylesheets().add(getClass().getResource("com/example/windowStyles.css").toExternalForm());
         primaryStage.setTitle("JxBrowser JavaFX");
         primaryStage.setScene(scene);
         primaryStage.show();
