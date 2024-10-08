@@ -1,5 +1,6 @@
 package com.example.Controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -95,50 +96,55 @@ public class InfoPanelController {
     // Listeners
     private void addListeners() {
         listView.setCellFactory(param -> new ListCell<PlaceModel>() {
-            @Override
-            protected void updateItem(PlaceModel place, boolean empty) {
-                super.updateItem(place, empty);
-                if (empty || place == null) {
-                    setText(null);
-                    setGraphic(null);
-                } else {
-                    HBox cellLayout = new HBox(10);
-                    cellLayout.setPrefHeight(100); // Set preferred height if needed
+    @Override
+    protected void updateItem(PlaceModel place, boolean empty) {
+        super.updateItem(place, empty);
+        if (empty || place == null) {
+            setText(null);
+            setGraphic(null);
+        } else {
+            HBox cellLayout = new HBox(10);
+            cellLayout.setPrefHeight(100); // Set preferred height if needed
 
-                    // Create ImageView for the place photo
-                    /*
-                     * ImageView coverImage = new ImageView();
-                     * if (place.getPhotos() != null && !place.getPhotos().isEmpty()) {
-                     * String photoReference = place.getPhotos().get(0).getPhoto_reference();
-                     * String photoUrl =
-                     * "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="
-                     * + photoReference + "&key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"; // Replace
-                     * with your
-                     * // actual API key
-                     * coverImage.setImage(new Image(photoUrl));
-                     * coverImage.setFitHeight(100); // Set a height for the image
-                     * coverImage.setPreserveRatio(true); // Maintain the aspect ratio
-                     * }
-                     */
+            // Create an empty ImageView for the place photo
+            ImageView coverImage = new ImageView();
+            coverImage.setFitHeight(100); // Set a height for the image
+            coverImage.setPreserveRatio(true); // Maintain the aspect ratio
 
-                    VBox infoBox = new VBox(5);
-                    Label nameLabel = new Label(place.getName());
-                    Label typeLabel = new Label(String.join(", ", place.getTypes()));
-                    Label ratingLabel = new Label("Rating: " + place.getRating());
-                    Label vicinityLabel = new Label(place.getVicinity());
+            VBox infoBox = new VBox(5);
+            Label nameLabel = new Label(place.getName());
+            Label typeLabel = new Label(String.join(", ", place.getTypes()));
+            Label ratingLabel = new Label("Rating: " + place.getRating());
+            Label vicinityLabel = new Label(place.getVicinity());
 
-                    infoBox.getChildren().addAll(nameLabel, typeLabel, ratingLabel, vicinityLabel);
-                    VBox.setVgrow(nameLabel, Priority.ALWAYS); // Makes labels grow as necessary
+            infoBox.getChildren().addAll(nameLabel, typeLabel, ratingLabel, vicinityLabel);
+            VBox.setVgrow(nameLabel, Priority.ALWAYS); // Makes labels grow as necessary
 
-                    // Add image and info box to cell layout
-                    // cellLayout.getChildren().addAll(coverImage, infoBox);
-                    cellLayout.getChildren().addAll(infoBox);
+            // Add image and info box to cell layout
+            cellLayout.getChildren().addAll(coverImage, infoBox);
+            setGraphic(cellLayout);
 
-                    // Set the graphic for the cell
-                    setGraphic(cellLayout);
-                }
+            // If the place has photos, fetch the image in a background thread
+            if (place.getPhotos() != null && !place.getPhotos().isEmpty()) {
+                String photoReference = place.getPhotos().get(0).getPhoto_reference();
+                String photoUrl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="
+                        + photoReference + "&key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"; // Replace with your API key
+
+                // Fetch the image in a separate thread
+                new Thread(() -> {
+                    try {
+                        Image image = new Image(photoUrl);
+                        // Update the UI on the JavaFX Application Thread
+                        Platform.runLater(() -> coverImage.setImage(image));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }).start();
             }
-        });
+        }
+    }
+});
+
     }
 
     private void appendScenes() {
