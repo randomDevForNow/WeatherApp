@@ -1,12 +1,20 @@
-:root {
+* {
     /* From darkest to lightest */
-    --blue1: #50b8e7;
-    --blue2: #84cdee;
-    --blue3: #b9e2f5;
-    --blue4: #dcf0fa;
-    --blue5: #edf7fc;
+    blue1: #50b8e7;
+    blue2: #84cdee;
+    blue3: #b9e2f5;
+    blue4: #dcf0fa;
+    blue5: #edf7fc;
 }
 
 .windowBtn:hover {
-    -fx-background-color: var(--blue3);
+    -fx-background-color: blue2;
+}
+
+#closeBtn:hover {
+    -fx-background-color: #e19999;
+}
+
+.getStartedBtn:hover {
+    -fx-background-color: blue2; 
 }

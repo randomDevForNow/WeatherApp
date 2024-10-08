@@ -26,7 +26,7 @@
             </VBox>
             <VBox prefHeight="33.0" prefWidth="720.0" />
             <VBox prefHeight="33.0" prefWidth="24.0" />
-            <VBox alignment="CENTER" prefHeight="31.0" prefWidth="47.0">
+            <VBox alignment="CENTER" prefHeight="31.0" prefWidth="47.0" styleClass="windowBtn">
                <children>
                   <Button fx:id="minimizeButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="36.0" style="-fx-background-color: none;">
                      <graphic>
@@ -39,9 +39,9 @@
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="34.0" prefWidth="70.0">
+            <VBox alignment="CENTER" prefHeight="34.0" prefWidth="70.0" styleClass="windowBtn">
                <children>
-                  <Button fx:id="maximizeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="40.0" style="-fx-background-color: none;">
+                  <Button fx:id="maximizeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="40.0" style="-fx-background-color: none;" styleClass="windowBtn">
                      <graphic>
                         <ImageView fx:id="minimizeIcon2" fitHeight="20.0" fitWidth="18.0" preserveRatio="true">
                            <image>
@@ -52,9 +52,9 @@
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="39.0" prefWidth="73.0">
+            <VBox id="closeBtn" alignment="CENTER" prefHeight="39.0" prefWidth="73.0" styleClass="windowBtn">
                <children>
-                  <Button fx:id="closeButton" mnemonicParsing="false" style="-fx-background-color: none;">
+                  <Button fx:id="closeButton" mnemonicParsing="false" style="-fx-background-color: none;" styleClass="windowBtn">
                      <graphic>
                         <ImageView fx:id="minimizeIcon1" fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
                            <image>
@@ -122,7 +122,7 @@
                      <children>
                         <Button fx:id="getStartedButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="162.0" style="-fx-background-radius: 22; -fx-background-color: white;">
                            <graphic>
-                              <HBox prefHeight="12.0" prefWidth="200.0">
+                              <HBox id="getStartedBtn" prefHeight="12.0" prefWidth="200.0">
                                  <children>
                                     <VBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="144.0">
                                        <children>
