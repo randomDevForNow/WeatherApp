@@ -6,11 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -25,7 +21,7 @@ public class App extends Application {
         root.getChildren().addAll(pane);
 
         Scene scene = new Scene(root, 879, 544);
-
+        scene.getStylesheets().add(getClass().getResource("com/example/windowStyles.css").toExternalForm());
         primaryStage.setTitle("JxBrowser JavaFX");
         primaryStage.setScene(scene);
         primaryStage.show();
