@@ -83,7 +83,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The only weather + maps app you’ll need">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bodyfont" text="The only weather + maps app you’ll need">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -120,7 +120,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="884.0">
                      <children>
-                        <Button fx:id="getStartedButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="162.0" style="-fx-background-radius: 22; -fx-background-color: white;">
+                        <Button fx:id="getStartedButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="162.0" style="-fx-background-radius: 22; -fx-background-color: white;" styleClass="getStartedBtn">
                            <graphic>
                               <HBox id="getStartedBtn" prefHeight="12.0" prefWidth="200.0">
                                  <children>
