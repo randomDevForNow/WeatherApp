@@ -76,16 +76,14 @@ public class InfoPanelController {
         // Build place queries using the current weather data
         if (weather != null) {
             List<String> placeQueries = PlaceFilter.buildPlaceQueries(weather);
-            String placesData = PlaceFetcher.fetchPlaces(placeQueries);
-            /*
-             * List<PlaceModel> placesData = PlaceFetcher.fetchPlaces(placeQueries);
-             * 
-             * // Clear previous items from the ListView
-             * listView.getItems().clear();
-             * 
-             * // Add the fetched places to the ListView
-             * listView.getItems().addAll(placesData);
-             */
+            List<PlaceModel> placesData = PlaceFetcher.fetchPlaces(placeQueries);
+
+            // Clear previous items from the ListView
+            listView.getItems().clear();
+
+            // Add the fetched places to the ListView
+            listView.getItems().addAll(placesData);
+
         }
     }
 
@@ -104,16 +102,23 @@ public class InfoPanelController {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    // Create the layout for the cell programmatically
                     HBox cellLayout = new HBox(10);
                     cellLayout.setPrefHeight(100); // Set preferred height if needed
+
+                    // Create ImageView for the place photo
                     /*
                      * ImageView coverImage = new ImageView();
-                     * coverImage.setFitWidth(80);
-                     * coverImage.setFitHeight(80);
-                     * coverImage.setPreserveRatio(true);
-                     * coverImage.setImage(new Image(place.getCoverPhoto())); // Use the cover photo
-                     * URL
+                     * if (place.getPhotos() != null && !place.getPhotos().isEmpty()) {
+                     * String photoReference = place.getPhotos().get(0).getPhoto_reference();
+                     * String photoUrl =
+                     * "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="
+                     * + photoReference + "&key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"; // Replace
+                     * with your
+                     * // actual API key
+                     * coverImage.setImage(new Image(photoUrl));
+                     * coverImage.setFitHeight(100); // Set a height for the image
+                     * coverImage.setPreserveRatio(true); // Maintain the aspect ratio
+                     * }
                      */
 
                     VBox infoBox = new VBox(5);
@@ -130,7 +135,6 @@ public class InfoPanelController {
                     cellLayout.getChildren().addAll(infoBox);
 
                     // Set the graphic for the cell
-                    System.out.println(place.getCoverPhoto());
                     setGraphic(cellLayout);
                 }
             }

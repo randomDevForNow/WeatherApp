@@ -1,14 +1,20 @@
 package com.example.Model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class PlaceFetcher {
-    public static String fetchPlaces(List<String> placeQueries) {
-        StringBuilder results = new StringBuilder();
+    private static final String BASE_PHOTO_URL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=";
+
+    public static List<PlaceModel> fetchPlaces(List<String> placeQueries) {
+        List<PlaceModel> placeList = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
 
         for (String placeQuery : placeQueries) {
             try {
@@ -21,10 +27,29 @@ public class PlaceFetcher {
                     Scanner scanner = new Scanner(url.openStream());
 
                     // Read the response
+                    StringBuilder jsonResponse = new StringBuilder();
                     while (scanner.hasNext()) {
-                        results.append(scanner.nextLine());
+                        jsonResponse.append(scanner.nextLine());
                     }
                     scanner.close();
+
+                    // Parse the JSON response into PlaceResponse
+                    PlaceResponse placeResponse = objectMapper.readValue(jsonResponse.toString(), PlaceResponse.class);
+
+                    // Iterate through the results and create PlaceModel objects
+                    for (PlaceModel place : placeResponse.getResults()) {
+                        // Check if there are photos and construct the photo URL
+                        if (place.getPhotos() != null && !place.getPhotos().isEmpty()) {
+                            String photoReference = place.getPhotos().get(0).getPhoto_reference();
+                            String photoUrl = BASE_PHOTO_URL + photoReference
+                                    + "&key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"; // Add your API key
+                            // here
+                            place.setPhotoUrl(photoUrl); // Assume you add a setPhotoUrl method in PlaceModel
+                        } else {
+                            place.setPhotoUrl("No photo available");
+                        }
+                        placeList.add(place);
+                    }
                 } else {
                     System.out.println("Error: Unable to fetch places for query: " + placeQuery);
                 }
@@ -32,7 +57,6 @@ public class PlaceFetcher {
                 System.out.println("Error: " + e.getMessage());
             }
         }
-        System.out.println(results.toString());
-        return results.toString();
+        return placeList; // Return the list of PlaceModel objects
     }
 }
