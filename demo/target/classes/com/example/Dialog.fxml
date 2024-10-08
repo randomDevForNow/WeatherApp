@@ -102,7 +102,7 @@
                               <VBox prefHeight="27.0" prefWidth="160.0" />
                               <VBox alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="121.0">
                                  <children>
-                                    <CheckBox fx:id="locationCheckBox" mnemonicParsing="false" />
+                                    <CheckBox fx:id="locationCheckBox" mnemonicParsing="false" styleClass="privacyCheckbox" />
                                  </children>
                               </VBox>
                            </children>

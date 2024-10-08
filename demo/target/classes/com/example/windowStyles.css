@@ -18,3 +18,11 @@
 .getStartedBtn:hover {
     -fx-background-color: blue2; 
 }
+
+.privacyCheckbox {
+    -fx-border-color: transparent;
+}
+
+.privacyCheckbox:selected .box .mark {
+    -fx-background-color: blue1; 
+}
