@@ -1,20 +1,13 @@
 package com.example.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-
-import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
-import javafx.scene.Node;
-import javafx.util.Duration;
-
-import javafx.scene.input.MouseEvent;
 
 public class DialogController {
     @FXML

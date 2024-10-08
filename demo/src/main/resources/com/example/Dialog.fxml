@@ -26,41 +26,41 @@
             </VBox>
             <VBox prefHeight="33.0" prefWidth="720.0" />
             <VBox prefHeight="33.0" prefWidth="24.0" />
-            <VBox alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="47.0">
+            <VBox alignment="CENTER" prefHeight="31.0" prefWidth="47.0">
                <children>
-                  <Button fx:id="minimizeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="0.0" style="-fx-background-color: none;">
+                  <Button fx:id="minimizeButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="36.0" style="-fx-background-color: none;">
                      <graphic>
-                        <ImageView fx:id="minimizeIcon" fitHeight="25.0" fitWidth="24.0">
+                        <ImageView fx:id="minimizeIcon" fitHeight="22.0" fitWidth="19.0" preserveRatio="true">
                            <image>
-                              <Image url="@Minimize.png" />
+                              <Image url="@icons/minimizebutton.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="47.0">
+            <VBox alignment="CENTER" prefHeight="34.0" prefWidth="70.0">
                <children>
                   <Button fx:id="maximizeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="40.0" style="-fx-background-color: none;">
                      <graphic>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="❒" textAlignment="RIGHT" wrappingWidth="1.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
+                        <ImageView fx:id="minimizeIcon2" fitHeight="20.0" fitWidth="18.0" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/maximizebutton.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="73.0">
+            <VBox alignment="CENTER" prefHeight="39.0" prefWidth="73.0">
                <children>
                   <Button fx:id="closeButton" mnemonicParsing="false" style="-fx-background-color: none;">
                      <graphic>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="✖" wrappingWidth="16.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
+                        <ImageView fx:id="minimizeIcon1" fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/closebutton.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                </children>
