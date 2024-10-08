@@ -13,7 +13,7 @@
       <HBox prefHeight="33.0" prefWidth="867.0">
          <children>
             <VBox prefHeight="31.0" prefWidth="15.0" />
-            <VBox prefHeight="33.0" prefWidth="42.0" />
+            <VBox prefHeight="33.0" prefWidth="48.0" />
             <VBox alignment="CENTER" prefHeight="27.0" prefWidth="60.0">
                <children>
                   <ImageView fitHeight="22.0" fitWidth="64.0">
@@ -27,9 +27,9 @@
             <VBox prefHeight="33.0" prefWidth="24.0" />
             <VBox alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="47.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="0.0" style="-fx-background-color: none;">
+                  <Button fx:id="minimizeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="0.0" style="-fx-background-color: none;">
                      <graphic>
-                        <ImageView fx:id="minimizeButton" fitHeight="25.0" fitWidth="24.0">
+                        <ImageView fx:id="minimizeIcon" fitHeight="25.0" fitWidth="24.0">
                            <image>
                               <Image url="@Minimize.png" />
                            </image>

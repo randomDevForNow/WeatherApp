@@ -28,11 +28,15 @@
             <VBox prefHeight="33.0" prefWidth="24.0" />
             <VBox alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="47.0">
                <children>
-                  <ImageView fitHeight="25.0" fitWidth="24.0">
-                     <image>
-                        <Image url="@../../../../src/main/resources/com/example/icons/minimizebutton.png" />
-                     </image>
-                  </ImageView>
+                  <Button fx:id="minimizeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="0.0" style="-fx-background-color: none;">
+                     <graphic>
+                        <ImageView fx:id="minimizeIcon" fitHeight="25.0" fitWidth="24.0">
+                           <image>
+                              <Image url="@Minimize.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </VBox>
             <VBox alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="47.0">
