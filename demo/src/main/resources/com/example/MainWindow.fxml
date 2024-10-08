@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.DialogController">
+   <children>
+      <HBox prefHeight="33.0" prefWidth="867.0" style="-fx-background-color: #50b8e7;">
+         <children>
+            <VBox prefHeight="31.0" prefWidth="15.0" />
+            <VBox prefHeight="33.0" prefWidth="48.0" />
+            <VBox alignment="CENTER" prefHeight="27.0" prefWidth="60.0">
+               <children>
+                  <ImageView fitHeight="22.0" fitWidth="64.0">
+                     <image>
+                        <Image url="@OnlyWapsLogo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox prefHeight="33.0" prefWidth="1069.0" />
+            <VBox alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="47.0">
+               <children>
+                  <Button id="minimizeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="49.0" style="-fx-background-color: none;">
+                     <graphic>
+                        <ImageView fx:id="minimizeButton" fitHeight="25.0" fitWidth="24.0">
+                           <image>
+                              <Image url="@Minimize.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="26.0">
+               <children>
+                  <Button fx:id="maximizeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="16.0" style="-fx-background-color: none;">
+                     <graphic>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="❒" textAlignment="RIGHT" wrappingWidth="25.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="33.0" prefWidth="33.0">
+               <children>
+                  <Button fx:id="closeButton" alignment="CENTER_RIGHT" mnemonicParsing="false" style="-fx-background-color: none;" textAlignment="CENTER">
+                     <graphic>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="✖" textAlignment="RIGHT" wrappingWidth="25.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <VBox prefHeight="36.0" prefWidth="879.0" />
+      <VBox prefHeight="557.0" prefWidth="982.0">
+         <children>
+            <HBox prefHeight="558.0" prefWidth="982.0">
+               <children>
+                  <VBox prefHeight="481.0" prefWidth="560.0">
+                     <children>
+                        <VBox prefHeight="521.0" prefWidth="222.0">
+                           <children>
+                              <HBox prefHeight="47.0" prefWidth="242.0" />
+                              <HBox prefHeight="38.0" prefWidth="242.0" />
+                              <HBox prefHeight="27.0" prefWidth="202.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="481.0" prefWidth="815.0">
+                     <children>
+                        <BorderPane prefHeight="585.0" prefWidth="497.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="481.0" prefWidth="560.0">
+                     <children>
+                        <VBox prefHeight="731.0" prefWidth="205.0">
+                           <children>
+                              <HBox prefHeight="122.0" prefWidth="250.0" />
+                              <HBox prefHeight="17.0" prefWidth="203.0" />
+                              <HBox prefHeight="122.0" prefWidth="250.0" />
+                              <HBox prefHeight="17.0" prefWidth="203.0" />
+                              <HBox prefHeight="27.0" prefWidth="203.0">
+                                 <children>
+                                    <Label style="-fx-background-color: #50b8e7; -fx-background-radius: 7;" text="  Quick Facts:  " wrapText="true">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="206.0" prefWidth="203.0">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>
