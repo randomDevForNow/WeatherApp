@@ -9,6 +9,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <jxbrowser.version>7.41.3</jxbrowser.version>
+        <jackson.version>2.17.1</jackson.version>
     </properties>
     <repositories>
         <repository>

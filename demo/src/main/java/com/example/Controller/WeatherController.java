@@ -5,7 +5,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
+import com.example.Model.WeatherModel;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class WeatherController {
+
+    private WeatherModel weather;
 
     public void updateWeather(double latitude, double longitude) {
         // Fetch weather data based on coordinates
@@ -20,21 +25,17 @@ public class WeatherController {
 
             if (conn.getResponseCode() == 200) {
                 // Success
-                Scanner scanner = new Scanner(url.openStream());
-                StringBuilder inline = new StringBuilder();
-
-                // Read the response
-                while (scanner.hasNext()) {
-                    inline.append(scanner.nextLine());
-                }
-                scanner.close();
-                // Process the response here
-                System.out.println("Weather data: " + inline.toString());
+                ObjectMapper objectMapper = new ObjectMapper();
+                weather = objectMapper.readValue(url, WeatherModel.class);
             } else {
                 System.out.println("Error: Unable to fetch weather data.");
             }
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
+    }
+
+    public WeatherModel getWeather() {
+        return weather;
     }
 }
