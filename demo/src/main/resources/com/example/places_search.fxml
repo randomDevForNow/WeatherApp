@@ -8,5 +8,5 @@
 <VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.Controller.SearchController" spacing="10" alignment="center" prefWidth="300">
     <TextField fx:id="searchField" promptText="Enter a location..." />
     <Button fx:id="searchButton" text="Choose" />
-    <ListView fx:id="resultsListView" prefHeight="200" />
+    <ListView fx:id="resultsListView" prefHeight="200" visible="false" /> <!-- Set initially hidden -->
 </VBox>

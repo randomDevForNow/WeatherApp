@@ -52,8 +52,8 @@ public class MapController {
     public void initialize() {
         setupBrowser();
         addListeners(); // change move to setupBrowser
-
         appendScenes();
+        
     }
 
     public void setModel(ConnectingModel model) {
@@ -136,7 +136,6 @@ public class MapController {
     }
 
     private void appendScenes() {
-
         mapContainer.setCenter(view);
     }
 }

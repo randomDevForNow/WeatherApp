@@ -55,65 +55,71 @@ public class SearchController {
         });
 
         // Set up the search button action
-        searchButton.setOnAction(event -> {
-            // Get the selected place name from the search field
-            String selectedPlace = searchField.getText();
-        
-            if (selectedPlace != null && !selectedPlace.isEmpty()) {
-                System.out.println("Search button pressed for: " + selectedPlace);
-        
-                new Thread(() -> {
-                    try {
-                        String apiKey = "AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"; // Replace with your Google Places API key
-                        
-                        // Properly encode the place name for the URL
-                        String encodedPlace = java.net.URLEncoder.encode(selectedPlace, StandardCharsets.UTF_8.toString());
-                        String urlString = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + encodedPlace + "&inputtype=textquery&fields=geometry&key=" + apiKey;
-        
-                        // Make the network request to fetch place details (longitude and latitude)
-                        URL url = new URL(urlString);
-                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                        connection.setRequestMethod("GET");
-        
-                        if (connection.getResponseCode() == 200) {
-                            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                            StringBuilder response = new StringBuilder();
-                            String inputLine;
-                            while ((inputLine = in.readLine()) != null) {
-                                response.append(inputLine);
-                            }
-                            in.close();
-        
-                            // Parse the response and get the latitude and longitude
-                            JsonNode jsonResponse = objectMapper.readTree(response.toString());
-                            JsonNode candidates = jsonResponse.get("candidates");
-        
-                            if (candidates != null && candidates.size() > 0) {
-                                JsonNode location = candidates.get(0).get("geometry").get("location");
-                                double latitude = location.get("lat").asDouble();
-                                double longitude = location.get("lng").asDouble();
-        
-                                // Output the latitude and longitude to the console
-                                System.out.println("Latitude: " + latitude + ", Longitude: " + longitude);
-                            } else {
-                                System.out.println("No location data found for the selected place.");
-                            }
-                        } else {
-                            System.out.println("Error fetching location data: " + connection.getResponseCode());
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        // Set up the search button action
+searchButton.setOnAction(event -> {
+    // Get the selected place name from the search field
+    String selectedPlace = searchField.getText();
+
+    // Hide the ListView when the "Choose" button is pressed
+    resultsListView.setVisible(false);
+    resultsListView.setManaged(false); // Adjusts layout calculations
+
+    if (selectedPlace != null && !selectedPlace.isEmpty()) {
+        System.out.println("Search button pressed for: " + selectedPlace);
+
+        new Thread(() -> {
+            try {
+                String apiKey = "AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"; // Replace with your Google Places API key
+
+                // Properly encode the place name for the URL
+                String encodedPlace = java.net.URLEncoder.encode(selectedPlace, StandardCharsets.UTF_8.toString());
+                String urlString = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + encodedPlace + "&inputtype=textquery&fields=geometry&key=" + apiKey;
+
+                // Make the network request to fetch place details (longitude and latitude)
+                URL url = new URL(urlString);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                if (connection.getResponseCode() == 200) {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder response = new StringBuilder();
+                    String inputLine;
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
                     }
-                }).start();
+                    in.close();
+
+                    // Parse the response and get the latitude and longitude
+                    JsonNode jsonResponse = objectMapper.readTree(response.toString());
+                    JsonNode candidates = jsonResponse.get("candidates");
+
+                    if (candidates != null && candidates.size() > 0) {
+                        JsonNode location = candidates.get(0).get("geometry").get("location");
+                        double latitude = location.get("lat").asDouble();
+                        double longitude = location.get("lng").asDouble();
+
+                        // Output the latitude and longitude to the console
+                        System.out.println("Latitude: " + latitude + ", Longitude: " + longitude);
+                    } else {
+                        System.out.println("No location data found for the selected place.");
+                    }
+                } else {
+                    System.out.println("Error fetching location data: " + connection.getResponseCode());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
+        }).start();
+    }
+});
+
     }
 
     private void fetchPlaceSuggestions(String query) {
         new Thread(() -> {
             try {
                 String apiKey = "AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"; // Replace with your Google Places API key
-                
+    
                 // Properly encode the query for the URL
                 String encodedQuery = java.net.URLEncoder.encode(query, StandardCharsets.UTF_8.toString());
                 String urlString = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + encodedQuery + "&key=" + apiKey;
@@ -142,50 +148,71 @@ public class SearchController {
             }
         }).start();
     }
+    
 
     private void updateResultsListView(String jsonResponse) {
-    // Use Platform.runLater to ensure UI updates happen on the JavaFX Application Thread
-    Platform.runLater(() -> {
-        // Clear the current items in the ListView
-        resultsListView.getItems().clear();
-        
-        try {
-            // Parse the JSON response using Jackson
-            JsonNode jsonNode = objectMapper.readTree(jsonResponse);
-            JsonNode predictionsArray = jsonNode.get("predictions");
-
-            // Create a Set to store unique addresses
-            Set<String> uniqueAddresses = new HashSet<>();
-
-            // Iterate over the predictions array
-            for (JsonNode predictionNode : predictionsArray) {
-                // Extract the place name from the prediction
-                String placeName = predictionNode.get("description").asText();
-
-                // Correct the encoding if needed
-                placeName = correctEncoding(placeName);
-
-                // Normalize the place name to handle duplicates (lowercase and trim)
-                String normalizedPlaceName = placeName.toLowerCase().trim();
-
-                // Check if the normalized place name is already in the uniqueAddresses set
-                if (!uniqueAddresses.contains(normalizedPlaceName)) {
-                    uniqueAddresses.add(normalizedPlaceName);
-                    // Add the place name to the ListView without the place ID
-                    resultsListView.getItems().add(placeName);
+        // Use Platform.runLater to ensure UI updates happen on the JavaFX Application Thread
+        Platform.runLater(() -> {
+            // Clear the current items in the ListView
+            resultsListView.getItems().clear();
+            
+            try {
+                // Parse the JSON response using Jackson
+                JsonNode jsonNode = objectMapper.readTree(jsonResponse);
+                JsonNode predictionsArray = jsonNode.get("predictions");
+    
+                // Create a Set to store unique addresses
+                Set<String> uniqueAddresses = new HashSet<>();
+    
+                // Iterate over the predictions array
+                for (JsonNode predictionNode : predictionsArray) {
+                    // Extract the place name from the prediction
+                    String placeName = predictionNode.get("description").asText();
+    
+                    // Correct the encoding if needed
+                    placeName = correctEncoding(placeName);
+    
+                    // Normalize the place name to handle duplicates (lowercase and trim)
+                    String normalizedPlaceName = placeName.toLowerCase().trim();
+    
+                    // Check if the normalized place name is already in the uniqueAddresses set
+                    if (!uniqueAddresses.contains(normalizedPlaceName)) {
+                        uniqueAddresses.add(normalizedPlaceName);
+                        // Add the place name to the ListView without the place ID
+                        resultsListView.getItems().add(placeName);
+                    }
                 }
+    
+                // Update the visibility of the ListView based on its content
+                if (resultsListView.getItems().isEmpty()) {
+                    resultsListView.setVisible(false);
+                    resultsListView.setManaged(false); // Adjusts layout calculations
+                } else {
+                    resultsListView.setVisible(true);
+                    resultsListView.setManaged(true);
+                    // Resize ListView to fit the content
+                    int itemCount = resultsListView.getItems().size();
+                    int itemHeight = 25; // Example: height per item
+                    int padding = 20; // Additional padding
+                    resultsListView.setPrefHeight(Math.min(itemCount * itemHeight + padding, 400)); // Example max height of 400px
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    });
-}
-
-
+        });
+    }
+    
+    
     private void clearResultsListView() {
         // Clear the ListView on the JavaFX Application Thread
-        Platform.runLater(() -> resultsListView.getItems().clear());
+        Platform.runLater(() -> {
+            resultsListView.getItems().clear();
+            // Hide the ListView if empty
+            resultsListView.setVisible(false);
+            resultsListView.setManaged(false); // Adjusts layout calculations
+        });
     }
+    
 
     private String correctEncoding(String brokenString) {
         // Convert the broken string to bytes using the incorrect encoding
