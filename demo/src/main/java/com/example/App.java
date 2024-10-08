@@ -60,10 +60,12 @@ public class App extends Application {
 
             // Set up the main scene
             Scene scene = new Scene(root, 879, 544);
+            DialogController controller = fxmlLoader2.getController();
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setTitle("JxBrowser JavaFX");
             primaryStage.setScene(scene);
             primaryStage.show();
+            controller.setDraggable2();
         } catch (IOException e) {
             e.printStackTrace(); // Print stack trace for debugging
         } catch (Exception e) {
