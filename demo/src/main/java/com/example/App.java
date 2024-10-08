@@ -60,6 +60,7 @@ public class App extends Application {
 
             // Set up the main scene
             Scene scene = new Scene(root, 879, 544);
+            scene.getStylesheets().add(getClass().getResource("windowStyles.css").toExternalForm());
             DialogController controller = fxmlLoader2.getController();
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setTitle("JxBrowser JavaFX");
