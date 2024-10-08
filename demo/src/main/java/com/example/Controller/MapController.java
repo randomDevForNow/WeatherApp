@@ -13,11 +13,6 @@ import com.teamdev.jxbrowser.js.JsObject;
 import com.teamdev.jxbrowser.view.javafx.BrowserView;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
