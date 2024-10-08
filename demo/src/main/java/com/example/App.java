@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.example.Controller.MapController;
 import com.example.Controller.SearchController;
+import com.example.Controller.VideoController;
 import com.example.Controller.InfoPanelController; // Import InfoPanelController
 import com.example.Model.ConnectingModel; // Import ConnectingModel
 
@@ -42,6 +43,15 @@ public class App extends Application {
             FXMLLoader searchLoader = new FXMLLoader(App.class.getResource("places_search.fxml"));
             Parent searchPane = searchLoader.load();
             SearchController searchController = searchLoader.getController();
+
+            // Load Video scene
+            FXMLLoader videoLoader = new FXMLLoader(App.class.getResource("VideoView.fxml"));
+            Parent videoPane = videoLoader.load();
+            VideoController videoController = videoLoader.getController();
+            videoController.fetchVideos("weather forecast " + connectingModel.getCenterX() + "," + connectingModel.getCenterY());
+
+            // Add the videoPane to the root container
+            root.getChildren().add(videoPane);
 
             // Close the engine when the window is closing
             primaryStage.setOnCloseRequest(event -> {

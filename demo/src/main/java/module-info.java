@@ -5,6 +5,8 @@ module com.example {
     requires jxbrowser;
     requires jxbrowser.javafx;
     requires javafx.graphics;
+    requires javafx.media;
+    requires java.net.http;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
 
