@@ -2,6 +2,8 @@ package com.example;
 
 import java.io.IOException;
 
+import com.example.Controller.DialogController;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,19 +20,19 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        // Declaring Scenes
-        HBox root = new HBox();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Dialog.fxml"));
         Parent pane = fxmlLoader.load();
 
+        HBox root = new HBox();
         root.getChildren().addAll(pane);
 
         Scene scene = new Scene(root, 879, 544);
-
+        DialogController controller = fxmlLoader.getController();
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("JxBrowser JavaFX");
         primaryStage.setScene(scene);
-        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
+        controller.setDraggable();
     }
 
     // FXML Loader to modularize scenes

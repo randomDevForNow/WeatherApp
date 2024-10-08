@@ -25,9 +25,10 @@ public class DialogController {
     private Button closeButton;
     @FXML
     private Button minimizeButton;
-
-    private double offsetX; 
-    private double offsetY; 
+    @FXML
+    private Button maximizeButton;
+    private double xOffset = 0; 
+    private double yOffset = 0; 
 
     @FXML
     public void initialize() {
@@ -58,8 +59,31 @@ public class DialogController {
                 stage.setIconified(true);
             });
         }
+        if (maximizeButton != null) {
+            maximizeButton.setOnAction(event -> {
+                System.out.println("Maximizing window...");
+                Stage stage = (Stage) maximizeButton.getScene().getWindow();
+                if (stage.isMaximized()) {
+                    stage.setMaximized(false);
+                } else {
+                    stage.setMaximized(true);
+                }
+            });
+        }
+
     }
-   
+    public void setDraggable() {
+        Node root = closeButton.getScene().getRoot();
+        root.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            Stage stage = (Stage) closeButton.getScene().getWindow();
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
+    }
 
     private void initButtonEvent() {
         System.out.println("Initializing button event...");
@@ -69,22 +93,36 @@ public class DialogController {
         });
     }
 
+    public void setDraggable(Node root, Stage stage) {
+        root.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
+    }
     private void openNextWindow() {
         try {
-            System.out.println("Hellows");
+            System.out.println("Opening next window...");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/FirstWindow.fxml"));
             Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.show();
+            Scene scene = new Scene(root);
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.initStyle(StageStyle.UNDECORATED);
+    
+            setDraggable(root, newStage);
+    
 
+            newStage.show();
+    
+            
             Stage currentStage = (Stage) getStartedButton.getScene().getWindow();
-
             currentStage.close();
         } catch (Exception e) {
-            e.printStackTrace();
-        }
+            e.printStackTrace(); 
     }
-    
+}
 }
