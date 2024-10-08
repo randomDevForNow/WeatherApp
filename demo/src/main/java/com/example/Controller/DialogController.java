@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,7 +14,8 @@ public class DialogController {
     private CheckBox locationCheckBox;  
     @FXML
     private Button getStartedButton;   
-
+    @FXML
+    private Button closeButton;
     @FXML
     public void initialize() {
         System.out.println("Initializing dialog controller...");
@@ -27,8 +29,17 @@ public class DialogController {
         } else {
             System.out.println("Button is null");
         }
-    }
 
+            if (closeButton != null) {
+                closeButton.setOnAction(event -> {
+                    System.out.println("Closing window...");
+                    Stage stage = (Stage) closeButton.getScene().getWindow(); 
+                    stage.close(); 
+                });
+            }
+        }
+
+    
     private void initButtonEvent() {
         System.out.println("Initializing button event...");
         getStartedButton.setOnAction(event -> {
@@ -44,9 +55,11 @@ public class DialogController {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
 
             Stage currentStage = (Stage) getStartedButton.getScene().getWindow();
+
             currentStage.close();
         } catch (Exception e) {
             e.printStackTrace();

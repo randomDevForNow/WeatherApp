@@ -9,11 +9,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="879.0" style="-fx-background-color: #50b8e7;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller= "com.example.Controller.DialogController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="879.0" style="-fx-background-color: #50b8e7;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.DialogController">
    <children>
-      <HBox prefHeight="31.0" prefWidth="720.0">
+      <HBox prefHeight="33.0" prefWidth="867.0">
          <children>
             <VBox prefHeight="31.0" prefWidth="15.0" />
+            <VBox prefHeight="33.0" prefWidth="43.0" />
             <VBox alignment="CENTER" prefHeight="27.0" prefWidth="60.0">
                <children>
                   <ImageView fitHeight="22.0" fitWidth="64.0">
@@ -23,32 +24,45 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox prefHeight="31.0" prefWidth="648.0" />
+            <VBox prefHeight="33.0" prefWidth="720.0" />
+            <VBox prefHeight="33.0" prefWidth="24.0" />
             <VBox alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="47.0">
                <children>
-                  <ImageView fitHeight="25.0" fitWidth="24.0">
-                     <image>
-                        <Image url="@Minimize.png" />
-                     </image>
-                  </ImageView>
+                  <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="0.0" style="-fx-background-color: none;">
+                     <graphic>
+                        <ImageView fx:id="minimizeButton" fitHeight="25.0" fitWidth="24.0">
+                           <image>
+                              <Image url="@Minimize.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="24.0" prefWidth="30.0">
+            <VBox alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="47.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="❒" textAlignment="RIGHT" wrappingWidth="1.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
+                  <Button fx:id="maximizeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="40.0" style="-fx-background-color: none;">
+                     <graphic>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="❒" textAlignment="RIGHT" wrappingWidth="1.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                  </Button>
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="24.0" prefWidth="45.0">
+            <VBox alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="73.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="✖" wrappingWidth="1.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
+                  <Button fx:id="closeButton" mnemonicParsing="false" style="-fx-background-color: none;">
+                     <graphic>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="✖" wrappingWidth="16.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </graphic>
+                  </Button>
                </children>
             </VBox>
          </children>
