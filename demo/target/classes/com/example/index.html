@@ -18,23 +18,33 @@
   </style>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"></script>
   <script>
+    let map;
+
     function initMap() {
       // Create a new map instance
-      const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 14.566526616029208, lng: 121.01504209325368 }, // Set your default center
-        zoom: 18, // Set your default zoom level
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 14.566526616029208, lng: 121.01504209325368 },
+        zoom: 18,
         disableDefaultUI: true,
       });
+
+      // Event Listeners
+      google.maps.event.addListener(map, 'idle', function () {
+        console.log("123");
+      });
+
     }
 
-    function logWithConsole() {
-      console.log(map.center);
+    function hey() {
+      const center = map.getCenter();
+
+      // Get the latitude and longitude
+      const lat = center.lat();
+      const lng = center.lng();
+
+      // Log the individual values
+      console.log(lat, lng);
     }
-
-    setInterval(function () {
-      console.log("This message appears every 5 seconds!");
-    }, 5000);
-
 
   </script>
 </head>
