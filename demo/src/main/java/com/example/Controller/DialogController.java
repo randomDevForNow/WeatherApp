@@ -58,8 +58,6 @@ public class DialogController {
                 stage.setIconified(true);
             });
         }
-        Stage stage = (Stage) getStartedButton.getScene().getWindow();
-        makeWindowDraggable(stage);
     }
    
 
@@ -88,17 +86,5 @@ public class DialogController {
             e.printStackTrace();
         }
     }
-    private void makeWindowDraggable(Stage stage) {
-        // Listen for mouse pressed events to get the initial click position
-        stage.getScene().setOnMousePressed((MouseEvent event) -> {
-            offsetX = event.getSceneX();
-            offsetY = event.getSceneY();
-        });
-
-        // Listen for mouse dragged events to move the window
-        stage.getScene().setOnMouseDragged((MouseEvent event) -> {
-            stage.setX(event.getScreenX() - offsetX);
-            stage.setY(event.getScreenY() - offsetY);
-        });
-    }
+    
 }
