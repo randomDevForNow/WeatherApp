@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
 <VBox fx:id="videoContainer" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.VideoController" spacing="10" alignment="center" prefWidth="600">
-    <ListView fx:id="videoListView" prefHeight="200.0" prefWidth="350.0" />
     <WebView fx:id="videoWebView" prefHeight="400.0" prefWidth="600.0" />
 </VBox>
