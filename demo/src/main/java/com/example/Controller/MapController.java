@@ -91,7 +91,21 @@ public class MapController {
     }
 
     private void createMarkerForPlace(PlaceModel place) {
-
+        // Construct the JavaScript call to create a marker
+        // String jsFunction2 = String.format(
+        // "createMarker('%s', '%s', '%s', %f, '%s', %s, '%s', '%s', %f, %f);",
+        // place.getName(), // title
+        // place.getTypes() != null ? String.join(",", place.getTypes()) : "", // types,
+        // convert list to string
+        // place.getPhotoUrl(), // url (for the place's image)
+        // place.getRating(), // starRating
+        // place.getVicinity(), // address
+        // "proxi",
+        // "hours",
+        // "status",
+        // place.getGeometry().getLocation().getLat(),
+        // place.getGeometry().getLocation().getLng());
+        String jsFunction2 = "setName('" + place.getName() + "');";
         String jsFunction = String.format(
                 "createMarker('%s', '%s', %f, %f, '%s', %d, '%s', %.1f, '%s')",
                 place.getName(),
@@ -111,6 +125,8 @@ public class MapController {
         });
 
     }
+
+    // compute for distance
 
     // compute for distance
 
@@ -156,13 +172,12 @@ public class MapController {
         });
     }
 
-    private void moveToCenter( double lat, double lng){
-       String jsFunction = String.format("map.panTo({lat: %f, lng: %f})", lat, lng);
-       frame.executeJavaScript(jsFunction);
+    private void moveToCenter(double lat, double lng) {
+        String jsFunction = String.format("map.panTo({lat: %f, lng: %f})", lat, lng);
+        frame.executeJavaScript(jsFunction);
     }
 
     private void getMapCen(String latitude, String longitude) {
-
 
         lat = Double.parseDouble(latitude);
         lng = Double.parseDouble(longitude);
