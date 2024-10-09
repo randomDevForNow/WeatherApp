@@ -9,6 +9,7 @@ import com.example.Model.ConnectingModel;
 import com.example.Model.PlaceModel;
 import com.teamdev.jxbrowser.browser.Browser;
 import com.teamdev.jxbrowser.browser.event.ConsoleMessageReceived;
+import com.teamdev.jxbrowser.deps.org.checkerframework.checker.units.qual.m;
 import com.teamdev.jxbrowser.engine.Engine;
 import com.teamdev.jxbrowser.engine.EngineOptions;
 import com.teamdev.jxbrowser.engine.RenderingMode;
@@ -67,6 +68,11 @@ public class MapController {
             for (PlaceModel place : placesData) {
                 createMarkerForPlace(place);
             }
+        });
+
+        model.addSelectedListener((x, y) -> {
+            String jsFunction = String.format("map.panTo({lat: %f, lng: %f});", x, y);
+            frame.executeJavaScript(jsFunction);
         });
     }
 
@@ -127,6 +133,8 @@ public class MapController {
 
                 removeMarkers();
                 getMapCen(latitude, longitude);
+
+            } else if (parts.length >= 3 && parts[0].equals("mark")) {
 
             }
             // other code

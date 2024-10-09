@@ -9,8 +9,14 @@ public class ConnectingModel {
     private double centerX;
     private double centerY;
 
+    private double Xs;
+    private double Ys;
+
     // Listener for changes in coordinates
     private List<CoordinateListener> coordinateListeners = new ArrayList<>();
+
+    // Listener for changes in coordinates
+    private List<SelectedListener> selectedListeners = new ArrayList<>();
 
     // Listener for changes in places data
     private List<Consumer<List<PlaceModel>>> placeListeners = new ArrayList<>();
@@ -45,6 +51,37 @@ public class ConnectingModel {
     private void notifyCoordinateListeners() {
         for (CoordinateListener listener : coordinateListeners) {
             listener.onCoordinatesChanged(centerX, centerY);
+        }
+    }
+
+    public interface SelectedListener {
+        void onSelectedChanged(double x, double y);
+    }
+
+    // Add a selected listener
+    public void addSelectedListener(SelectedListener listener) {
+        selectedListeners.add(listener);
+    }
+
+    // Set the center coordinates and notify listeners
+    public void setSelectedCoordinates(double x, double y) {
+        this.Xs = x;
+        this.Ys = y;
+        notifySelectedListeners();
+    }
+
+    public double getSelectedX() {
+        return centerX;
+    }
+
+    public double getSelectedY() {
+        return centerY;
+    }
+
+    // Notify coordinate listeners
+    private void notifySelectedListeners() {
+        for (SelectedListener listener : selectedListeners) {
+            listener.onSelectedChanged(Xs, Ys);
         }
     }
 

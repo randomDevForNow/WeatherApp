@@ -3,17 +3,15 @@ package com.example.Controller;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -29,7 +27,6 @@ import com.example.Model.PlaceFetcher;
 import com.example.Model.PlaceFilter;
 import com.example.Model.PlaceModel;
 import com.example.Model.WeatherModel;
-import com.teamdev.jxbrowser.deps.org.checkerframework.checker.units.qual.s;
 
 public class InfoPanelController {
 
@@ -101,6 +98,9 @@ public class InfoPanelController {
             // Clear previous items in the HBox
             filterListContainer.getChildren().clear();
 
+            // Create a ToggleGroup to manage the toggle buttons
+            final ToggleGroup toggleGroup = new ToggleGroup();
+
             if (PlaceFilter.placeTypes != null) {
                 for (int i = 0; i < PlaceFilter.placeTypes.length; i++) {
                     String placeType = PlaceFilter.placeTypes[i];
@@ -112,10 +112,15 @@ public class InfoPanelController {
                     toggleButton.setTextFill(Color.WHITE);
                     toggleButton.setPadding(new Insets(1, 2, 1, 2));
 
+                    // Add to toggle group so only one filter is selected at a time
+                    toggleButton.setToggleGroup(toggleGroup);
+
                     toggleButton.setOnAction(event -> {
-                        // Handle toggle button selection/deselection
                         if (toggleButton.isSelected()) {
                             System.out.println("Selected: " + placeType);
+
+                            // Clear current place list before adding new places
+                            resetPlaceList(); // Reset the place list
 
                             // Filter placesData based on the selected place type
                             List<PlaceModel> filteredPlaces = filterPlacesByType(placesData, placeType);
@@ -123,25 +128,26 @@ public class InfoPanelController {
                                                                                       // data
                         } else {
                             System.out.println("Deselected: " + placeType);
-
-                            // Reapply filters or show all places
-                            List<PlaceModel> allPlaces = new ArrayList<>(placesData); // or however you fetch all places
-                            setPlaceList(allPlaces, PlaceFilter.placeTypes); // Reset or apply remaining filters if
-                                                                             // needed
+                            // Optionally handle deselection logic here if needed
                         }
                     });
 
                     // Add ToggleButton to the HBox inside the ScrollPane
                     filterListContainer.getChildren().add(toggleButton);
+                }
 
-                    // Automatically select the first ToggleButton and trigger its action
-                    if (i == 0) {
-                        toggleButton.setSelected(true); // Set the first ToggleButton to selected
-                        toggleButton.fire(); // Trigger its action
-                    }
+                // Automatically select the first ToggleButton and trigger its action
+                if (!filterListContainer.getChildren().isEmpty()) {
+                    ToggleButton firstButton = (ToggleButton) filterListContainer.getChildren().get(0);
+                    firstButton.setSelected(true); // Set the first ToggleButton to selected
+                    firstButton.fire(); // Trigger its action
                 }
             }
         });
+    }
+
+    private void resetPlaceList() {
+        placeList.getItems().clear(); // Assuming placeList is your ListView or container for the places
     }
 
     private List<PlaceModel> filterPlacesByType(List<PlaceModel> placesData, String placeType) {
@@ -222,6 +228,16 @@ public class InfoPanelController {
             }
         });
 
+        placeList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                onPlaceSelected(newSelection); // Call the method with the selected place
+            }
+        });
+    }
+
+    private void onPlaceSelected(PlaceModel place) {
+        model.setSelectedCoordinates(place.getGeometry().getLocation().getLat(),
+                place.getGeometry().getLocation().getLng());
     }
 
     private void appendScenes() {

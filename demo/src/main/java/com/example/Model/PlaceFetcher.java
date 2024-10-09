@@ -43,12 +43,16 @@ public class PlaceFetcher {
                             String photoReference = place.getPhotos().get(0).getPhoto_reference();
                             String photoUrl = BASE_PHOTO_URL + photoReference
                                     + "&key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"; // Add your API key
-                            // here
-                            place.setPhotoUrl(photoUrl); // Assume you add a setPhotoUrl method in PlaceModel
+                            place.setPhotoUrl(photoUrl);
                         } else {
                             place.setPhotoUrl("No photo available");
                         }
-                        placeList.add(place);
+
+                        // Check if a place with the same title already exists
+                        boolean exists = placeList.stream().anyMatch(p -> p.getName().equals(place.getName()));
+                        if (!exists) {
+                            placeList.add(place); // Only add if no place with the same title exists
+                        }
                     }
                 } else {
                     System.out.println("Error: Unable to fetch places for query: " + placeQuery);
@@ -59,4 +63,5 @@ public class PlaceFetcher {
         }
         return placeList; // Return the list of PlaceModel objects
     }
+
 }

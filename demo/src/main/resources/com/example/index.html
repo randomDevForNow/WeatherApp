@@ -69,6 +69,7 @@
   <script>
     let map;
     const markers = [];
+    let currentlyOpenInfoWindow = null;
 
     let mapStyle = [
       {
@@ -489,14 +490,43 @@
         content: contentString
       });
 
-      // Event listener to show info window on hover
+      // Flag to track if infoWindow is locked
+      let infoWindowLocked = false;
+
+      // Event listener to show info window on hover, but only if not locked
       marker.addListener("mouseover", () => {
-        infoWindow.open(map, marker); // Open the info window on hover
+        if (!infoWindowLocked) {
+          infoWindow.open(map, marker); // Open the info window on hover
+        }
       });
 
-      // Event listener to close the info window when not hovering
+      // Event listener to close the info window when not hovering, but only if not locked
       marker.addListener("mouseout", () => {
-        infoWindow.close(); // Close the info window when the mouse is out
+        if (!infoWindowLocked) {
+          infoWindow.close(); // Close the info window when the mouse is out
+        }
+      });
+
+      // Event listener to "lock" the info window on marker click
+      marker.addListener("click", () => {
+        // Close any previously open info window
+        if (currentlyOpenInfoWindow) {
+          currentlyOpenInfoWindow.close();
+        }
+
+        // Set the current info window to the new one
+        currentlyOpenInfoWindow = infoWindow;
+
+        // Lock the info window and open it
+        infoWindowLocked = true;
+        infoWindow.open(map, marker);
+
+        // Add an event listener to the map to close the info window when clicking outside
+        map.addListener("click", () => {
+          infoWindow.close(); // Close the info window when the map is clicked
+          infoWindowLocked = false; // Unlock the info window
+          currentlyOpenInfoWindow = null; // Reset the open info window
+        });
       });
     }
 
