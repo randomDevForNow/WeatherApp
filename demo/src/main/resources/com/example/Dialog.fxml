@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.image.Image?>
@@ -26,7 +27,7 @@
             </VBox>
             <VBox prefHeight="33.0" prefWidth="720.0" />
             <VBox prefHeight="33.0" prefWidth="24.0" />
-            <VBox alignment="CENTER" prefHeight="31.0" prefWidth="47.0">
+            <VBox alignment="CENTER" prefHeight="31.0" prefWidth="47.0" styleClass="windowBtn">
                <children>
                   <Button fx:id="minimizeButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="36.0" style="-fx-background-color: none;">
                      <graphic>
@@ -39,9 +40,9 @@
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="34.0" prefWidth="70.0">
+            <VBox alignment="CENTER" prefHeight="34.0" prefWidth="70.0" styleClass="windowBtn">
                <children>
-                  <Button fx:id="maximizeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="40.0" style="-fx-background-color: none;">
+                  <Button fx:id="maximizeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="40.0" style="-fx-background-color: none;" styleClass="windowBtn">
                      <graphic>
                         <ImageView fx:id="minimizeIcon2" fitHeight="20.0" fitWidth="18.0" preserveRatio="true">
                            <image>
@@ -52,9 +53,9 @@
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="39.0" prefWidth="73.0">
+            <VBox id="closeBtn" alignment="CENTER" prefHeight="39.0" prefWidth="73.0" styleClass="windowBtn">
                <children>
-                  <Button fx:id="closeButton" mnemonicParsing="false" style="-fx-background-color: none;">
+                  <Button fx:id="closeButton" mnemonicParsing="false" style="-fx-background-color: none;" styleClass="windowBtn">
                      <graphic>
                         <ImageView fx:id="minimizeIcon1" fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
                            <image>
@@ -83,9 +84,9 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="The only weather + maps app you’ll need">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bodyfont" text="The only weather + map app you’ll need">
                            <font>
-                              <Font size="13.0" />
+                              <Font name="HelveticaNowText-Regular" size="13.0" />
                            </font>
                         </Text>
                      </children>
@@ -102,7 +103,7 @@
                               <VBox prefHeight="27.0" prefWidth="160.0" />
                               <VBox alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="121.0">
                                  <children>
-                                    <CheckBox fx:id="locationCheckBox" mnemonicParsing="false" />
+                                    <CheckBox fx:id="locationCheckBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="30.0" styleClass="privacyCheckbox" />
                                  </children>
                               </VBox>
                            </children>
@@ -111,7 +112,10 @@
                   </VBox>
                   <VBox alignment="TOP_RIGHT" prefHeight="105.0" prefWidth="380.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="By checking the box, I authorize the app to access my location data" wrappingWidth="366.060546875" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="By checking the box, I authorize the app to access my location data" wrappingWidth="390.060546875">
+                           <font>
+                              <Font name="HelveticaNowText-Regular" size="12.0" />
+                           </font></Text>
                      </children>
                   </VBox>
                </children>
@@ -120,25 +124,31 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="884.0">
                      <children>
-                        <Button fx:id="getStartedButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="162.0" style="-fx-background-radius: 22; -fx-background-color: white;">
+                        <Button fx:id="getStartedButton" mnemonicParsing="false" prefHeight="46.0" prefWidth="162.0" style="-fx-background-radius: 22; -fx-background-color: white;" styleClass="getStartedBtn">
                            <graphic>
-                              <HBox prefHeight="12.0" prefWidth="200.0">
+                              <HBox id="getStartedBtn" prefHeight="12.0" prefWidth="200.0">
                                  <children>
                                     <VBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="144.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Get Started" wrappingWidth="94.9833984375">
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Get Started" wrappingWidth="106.183349609375">
                                              <font>
-                                                <Font size="17.0" />
+                                                <Font name="HelveticaNowText-Bold" size="17.0" />
                                              </font>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
                                           </Text>
                                        </children>
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="45.0">
                                        <children>
-                                          <Text fill="#50b8e7" strokeType="OUTSIDE" strokeWidth="0.0" text="▶" wrappingWidth="9.0">
+                                          <Text fill="#50b8e7" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="triangle" text="▶" wrappingWidth="13.79998779296875">
                                              <font>
                                                 <Font size="28.0" />
                                              </font>
+                                             <VBox.margin>
+                                                <Insets bottom="2.0" />
+                                             </VBox.margin>
                                           </Text>
                                        </children>
                                     </VBox>

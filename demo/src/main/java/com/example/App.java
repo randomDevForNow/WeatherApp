@@ -2,10 +2,10 @@ package com.example;
 
 import java.io.IOException;
 
-import com.example.Controller.MapController;
-import com.example.Controller.SearchController;
 import com.example.Controller.DialogController;
-import com.example.Controller.InfoPanelController; // Import InfoPanelController
+import com.example.Controller.InfoPanelController;
+import com.example.Controller.MapController;
+import com.example.Controller.SearchController; // Import InfoPanelController
 import com.example.Model.ConnectingModel; // Import ConnectingModel
 
 import javafx.application.Application;
@@ -60,6 +60,7 @@ public class App extends Application {
 
             // Set up the main scene
             Scene scene = new Scene(root, 879, 544);
+            scene.getStylesheets().add(getClass().getResource("windowStyles.css").toExternalForm());
             DialogController controller = fxmlLoader2.getController();
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setTitle("JxBrowser JavaFX");
