@@ -5,6 +5,14 @@
   <title>Google Maps Integration</title>
   <style>
     /* Set the size of the map container */
+    :root {
+      --blue1: #50b8e7;
+      --blue2: #84cdee;
+      --blue3: #b9e2f5;
+      --blue4: #dcf0fa;
+      --blue5: #edf7fc;
+    }
+
     #map {
       height: 100%;
     }
@@ -14,25 +22,33 @@
       height: 100%;
       margin: 0;
       padding: 0;
+      font-family: Helvetica, Arial, sans-serif;
     }
 
     .info-window {
-      width: 250px;
-      padding: 10px;
-      background-color: white;
-      border-radius: 8px;
-    }
-
-    .info-window-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: center;
+      width: 350px;
+      background-color: var(--blue3);
+      border-radius: 8px;
+      padding-bottom: 0;
+      padding-right: 20px;
     }
 
-    .info-window img {
-      width: 50px;
-      height: 50px;
+
+    .left-window {
+      padding-right: 10px;
+      width: 300px;
+      height: 230px;
       border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .left-window img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .info-window-title {
@@ -41,8 +57,13 @@
     }
 
     .info-window-category {
+      margin-top: 5px;
+      margin-bottom: 5px;
       font-size: 12px;
-      color: #777;
+      color: var(--blue5);
+      border: 0;
+      background-color: var(--blue1);
+
     }
 
     .info-window-rating {
@@ -51,18 +72,48 @@
     }
 
     .info-window-rating span {
+      padding-bottom: 10px;
       font-size: 14px;
       color: #FFD700;
+      font-weight: 600;
     }
 
     .info-window-details p {
       margin: 0;
       font-size: 12px;
-      color: #777;
+      color: #000000;
+      padding-bottom: 9px;
     }
 
     .info-window-status {
+
       color: red;
+    }
+
+    .proxLogo {
+      display: flex;
+    }
+
+    .logo-container img {
+      width: 30px;
+      height: 30px;
+      padding-right: 5px;
+    }
+
+    #statusText {
+      color: var(--blue1);
+      font-weight: bold;
+    }
+
+    .awayfromyoutext {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    #fontModawayfromyoutext {
+      color: var(--blue1);
     }
   </style>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"></script>
@@ -455,31 +506,51 @@
     }
 
     function createMarker(title, photo_url, lat, lng, address, distance, types, ratings, status) {
+
       const contentString = `
-        <div class="info-window">
-            <div class="info-window-header">
-                <img src="${photo_url}" alt="${title}" onerror="this.src='no-image-found.png'">
-                <div class="info-window-title-container">
-                    <h2 class="info-window-title">${title}</h2>
-                    <span class="info-window-category">${types}</span>
-                    <div class="info-window-rating">
-                        <span>&#9733;</span> <!-- Star Rating -->
-                        <span style="font-size: 12px; padding-left: 5px;">${ratings}</span>
-                    </div>
+          <div class="info-window">
+
+            <div class="left-window">
+              <img src="${photo_url}" alt="${title}" onerror="this.src='no-image-found.png'">
+            </div>
+
+            <div class="right-window">
+              <div class="info-window-title-container">
+                <h2 class="info-window-title">${title}</h2>
+                <button class="info-window-category">${types}</button>
+                <div class="info-window-rating">
+                  <span id="stars">&#9733;</span> <!-- Star Rating -->
+
+
+                  <span style="font-size: 12px; padding-left: 5px;">${ratings}</span>
                 </div>
+                <div class="info-window-details">
+                  <p>${address}</p>
+                  <div class="proxLogo">
+                    <div class="logo-container">
+                      <img src="bluemarker.png">
+                    </div>
+                    <div class="awayfromyoutext">
+                      <p id="fontModawayfromyoutext">${distance}m away from you</p>
+                    </div>
+                  </div
+                    <p class="info-window-status">Status: <span id="statusText"> ${status} </span> </p>
+                </div>
+              </div>
+
             </div>
-            <div class="info-window-details">
-                <p>${address}</p>
-                <p>${distance}m away from you</p>
-                <p class="info-window-status">Status: ${status}</p>
-            </div>
-        </div>`;
+          </div>`;
+
 
       // Create a new marker on the map
       const marker = new google.maps.Marker({
         position: { lat: lat, lng: lng }, // LatLng object
         map: map, // Ensure map is initialized
-        title: title
+        title: title,
+        icon: {
+          url: 'bluemarker.png', // Custom icon URL
+          scaledSize: new google.maps.Size(30, 30), // Set the size of the icon
+        }
       });
 
       // Push the marker to the markers array
@@ -538,6 +609,14 @@
       markers.length = 0; // Clear the array
     }
 
+
+    // Function to remove all markers from the map
+    function removeAllMarkers() {
+      for (let i = 0; i < markers.length; i++) {
+        markers[i].setMap(null); // Remove marker from map
+      }
+      markers.length = 0; // Clear the array
+    }
 
   </script>
 </head>
