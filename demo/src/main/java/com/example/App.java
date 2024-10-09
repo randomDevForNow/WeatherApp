@@ -11,11 +11,15 @@ import com.example.Model.ConnectingModel; // Import ConnectingModel
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
+
 
 public class App extends Application {
 
@@ -102,6 +106,15 @@ public class App extends Application {
     // Create the scene and set it in the stage
     Scene scene = new Scene(firstWindowPane);
     stage.setScene(scene);
+    Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+    // Calculate the center position
+    double x = (screenBounds.getWidth() - stage.getWidth()) / 2;
+    double y = (screenBounds.getHeight() - stage.getHeight()) / 2;
+
+    // Set the position of the stage
+    stage.setX(x);
+    stage.setY(y);
     stage.show();
 
 }
