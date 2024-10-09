@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +14,7 @@
       <HBox prefHeight="33.0" prefWidth="867.0">
          <children>
             <VBox prefHeight="31.0" prefWidth="15.0" />
-            <VBox prefHeight="33.0" prefWidth="48.0" />
+            <VBox prefHeight="34.0" prefWidth="25.0" />
             <VBox alignment="CENTER" prefHeight="27.0" prefWidth="60.0">
                <children>
                   <ImageView fitHeight="22.0" fitWidth="64.0">
@@ -25,41 +26,41 @@
             </VBox>
             <VBox prefHeight="33.0" prefWidth="720.0" />
             <VBox prefHeight="33.0" prefWidth="24.0" />
-            <VBox alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="47.0">
+            <VBox alignment="CENTER" prefHeight="31.0" prefWidth="47.0" styleClass="windowBtn">
                <children>
                   <Button fx:id="minimizeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="0.0" style="-fx-background-color: none;">
                      <graphic>
-                        <ImageView fx:id="minimizeIcon" fitHeight="25.0" fitWidth="24.0">
+                        <ImageView fx:id="minimizeIcon" fitHeight="22.0" fitWidth="15.0" preserveRatio="true">
                            <image>
-                              <Image url="@Minimize.png" />
+                              <Image url="@icons/minimizebutton.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="47.0">
+            <VBox alignment="CENTER" prefHeight="33.0" prefWidth="47.0" styleClass="windowBtn">
                <children>
                   <Button fx:id="maximizeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="40.0" style="-fx-background-color: none;">
                      <graphic>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="❒" textAlignment="RIGHT" wrappingWidth="1.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
+                        <ImageView fitHeight="17.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/maximizebutton.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="39.0" prefWidth="73.0">
+            <VBox alignment="CENTER" prefHeight="33.0" prefWidth="27.0" styleClass="windowBtn">
                <children>
                   <Button fx:id="closeButton" mnemonicParsing="false" style="-fx-background-color: none;">
                      <graphic>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="✖" wrappingWidth="16.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
+                        <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/closebutton.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                </children>
@@ -71,23 +72,35 @@
          <children>
             <HBox prefHeight="198.0" prefWidth="879.0">
                <children>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="179.0" prefWidth="455.0">
+                  <VBox alignment="CENTER_RIGHT" prefHeight="179.0" prefWidth="470.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Search for a location">
                            <font>
-                              <Font size="27.0" />
+                              <Font name="HelveticaNowText-Regular" size="27.0" />
                            </font>
                         </Text>
                      </children>
                   </VBox>
-                  <VBox prefHeight="176.0" prefWidth="29.0" />
-                  <VBox alignment="CENTER_LEFT" prefHeight="179.0" prefWidth="132.0">
+                  <VBox prefHeight="179.0" prefWidth="14.0" />
+                  <VBox alignment="CENTER_LEFT" prefHeight="179.0" prefWidth="119.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="anywhere" underline="true">
+                        <Text fx:id="proxLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="anywhere" underline="true">
                            <font>
-                              <Font size="27.0" />
+                              <Font name="HelveticaNowText-Medium" size="27.0" />
                            </font>
                         </Text>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="179.0" prefWidth="44.0">
+                     <children>
+                        <Button fx:id="changeProx" mnemonicParsing="false" onAction="#changeProxLabel" prefHeight="16.0" prefWidth="18.0" style="-fx-background-color: #edf7fc;" text="▼" textFill="#50b8e7" wrapText="true">
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                   </VBox>
                </children>
