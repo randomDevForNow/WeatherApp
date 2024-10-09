@@ -173,12 +173,12 @@ public class InfoPanelController {
                     setGraphic(null);
                 } else {
                     HBox cellLayout = new HBox(10);
-                    cellLayout.setPrefHeight(70); // Set preferred height if needed
+                    cellLayout.setPrefHeight(140); // Set preferred height if needed
                     cellLayout.setPrefWidth(180);
                     // Create an empty ImageView fo r the place photo
                     ImageView coverImage = new ImageView();
                     coverImage.setFitWidth(60);
-                    coverImage.setFitHeight(60);
+                    coverImage.setFitHeight(130);
                     coverImage.setPreserveRatio(true); // Maintain the aspect ratio
 
                     VBox infoBox = new VBox(5);

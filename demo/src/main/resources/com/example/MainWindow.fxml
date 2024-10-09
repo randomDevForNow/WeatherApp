@@ -95,7 +95,7 @@
                   </VBox>
                   <VBox prefHeight="760.0" prefWidth="827.0" style="-fx-background-radius: 100;">
                      <children>
-                        <BorderPane fx:id="mapContainer" prefHeight="760.0" prefWidth="643.0" style="-fx-background-radius: 100;" />
+                        <BorderPane fx:id="mapContainer" minHeight="760.0" minWidth="643.0" prefHeight="760.0" prefWidth="643.0" style="-fx-background-radius: 100;" />
                      </children>
                   </VBox>
                   <VBox prefHeight="481.0" prefWidth="530.0">
