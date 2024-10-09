@@ -2,6 +2,8 @@ package com.example.Controller;
 
 import javafx.util.Duration;
 
+import java.util.concurrent.CompletableFuture;
+
 import com.example.DistanceCalculator;
 import com.example.Model.ConnectingModel;
 import com.example.Model.PlaceModel;
@@ -16,6 +18,7 @@ import com.teamdev.jxbrowser.js.JsObject;
 import com.teamdev.jxbrowser.view.javafx.BrowserView;
 
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -53,7 +56,6 @@ public class MapController {
         setupBrowser();
         addListeners(); // change move to setupBrowser
         appendScenes();
-
     }
 
     public void setModel(ConnectingModel model) {
@@ -69,29 +71,34 @@ public class MapController {
     }
 
     private void removeMarkers() {
-
+        frame.executeJavaScript("removeAllMarkers();");
     }
 
     private void createMarkerForPlace(PlaceModel place) {
+
         String jsFunction = String.format(
-                "createMarker('%s', '%s', %f, %f, %f,'%s', '%s', %.1f, '%s')",
+                "createMarker('%s', '%s', %f, %f, '%s', %d, '%s', %.1f, '%s')",
                 place.getName(),
                 place.getPhotoUrl(),
                 place.getGeometry().getLocation().getLat(),
                 place.getGeometry().getLocation().getLng(),
-                DistanceCalculator.getDistance(place, lat, lng),
                 place.getVicinity(),
-                place.getTypes().toString(), // change to FIX
+                (int) DistanceCalculator.getDistance(place, lat, lng), // Cast to int for distance
+                place.getTypes().toString().replaceAll("[\\[\\]]", ""), // Remove brackets
                 place.getRating(),
                 "Open");
         // Execute the JavaScript function in the frame
-        frame.executeJavaScript(jsFunction);
+        CompletableFuture.runAsync(() -> {
+            Platform.runLater(() -> {
+                frame.executeJavaScript(jsFunction);
+            });
+        });
 
     }
 
     // compute for distance
 
-    private void goToMarker() {
+    private void OnClickMarker() {
 
     }
 
@@ -118,7 +125,7 @@ public class MapController {
                 String latitude = parts[1];
                 String longitude = parts[2];
 
-                // Call the method to show the button with animation
+                removeMarkers();
                 getMapCen(latitude, longitude);
 
             }

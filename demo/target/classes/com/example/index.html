@@ -68,6 +68,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"></script>
   <script>
     let map;
+    const markers = [];
 
     let mapStyle = [
       {
@@ -402,7 +403,6 @@
         ]
       }
     ];
-
     function initMap() {
       // Create a new map instance
       map = new google.maps.Map(document.getElementById("map"), {
@@ -438,28 +438,40 @@
         // Hide the button again after search
         searchButton.style.display = "none";
       });
+
+      // Set initial Place
+      createMarker(
+        "Mapua University",
+        "mapua", // Placeholder image URL
+        14.566526616029208,
+        121.01504209325368,
+        "Mapua University, Street, Pablo Ocampo Extension, 123542343, Makati City",
+        0,
+        "School, Institution",
+        4.5,
+        "Open"
+      );
     }
 
     function createMarker(title, photo_url, lat, lng, address, distance, types, ratings, status) {
-
       const contentString = `
         <div class="info-window">
-          <div class="info-window-header">
-            <img src="${photo_url}" alt="${title}" onerror="this.src='no-image-found.png'">
-            <div class="info-window-title-container">
-              <h2 class="info-window-title">${title}</h2>
-              <span class="info-window-category">${types}</span>
-              <div class="info-window-rating">
-                <span>&#9733;</span> <!-- Star Rating -->
-                <span style="font-size: 12px; padding-left: 5px;">${ratings}</span>
-              </div>
+            <div class="info-window-header">
+                <img src="${photo_url}" alt="${title}" onerror="this.src='no-image-found.png'">
+                <div class="info-window-title-container">
+                    <h2 class="info-window-title">${title}</h2>
+                    <span class="info-window-category">${types}</span>
+                    <div class="info-window-rating">
+                        <span>&#9733;</span> <!-- Star Rating -->
+                        <span style="font-size: 12px; padding-left: 5px;">${ratings}</span>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="info-window-details">
-            <p>${address}</p>
-            <p>${distance}m away from you</p>
-            <p class="info-window-status">Status: ${status}</p>
-          </div>
+            <div class="info-window-details">
+                <p>${address}</p>
+                <p>${distance}m away from you</p>
+                <p class="info-window-status">Status: ${status}</p>
+            </div>
         </div>`;
 
       // Create a new marker on the map
@@ -469,6 +481,9 @@
         title: title
       });
 
+      // Push the marker to the markers array
+      markers.push(marker);
+
       // Create an info window to display the content
       const infoWindow = new google.maps.InfoWindow({
         content: contentString
@@ -477,7 +492,6 @@
       // Event listener to show info window on hover
       marker.addListener("mouseover", () => {
         infoWindow.open(map, marker); // Open the info window on hover
-
       });
 
       // Event listener to close the info window when not hovering
@@ -485,6 +499,15 @@
         infoWindow.close(); // Close the info window when the mouse is out
       });
     }
+
+    // Function to remove all markers from the map
+    function removeAllMarkers() {
+      for (let i = 0; i < markers.length; i++) {
+        markers[i].setMap(null); // Remove marker from map
+      }
+      markers.length = 0; // Clear the array
+    }
+
 
   </script>
 </head>
