@@ -70,6 +70,7 @@ public class App extends Application {
             // Create an instance of the ConnectingModel
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MapView.fxml"));
             Parent mapPane = fxmlLoader.load();
+            System.out.println(mapPane.getId());
             MapController mapController = fxmlLoader.getController();
             mapController.setModel(connectingModel); // Set the model for MapController
 

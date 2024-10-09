@@ -9,8 +9,9 @@ public class PlaceModel {
     private String vicinity;
     private double rating;
     private List<Photo> photos;
-    private String photoUrl; // Add this line for the photo URL
-    private List<String> types; // Add this line for the types
+    private String photoUrl;
+    private List<String> types;
+    private Geometry geometry; // Add this for coordinates
 
     // Getters and setters for name, vicinity, rating, etc.
 
@@ -46,20 +47,65 @@ public class PlaceModel {
         this.photos = photos;
     }
 
-    public String getPhotoUrl() { // Getter for photoUrl
+    public String getPhotoUrl() {
         return photoUrl;
     }
 
-    public void setPhotoUrl(String photoUrl) { // Setter for photoUrl
+    public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
 
-    public List<String> getTypes() { // Getter for types
+    public List<String> getTypes() {
         return types;
     }
 
-    public void setTypes(List<String> types) { // Setter for types
+    public void setTypes(List<String> types) {
         this.types = types;
+    }
+
+    public Geometry getGeometry() {
+        return geometry;
+    }
+
+    public void setGeometry(Geometry geometry) {
+        this.geometry = geometry;
+    }
+
+    // Nested class for Geometry (coordinates)
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Geometry {
+        private Location location;
+
+        public Location getLocation() {
+            return location;
+        }
+
+        public void setLocation(Location location) {
+            this.location = location;
+        }
+
+        // Nested class for Location (lat/lng)
+        @JsonIgnoreProperties(ignoreUnknown = true)
+        public static class Location {
+            private double lat;
+            private double lng;
+
+            public double getLat() {
+                return lat;
+            }
+
+            public void setLat(double lat) {
+                this.lat = lat;
+            }
+
+            public double getLng() {
+                return lng;
+            }
+
+            public void setLng(double lng) {
+                this.lng = lng;
+            }
+        }
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -68,7 +114,7 @@ public class PlaceModel {
         private int height;
         private int width;
 
-        // Getters and setters
+        // Getters and setters for photo attributes
         public String getPhoto_reference() {
             return photo_reference;
         }

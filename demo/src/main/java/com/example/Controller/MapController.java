@@ -51,13 +51,14 @@ public class MapController {
         setupBrowser();
         addListeners(); // change move to setupBrowser
         appendScenes();
-        
+
     }
 
     public void setModel(ConnectingModel model) {
         this.model = model; // Set the model
 
         model.addPlaceListener(placesData -> {
+            removeMarkers();
             // Loop through the placesData and create markers
             for (PlaceModel place : placesData) {
                 createMarkerForPlace(place);
@@ -65,22 +66,43 @@ public class MapController {
         });
     }
 
+    private void removeMarkers() {
+
+    }
+
     private void createMarkerForPlace(PlaceModel place) {
-        /*
-         * LATEST
-         * // Implement the JavaScript call to create a marker here
-         * // This can involve executing a JavaScript function through JxBrowser
-         * String jsFunction = "createMarker('" + place.getName() + "', '" +
-         * place.getType() + "', " + place.getRating()
-         * + ", '" +
-         * place.getAddress() + "', " + place.getProximity() + ", '" +
-         * place.getOpeningHours() + "', '" +
-         * place.getStatus() + "', " + place.getCoordinates() + ");";
-         * webEngine.executeScript(jsFunction);
-         */
+        // Construct the JavaScript call to create a marker
+        // String jsFunction2 = String.format(
+        // "createMarker('%s', '%s', '%s', %f, '%s', %s, '%s', '%s', %f, %f);",
+        // place.getName(), // title
+        // place.getTypes() != null ? String.join(",", place.getTypes()) : "", // types,
+        // convert list to string
+        // place.getPhotoUrl(), // url (for the place's image)
+        // place.getRating(), // starRating
+        // place.getVicinity(), // address
+        // "proxi",
+        // "hours",
+        // "status",
+        // place.getGeometry().getLocation().getLat(),
+        // place.getGeometry().getLocation().getLng());
+        String jsFunction2 = "setName('" + place.getName() + "');";
+        String jsFunction = String.format(
+                "createMarker('%s', %f, %f)", place.getName(),
+                place.getGeometry().getLocation().getLat(),
+                place.getGeometry().getLocation().getLng());
+        System.out.println(place.getGeometry().getLocation().getLng());
+
+        // Execute the JavaScript function in the frame
+        frame.executeJavaScript(jsFunction);
+
+    }
+
+    private void goToMarker() {
+
     }
 
     private void setupBrowser() {
+
         browser = engine.newBrowser();
         browser.navigation().loadUrl(getClass().getResource("/com/example/index.html").toExternalForm());
         frame = browser.mainFrame().get();
@@ -106,6 +128,7 @@ public class MapController {
                 getMapCen(latitude, longitude);
 
             } else {
+                // Otherwise, just store the message in 'center'
                 // Otherwise, just store the message in 'center'
                 center = message;
             }
