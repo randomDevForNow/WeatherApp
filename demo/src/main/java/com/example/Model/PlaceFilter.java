@@ -1,14 +1,12 @@
 package com.example.Model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class PlaceFilter {
 
     // change set to private later
-    public Set<String> placeTypesSet;
+    public static String[] placeTypes;
 
     public static List<String> buildPlaceQueries(WeatherModel weatherModel) {
         List<String> placeQueries = new ArrayList<>();
@@ -25,33 +23,29 @@ public class PlaceFilter {
         long sunset = weatherModel.getSys().getSunset();
 
         // Default: popular, open places based on weather
-        Set<String> placeTypesSet = new HashSet<>();
-        String[] placeTypes = { "restaurant" }; // Default, will be replaced based on conditions
+        placeTypes = new String[] { "restaurant" }; // Default, will be replaced based on conditions
 
         // Apply filtering logic based on weather conditions
         if (weatherMain.equals("Clear") || weatherMain.equals("Clouds")) {
-            placeTypes = new String[] { "park", "cafe", "restaurant" }; // Outdoor, leisure places on clear days
+            placeTypes = new String[] { "park", "cafe", "restaurant", "lodging" }; // Outdoor, leisure places on clear
+                                                                                   // days
         } else if (weatherMain.equals("Rain")) {
             if (rainVolume > 1) {
-                placeTypes = new String[] { "mall", "indoor_playground" }; // Indoor malls in heavy rain
+                placeTypes = new String[] { "mall", "indoor_playground", "lodging" }; // Indoor malls in heavy rain
             } else {
-                placeTypes = new String[] { "cafe", "indoor_restaurant" }; // Cafes in light rain
+                placeTypes = new String[] { "cafe", "indoor_restaurant", "lodging" }; // Cafes in light rain
             }
         } else if (temperature > 30) {
-            placeTypes = new String[] { "swimming_pool", "ice_cream_parlor" }; // Cool places in hot weather
+            placeTypes = new String[] { "swimming_pool", "ice_cream_parlor", "lodging" }; // Cool places in hot weather
         } else if (windSpeed > 5) {
-            placeTypes = new String[] { "museum", "shopping_mall" }; // Indoor places during windy conditions
+            placeTypes = new String[] { "museum", "shopping_mall", "lodging" }; // Indoor places during windy conditions
         }
 
         // Daytime or nighttime check
         if (currentTime > sunrise && currentTime < sunset) {
-            placeTypes = new String[] { "park", "cafe", "restaurant" }; // Daytime outdoor places
+            placeTypes = new String[] { "park", "cafe", "restaurant", "lodging" }; // Daytime outdoor places
         } else {
-            placeTypes = new String[] { "bar", "restaurant" }; // Nighttime places
-        }
-
-        for (String type : placeTypes) {
-            placeTypesSet.add(type);
+            placeTypes = new String[] { "bar", "restaurant", "lodging" }; // Nighttime places
         }
 
         // Add opening hours filter
@@ -61,7 +55,7 @@ public class PlaceFilter {
         for (String type : placeTypes) {
             String placeQuery = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
                     + weatherModel.getCoord().getLat() + "," + weatherModel.getCoord().getLon()
-                    + "&radius=1000"
+                    + "&radius=500"
                     + "&type=" + type
                     + "&opennow=" + opennow
                     + "&key=" + apiKey;
@@ -71,4 +65,5 @@ public class PlaceFilter {
 
         return placeQueries;
     }
+
 }

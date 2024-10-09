@@ -1,14 +1,12 @@
 package com.example.Controller;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class DialogController {
     @FXML
@@ -23,6 +21,29 @@ public class DialogController {
     private Button maximizeButton;
     private double xOffset = 0; 
     private double yOffset = 0; 
+
+    private StringProperty someValue = new SimpleStringProperty();
+
+    // Getter for the property
+    @SuppressWarnings("exports")
+    public StringProperty someValueProperty() {
+        return someValue;
+    }
+
+    // Getter for the value
+    public String getSomeValue() {
+        return someValue.get();
+    }
+
+    // Setter for the value
+    public void setSomeValue(String value) {
+        this.someValue.set(value);
+    }
+
+    // Call this method when the value changes in the controller logic
+    public void updateSomeValue(String newValue) {
+        setSomeValue(newValue); // Automatically notifies listeners
+    }
 
     @FXML
     public void initialize() {
@@ -98,27 +119,6 @@ public class DialogController {
         });
     }
     private void openNextWindow() {
-        try {
-            System.out.println("Opening next window...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/MainWindow.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-           
-            Stage newStage = new Stage();
-            newStage.setScene(scene);
-            newStage.initStyle(StageStyle.UNDECORATED);
-            root.getStylesheets().add(getClass().getResource("/com/example/windowStyles.css").toExternalForm());
-            setDraggable(root, newStage);
-            
-            newStage.show();
-
-            
-            
-            
-            Stage currentStage = (Stage) getStartedButton.getScene().getWindow();
-            currentStage.close();
-        } catch (Exception e) {
-            e.printStackTrace(); 
+        setSomeValue("true");
     }
-}
 }

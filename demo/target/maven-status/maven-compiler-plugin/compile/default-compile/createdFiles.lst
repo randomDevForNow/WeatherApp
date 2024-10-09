@@ -1,8 +1,1 @@
-<<<<<<< HEAD
 module-info.class
-com\example\App.class
-com\example\Controller\MapController.class
-com\example\Model\ConnectingModel.class
-=======
-com/example/Controller/SearchController$1.class
->>>>>>> araw-branch2

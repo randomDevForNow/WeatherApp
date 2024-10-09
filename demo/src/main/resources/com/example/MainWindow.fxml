@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.DialogController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.MainWindowController">
    <children>
       <HBox prefHeight="43.0" prefWidth="982.0" style="-fx-background-color: #50b8e7;">
          <children>
@@ -79,9 +79,10 @@
                      <children>
                         <VBox prefHeight="521.0" prefWidth="222.0">
                            <children>
-                              <HBox prefHeight="47.0" prefWidth="242.0" />
+                              <HBox fx:id="searchContainer" prefHeight="47.0" prefWidth="242.0" />
                               <HBox prefHeight="38.0" prefWidth="242.0" />
                               <HBox prefHeight="27.0" prefWidth="202.0" />
+                              <VBox fx:id="infoPanelContainer" maxHeight="415.0" maxWidth="202.0" prefHeight="415.0" prefWidth="202.0" />
                            </children>
                         </VBox>
                      </children>
@@ -91,7 +92,7 @@
                   </VBox>
                   <VBox prefHeight="481.0" prefWidth="815.0">
                      <children>
-                        <BorderPane prefHeight="585.0" prefWidth="497.0" />
+                        <BorderPane fx:id="mapContainer" prefHeight="585.0" prefWidth="497.0" />
                      </children>
                   </VBox>
                   <VBox prefHeight="481.0" prefWidth="560.0">

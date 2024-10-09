@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-C:\Users\jamie\OneDrive\Documents\WeatherApp\demo\src\main\java\com\example\App.java
-C:\Users\jamie\OneDrive\Documents\WeatherApp\demo\src\main\java\com\example\Model\ConnectingModel.java
-C:\Users\jamie\OneDrive\Documents\WeatherApp\demo\src\main\java\com\example\Controller\MapController.java
-C:\Users\jamie\OneDrive\Documents\WeatherApp\demo\src\main\java\com\example\Controller\DialogController.java
-C:\Users\jamie\OneDrive\Documents\WeatherApp\demo\src\main\java\module-info.java
-=======
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Model/WeatherModel.java
+/Users/aaron/WeatherApp/demo/src/main/java/com/example/Controller/DialogController.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Controller/MapController.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/App.java
 /Users/aaron/WeatherApp/demo/src/main/java/module-info.java
@@ -18,4 +12,4 @@ C:\Users\jamie\OneDrive\Documents\WeatherApp\demo\src\main\java\module-info.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Controller/InfoPanelController.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Controller/WeatherController.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Model/PlaceFilter.java
->>>>>>> araw-branch2
+/Users/aaron/WeatherApp/demo/src/main/java/com/example/Controller/FirstWindowController.java

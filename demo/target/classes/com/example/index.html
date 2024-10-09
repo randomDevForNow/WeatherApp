@@ -15,8 +15,57 @@
       margin: 0;
       padding: 0;
     }
+
+    .info-window {
+      width: 250px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 8px;
+    }
+
+    .info-window-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .info-window img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+    }
+
+    .info-window-title {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .info-window-category {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .info-window-rating {
+      display: flex;
+      align-items: center;
+    }
+
+    .info-window-rating span {
+      font-size: 14px;
+      color: #FFD700;
+    }
+
+    .info-window-details p {
+      margin: 0;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .info-window-status {
+      color: red;
+    }
   </style>
-  <script src="my_KEY"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"></script>
   <script>
     let map;
 
@@ -362,29 +411,82 @@
         disableDefaultUI: true,
       });
 
-<<<<<<< HEAD
-
-=======
-      // Event Listeners
-      google.maps.event.addListener(map, 'idle', function () {
-        console.log("123");
-      });
-
       // Map Style
       map.setOptions({ styles: mapStyle });
->>>>>>> araw-branch2
+
+      // Create the search button
+      const searchButton = document.createElement("button");
+      searchButton.textContent = "Search this area";
+      searchButton.classList.add("custom-map-control-button");
+      searchButton.style.display = "none";
+      map.controls[google.maps.ControlPosition.TOP_CENTER].push(searchButton);
+
+      // Add event listeners to detect map movement
+      map.addListener("idle", () => {
+        searchButton.style.display = "block"; // Show button when map stops moving
+      });
+
+      searchButton.addEventListener("click", () => {
+        // Fetch center coordinates
+        const center = map.getCenter();
+        const lat = center.lat();
+        const lng = center.lng();
+
+        // Call your place search function here
+        console.log(`coor ${lat} ${lng}`);
+
+        // Hide the button again after search
+        searchButton.style.display = "none";
+      });
     }
 
-    function hey() {
-      const center = map.getCenter();
+    function createMarker(title, lat, lng) {
+      // Define the content for the info window (HTML structure similar to the image)
+      const contentString = `
+        <div class="info-window">
+          <div class="info-window-header">
+            <img src="https://example.com/photo.jpg" alt="${title}">
+            <div class="info-window-title-container">
+              <h2 class="info-window-title">${title}</h2>
+              <span class="info-window-category">Hotels</span>
+              <div class="info-window-rating">
+                <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span> <!-- Star Rating -->
+                <span style="font-size: 12px; padding-left: 5px;">4.5</span>
+              </div>
+            </div>
+          </div>
+          <div class="info-window-details">
+            <p>J.W. Diokno Blvd, Parañaque, Metro Manila</p>
+            <p>560m away from you</p>
+            <p>8:00AM - 10:30PM: M-F, 8:00AM - 11:00PM: Sa-Su</p>
+            <p class="info-window-status">Status: Closed</p>
+          </div>
+        </div>`;
 
-      // Get the latitude and longitude
-      const lat = center.lat();
-      const lng = center.lng();
+      // Create a new marker on the map
+      const marker = new google.maps.Marker({
+        position: { lat: lat, lng: lng }, // LatLng object
+        map: map, // Ensure map is initialized
+        title: title
+      });
 
-      // Log the individual values
-      console.log(lat, lng);
+      // Create an info window to display the content
+      const infoWindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      // Event listener to show info window on hover
+      marker.addListener("mouseover", () => {
+        infoWindow.open(map, marker); // Open the info window on hover
+      });
+
+      // Event listener to close the info window when not hovering
+      marker.addListener("mouseout", () => {
+        infoWindow.close(); // Close the info window when the mouse is out
+      });
     }
+
+
 
   </script>
 </head>
