@@ -146,7 +146,12 @@ public class MapController {
         });
     }
 
+    private void moveToCenter(){
+
+    }
+
     private void getMapCen(String latitude, String longitude) {
+
 
         lat = Double.parseDouble(latitude);
         lng = Double.parseDouble(longitude);
