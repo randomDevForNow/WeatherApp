@@ -24,7 +24,7 @@
                   </ImageView>
                </children>
             </VBox>
-            <VBox prefHeight="33.0" prefWidth="720.0" />
+            <VBox prefHeight="33.0" prefWidth="720.0" HBox.hgrow="ALWAYS" />
             <VBox prefHeight="33.0" prefWidth="24.0" />
             <VBox alignment="CENTER" prefHeight="31.0" prefWidth="47.0" styleClass="windowBtn">
                <children>
@@ -52,9 +52,9 @@
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="33.0" prefWidth="27.0" styleClass="windowBtn">
+            <VBox id="closeBtn" alignment="CENTER" prefHeight="34.0" prefWidth="52.0" styleClass="windowBtn">
                <children>
-                  <Button fx:id="closeButton" mnemonicParsing="false" style="-fx-background-color: none;">
+                  <Button fx:id="closeButton" mnemonicParsing="false" prefHeight="24.0" prefWidth="48.0" style="-fx-background-color: none;">
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -93,7 +93,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="179.0" prefWidth="44.0">
                      <children>
-                        <Button fx:id="changeProx" mnemonicParsing="false" onAction="#changeProxLabel" prefHeight="16.0" prefWidth="18.0" style="-fx-background-color: #edf7fc;" text="▼" textFill="#50b8e7" wrapText="true">
+                        <Button fx:id="changeProx" mnemonicParsing="false" prefHeight="16.0" prefWidth="18.0" style="-fx-background-color: #edf7fc;" text="▼" textFill="#50b8e7" wrapText="true">
                            <font>
                               <Font size="8.0" />
                            </font>

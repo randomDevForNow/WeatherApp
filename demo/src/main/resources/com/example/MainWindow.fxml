@@ -9,59 +9,61 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.DialogController">
    <children>
-      <HBox prefHeight="33.0" prefWidth="867.0" style="-fx-background-color: #50b8e7;">
+      <HBox prefHeight="43.0" prefWidth="982.0" style="-fx-background-color: #50b8e7;">
          <children>
             <VBox prefHeight="31.0" prefWidth="15.0" />
             <VBox prefHeight="33.0" prefWidth="48.0" />
             <VBox alignment="CENTER" prefHeight="27.0" prefWidth="60.0">
                <children>
-                  <ImageView fitHeight="22.0" fitWidth="64.0">
+                  <ImageView fitHeight="22.0" fitWidth="98.0" preserveRatio="true">
                      <image>
                         <Image url="@OnlyWapsLogo.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets left="19.0" />
+                     </VBox.margin>
                   </ImageView>
                </children>
             </VBox>
-            <VBox prefHeight="33.0" prefWidth="1069.0" />
-            <VBox alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="47.0">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="791.0" HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER" prefHeight="31.0" prefWidth="47.0" styleClass="windowBtn">
                <children>
                   <Button id="minimizeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="49.0" style="-fx-background-color: none;">
                      <graphic>
-                        <ImageView fx:id="minimizeButton" fitHeight="25.0" fitWidth="24.0">
+                        <ImageView fx:id="minimizeIcon" fitHeight="22.0" fitWidth="19.0" preserveRatio="true">
                            <image>
-                              <Image url="@Minimize.png" />
+                              <Image url="@icons/minimizebutton.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="26.0">
+            <VBox alignment="CENTER" prefHeight="33.0" prefWidth="26.0" styleClass="windowBtn">
                <children>
                   <Button fx:id="maximizeButton" mnemonicParsing="false" prefHeight="32.0" prefWidth="16.0" style="-fx-background-color: none;">
                      <graphic>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="❒" textAlignment="RIGHT" wrappingWidth="25.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
+                        <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/maximizebutton.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="33.0" prefWidth="33.0">
+            <VBox id="closeBtn" alignment="CENTER" prefHeight="33.0" prefWidth="33.0" styleClass="windowBtn">
                <children>
                   <Button fx:id="closeButton" alignment="CENTER_RIGHT" mnemonicParsing="false" style="-fx-background-color: none;" textAlignment="CENTER">
                      <graphic>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="✖" textAlignment="RIGHT" wrappingWidth="25.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
+                        <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/closebutton.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                   </Button>
                </children>

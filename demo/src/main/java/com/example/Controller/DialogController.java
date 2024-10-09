@@ -100,18 +100,20 @@ public class DialogController {
     private void openNextWindow() {
         try {
             System.out.println("Opening next window...");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/FirstWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/MainWindow.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
+           
             Stage newStage = new Stage();
             newStage.setScene(scene);
             newStage.initStyle(StageStyle.UNDECORATED);
-    
+            root.getStylesheets().add(getClass().getResource("/com/example/windowStyles.css").toExternalForm());
             setDraggable(root, newStage);
-    
-
+            
             newStage.show();
-    
+
+            
+            
             
             Stage currentStage = (Stage) getStartedButton.getScene().getWindow();
             currentStage.close();

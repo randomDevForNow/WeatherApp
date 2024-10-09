@@ -67,6 +67,8 @@ public class App extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
             controller.setDraggable2();
+
+            
         } catch (IOException e) {
             e.printStackTrace(); // Print stack trace for debugging
         } catch (Exception e) {
