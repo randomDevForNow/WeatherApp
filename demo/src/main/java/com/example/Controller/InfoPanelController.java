@@ -184,6 +184,9 @@ public class InfoPanelController {
                     coverImage.setFitHeight(100); // Set a height for the image
                     coverImage.setPreserveRatio(true); // Maintain the aspect ratio
 
+                    Image loadingImage = new Image(getClass().getResourceAsStream("/com/example/loadingimage.png"));
+                    coverImage.setImage(loadingImage);
+
                     VBox infoBox = new VBox(5);
                     Label nameLabel = new Label(place.getName());
                     Label typeLabel = new Label(String.join(", ", place.getTypes()));
