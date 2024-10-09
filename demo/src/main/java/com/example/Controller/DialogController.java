@@ -66,7 +66,7 @@ public class DialogController {
         }
 
     }
-    public void setDraggable() {
+    public void setDraggable2() {
         Node root = closeButton.getScene().getRoot();
         root.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
