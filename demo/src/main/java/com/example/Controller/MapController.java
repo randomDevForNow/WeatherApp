@@ -3,6 +3,7 @@ package com.example.Controller;
 import javafx.util.Duration;
 
 import com.example.Model.ConnectingModel;
+import com.example.Model.PlaceModel;
 import com.teamdev.jxbrowser.browser.Browser;
 import com.teamdev.jxbrowser.browser.event.ConsoleMessageReceived;
 import com.teamdev.jxbrowser.engine.Engine;
@@ -23,9 +24,6 @@ public class MapController {
     /* FXML Elements */
     @FXML
     private BorderPane mapContainer;
-
-    @FXML
-    private Button boton;
 
     /* FXML Elements */
 
@@ -58,6 +56,28 @@ public class MapController {
 
     public void setModel(ConnectingModel model) {
         this.model = model; // Set the model
+
+        model.addPlaceListener(placesData -> {
+            // Loop through the placesData and create markers
+            for (PlaceModel place : placesData) {
+                createMarkerForPlace(place);
+            }
+        });
+    }
+
+    private void createMarkerForPlace(PlaceModel place) {
+        /*
+         * LATEST
+         * // Implement the JavaScript call to create a marker here
+         * // This can involve executing a JavaScript function through JxBrowser
+         * String jsFunction = "createMarker('" + place.getName() + "', '" +
+         * place.getType() + "', " + place.getRating()
+         * + ", '" +
+         * place.getAddress() + "', " + place.getProximity() + ", '" +
+         * place.getOpeningHours() + "', '" +
+         * place.getStatus() + "', " + place.getCoordinates() + ");";
+         * webEngine.executeScript(jsFunction);
+         */
     }
 
     private void setupBrowser() {
@@ -71,67 +91,35 @@ public class MapController {
     private void addListeners() {
         browser.on(ConsoleMessageReceived.class, event -> {
             ConsoleMessage consoleMessage = event.consoleMessage();
-            // ConsoleMessageLevel level = consoleMessage.level();
             String message = consoleMessage.message();
-            // Set if else statements here
-            if (message.equals("123")) {
-                showButtonWithAnimation();
+
+            // Split the message by space
+            String[] parts = message.split("\\s+");
+
+            // Check if the message starts with the code "123"
+            if (parts.length >= 3 && parts[0].equals("coor")) {
+                // Get latitude (2nd string) and longitude (3rd string)
+                String latitude = parts[1];
+                String longitude = parts[2];
+
+                // Call the method to show the button with animation
+                getMapCen(latitude, longitude);
+
             } else {
+                // Otherwise, just store the message in 'center'
                 center = message;
             }
         });
     }
 
-    // TO FIX!!!!!!!!!
-    private void showButtonWithAnimation() {
-        // Create fade-in transition
-        FadeTransition fadeIn = new FadeTransition(Duration.seconds(0.5), boton);
+    private void getMapCen(String latitude, String longitude) {
 
-        fadeIn.setFromValue(0);
-        fadeIn.setToValue(1);
+        double lat = Double.parseDouble(latitude);
+        double lng = Double.parseDouble(longitude);
 
-        // Set the action for when the button is clicked
-        boton.setOnMouseClicked(event -> {
-            FadeTransition fadeOut = new FadeTransition(Duration.seconds(0.5), boton);
-            fadeOut.setFromValue(1);
-            fadeOut.setToValue(0);
-            fadeOut.setOnFinished(e -> {
-                boton.setOpacity(0);
-                boton.setDisable(true); // Disable to prevent further clicks
-            });
-            fadeOut.play();
-        });
-
-        fadeIn.setOnFinished(event -> {
-            // After the button is shown, enable it (in case it's disabled)
-            boton.setDisable(false);
-        });
-
-        fadeIn.play();
-    }
-
-    @FXML
-    private void getMapCen() {
-        // change modify js code
-        window.call("hey");
-
-        // ERROR CHECKING 1
-        String[] coords = center.split(" ");
-
-        if (coords.length == 2) {
-            try {
-                double lat = Double.parseDouble(coords[0].trim());
-                double lng = Double.parseDouble(coords[1].trim());
-
-                System.out.println("Latitude: " + lat);
-                System.out.println("Longitude: " + lng);
-                model.setCenterCoordinates(lat, lng);
-            } catch (NumberFormatException e) {
-                System.out.println("Error: Failed to parse latitude or longitude.");
-            }
-        } else {
-            System.out.println("Error: Unexpected format for coordinates.");
-        }
+        System.out.println("Latitude: " + lat);
+        System.out.println("Longitude: " + lng);
+        model.setCenterCoordinates(lat, lng);
 
     }
 
