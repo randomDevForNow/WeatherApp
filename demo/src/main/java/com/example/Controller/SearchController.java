@@ -36,6 +36,7 @@ public class SearchController {
     public void setModel(ConnectingModel model) {
         this.model = model;
     }
+    
 
     public void initialize() {
         // Add a listener for key events on the search field
