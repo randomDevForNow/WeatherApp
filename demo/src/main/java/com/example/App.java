@@ -100,9 +100,10 @@ public class App extends Application {
     firstWindowController.getSearchContainer().getChildren().add(searchPane);
 
     // Create the scene and set it in the stage
-    Scene scene = new Scene(firstWindowPane, 1500, 700);
+    Scene scene = new Scene(firstWindowPane);
     stage.setScene(scene);
     stage.show();
+
 }
 
 

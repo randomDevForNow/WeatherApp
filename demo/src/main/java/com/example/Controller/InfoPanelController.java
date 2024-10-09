@@ -173,22 +173,26 @@ public class InfoPanelController {
                     setGraphic(null);
                 } else {
                     HBox cellLayout = new HBox(10);
-                    cellLayout.setPrefHeight(100); // Set preferred height if needed
-
-                    // Create an empty ImageView for the place photo
+                    cellLayout.setPrefHeight(70); // Set preferred height if needed
+                    cellLayout.setPrefWidth(180);
+                    // Create an empty ImageView fo r the place photo
                     ImageView coverImage = new ImageView();
-                    coverImage.setFitHeight(100); // Set a height for the image
+                    coverImage.setFitWidth(60);
+                    coverImage.setFitHeight(60);
                     coverImage.setPreserveRatio(true); // Maintain the aspect ratio
 
                     VBox infoBox = new VBox(5);
                     Label nameLabel = new Label(place.getName());
+                    nameLabel.setWrapText(true);
                     Label typeLabel = new Label(String.join(", ", place.getTypes()));
+                    typeLabel.setWrapText(true);
                     Label ratingLabel = new Label("Rating: " + place.getRating());
+                    ratingLabel.setWrapText(true);
                     Label vicinityLabel = new Label(place.getVicinity());
-
+                    vicinityLabel.setWrapText(true);
                     infoBox.getChildren().addAll(nameLabel, typeLabel, ratingLabel, vicinityLabel);
                     VBox.setVgrow(nameLabel, Priority.ALWAYS); // Makes labels grow as necessary
-
+                    
                     // Add image and info box to cell layout
                     cellLayout.getChildren().addAll(coverImage, infoBox);
                     setGraphic(cellLayout);
@@ -210,13 +214,50 @@ public class InfoPanelController {
                                 e.printStackTrace();
                             }
                         }).start();
+
+                        infoBox.setOnMouseEntered(event -> {
+                            if (!isSelected()) {
+                                infoBox.setBackground(
+                                        new Background(new BackgroundFill(Color.rgb(220,240,250), CornerRadii.EMPTY, null)));
+                            }
+                        });
+                        infoBox.setOnMouseExited(event -> {
+                            if (!isSelected()) {
+                                infoBox.setBackground(
+                                        new Background(new BackgroundFill(Color.rgb(255,255,255), CornerRadii.EMPTY, null)));
+                            }
+                           });
+                        if (isSelected()) {
+                            // apply the yellow background and black text when selected
+                            cellLayout.setStyle("-fx-border-color: #ffffff");
+                            infoBox.setBackground(new Background(new BackgroundFill(
+                                    Color.rgb(220,240,250), CornerRadii.EMPTY, null)));
+                            nameLabel.setTextFill(Color.rgb(0, 0, 0));
+                            typeLabel.setTextFill(Color.rgb(0, 0, 0));
+                            ratingLabel.setTextFill(Color.rgb(0, 0, 0));    
+                            vicinityLabel.setTextFill(Color.rgb(0, 0, 0));
+                        } else {
+                            // When not selected, reset background and text colors
+                            infoBox.setBackground(new Background(new BackgroundFill(
+                                    Color.rgb(255,255,255), CornerRadii.EMPTY, null)));
+                        
+                        }
+    
+                        // Set the click event to trigger selection
+                        infoBox.setOnMouseClicked(event -> {
+                            getListView().requestFocus();
+                            getListView().getSelectionModel().select(getIndex());
+                        });
                     }
                 }
             }
         });
-
+        placeList.setStyle(
+            "-fx-control-inner-background: #ffffff; -fx-background-insets: 0; -fx-selection-bar: transparent; -fx-selection-bar-non-focused: transparent;-fx-padding: 0; -fx-background-padding: 0; -fx-background-color: transparent; -fx-border-insets: 0; -fx-overflow-x: hidden; -fx-selection-bar: transparent; -fx-selection-bar-non-focused: transparent;");
+    
+    
     }
-
+    
     private void appendScenes() {
         // Logic to append scenes if needed
     }

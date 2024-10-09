@@ -108,11 +108,3 @@
       <VBox prefHeight="272.0" prefWidth="879.0" />
    </children>
 </VBox>
-<VBox prefHeight="548.0" prefWidth="917.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.example.Controller.FirstWindowController">
-    <children>
-        <!-- Placeholders for child FXMLs -->
-        <VBox fx:id="mapContainer" />
-        <VBox fx:id="infoPanelContainer" />
-        <VBox fx:id="searchContainer" minWidth="100.0" />
-    </children>
-</VBox> -->

@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.InfoPanelController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="202" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.InfoPanelController">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="600.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="202">
          <Label text="Recommended Tags:" />
          <ScrollPane fx:id="filterScrollPane" hbarPolicy="AS_NEEDED" prefHeight="100.0" prefWidth="371.0" vbarPolicy="NEVER">
             <content>
@@ -16,6 +16,6 @@
             </content>
          </ScrollPane>
       </HBox>
-      <ListView fx:id="placeList" prefHeight="287.0" prefWidth="600.0" />
+      <ListView fx:id="placeList" prefHeight="430.0" prefWidth="202" />
    </children>
 </VBox>
