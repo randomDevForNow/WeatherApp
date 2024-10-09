@@ -98,7 +98,7 @@ public class MapController {
     }
 
     private void goToMarker() {
-        
+
     }
 
     private void setupBrowser() {
