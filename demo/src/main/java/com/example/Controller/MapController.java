@@ -64,6 +64,16 @@ public class MapController {
                 createMarkerForPlace(place);
             }
         });
+
+            // Listen for changes in coordinates and pass them to the WeatherController
+            model.addCoordinateListener((x, y) -> {
+                moveToCenter(x,y);
+                
+               
+            });
+           
+
+        
     }
 
     private void removeMarkers() {
@@ -135,8 +145,9 @@ public class MapController {
         });
     }
 
-    private void moveToCenter(){
-
+    private void moveToCenter( double lat, double lng){
+       String jsFunction = String.format("map.panTo({lat: %f, lng: %f})", lat, lng);
+       frame.executeJavaScript(jsFunction);
     }
 
     private void getMapCen(String latitude, String longitude) {
