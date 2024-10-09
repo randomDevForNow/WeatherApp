@@ -195,6 +195,7 @@ searchButton.setOnAction(event -> {
                     int itemHeight = 25; // Example: height per item
                     int padding = 20; // Additional padding
                     resultsListView.setPrefHeight(Math.min(itemCount * itemHeight + padding, 400)); // Example max height of 400px
+                    resultsListView.toFront();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
