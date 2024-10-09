@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="982.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.MainWindowController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1473.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.MainWindowController">
    <children>
       <HBox prefHeight="43.0" prefWidth="982.0" style="-fx-background-color: #50b8e7;">
          <children>
@@ -71,35 +71,38 @@
          </children>
       </HBox>
       <VBox prefHeight="36.0" prefWidth="879.0" />
-      <VBox prefHeight="557.0" prefWidth="982.0">
+      <VBox prefHeight="768.0" prefWidth="1473.0">
          <children>
-            <HBox prefHeight="558.0" prefWidth="982.0">
+            <HBox prefHeight="772.0" prefWidth="1473.0">
                <children>
-                  <VBox prefHeight="481.0" prefWidth="560.0">
+                  <VBox prefHeight="760.0" prefWidth="530.0">
                      <children>
-                        <VBox prefHeight="521.0" prefWidth="222.0">
+                        <VBox prefHeight="761.0" prefWidth="263.0">
                            <children>
-                              <HBox fx:id="searchContainer" prefHeight="47.0" prefWidth="242.0" />
+                              <HBox fx:id="searchContainer" prefHeight="51.0" prefWidth="263.0" />
                               <HBox prefHeight="38.0" prefWidth="242.0" />
                               <HBox prefHeight="27.0" prefWidth="202.0" />
-                              <VBox fx:id="infoPanelContainer" maxHeight="415.0" maxWidth="202.0" prefHeight="415.0" prefWidth="202.0" />
+                              <VBox fx:id="infoPanelContainer" maxHeight="578.0" maxWidth="393.0" prefHeight="578.0" prefWidth="346.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></VBox>
                            </children>
                         </VBox>
                      </children>
                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="20.0" left="20.0" right="40.0" top="20.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="481.0" prefWidth="815.0" style="-fx-background-radius: 100;">
+                  <VBox prefHeight="760.0" prefWidth="827.0" style="-fx-background-radius: 100;">
                      <children>
-                        <BorderPane fx:id="mapContainer" prefHeight="585.0" prefWidth="497.0" style="-fx-background-radius: 100;" />
+                        <BorderPane fx:id="mapContainer" prefHeight="760.0" prefWidth="643.0" style="-fx-background-radius: 100;" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="481.0" prefWidth="560.0">
+                  <VBox prefHeight="481.0" prefWidth="530.0">
                      <children>
                         <VBox prefHeight="731.0" prefWidth="205.0">
                            <children>
-                              <HBox prefHeight="122.0" prefWidth="250.0" />
+                              <HBox prefHeight="359.0" prefWidth="372.0" />
                               <HBox prefHeight="17.0" prefWidth="203.0" />
                               <HBox prefHeight="122.0" prefWidth="250.0" />
                               <HBox prefHeight="17.0" prefWidth="203.0" />
