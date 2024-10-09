@@ -98,10 +98,11 @@ public class MapController {
     }
 
     private void goToMarker() {
-        
+
     }
 
     private void setupBrowser() {
+
         browser = engine.newBrowser();
         browser.navigation().loadUrl(getClass().getResource("/com/example/index.html").toExternalForm());
         frame = browser.mainFrame().get();
