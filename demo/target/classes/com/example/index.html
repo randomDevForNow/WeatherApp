@@ -16,67 +16,53 @@
       padding: 0;
     }
 
-    .card {
-      background-color: #f2f9ff;
-      /* Light background */
-      border: 1px solid #c1d3e0;
-      /* Subtle border */
+    .info-window {
+      width: 250px;
+      padding: 10px;
+      background-color: white;
       border-radius: 8px;
-      /* Rounded corners */
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      /* Light shadow */
-      padding: 20px;
-      /* Padding around the content */
-      max-width: 300px;
-      /* Maximum width of the card */
-      font-family: 'Arial', sans-serif;
-      /* Font style */
     }
 
-    .card img {
-      width: 100%;
-      /* Full width for the image */
+    .info-window-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .info-window img {
+      width: 50px;
+      height: 50px;
       border-radius: 8px;
-      /* Rounded corners for the image */
     }
 
-    .card h2 {
-      margin: 10px 0;
-      /* Margin for heading */
-      font-size: 20px;
-      /* Font size for the title */
-      color: #333;
-      /* Dark color for text */
+    .info-window-title {
+      margin: 0;
+      font-size: 16px;
     }
 
-    .card .rating {
-      color: #f39c12;
-      /* Color for star rating */
+    .info-window-category {
+      font-size: 12px;
+      color: #777;
     }
 
-    .card p {
-      margin: 5px 0;
-      /* Margin for paragraphs */
-      color: #666;
-      /* Gray color for text */
+    .info-window-rating {
+      display: flex;
+      align-items: center;
     }
 
-    .card .distance {
-      font-weight: bold;
-      /* Bold for distance text */
+    .info-window-rating span {
+      font-size: 14px;
+      color: #FFD700;
     }
 
-    .card .status {
-      background-color: #e74c3c;
-      /* Red background for status */
-      color: white;
-      /* White text color */
-      padding: 5px;
-      /* Padding around status */
-      border-radius: 5px;
-      /* Rounded corners */
-      text-align: center;
-      /* Center text */
+    .info-window-details p {
+      margin: 0;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .info-window-status {
+      color: red;
     }
   </style>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"></script>
@@ -453,45 +439,53 @@
         searchButton.style.display = "none";
       });
     }
-    //replace with place
-    function createMarker(title, type, url, starRating, address, proximity, openingHours, status, position) {
-      const content = document.createElement("div");
-      content.classList.add("card"); // Apply the main card class
 
-      content.innerHTML = `
-        <div class="icon-ctr">
-            <img src="./styles/icons/${type.icon}.png" alt="${type.name}">
-        </div>
-        <div class="img-ctr">
-            <img id="${type.icon}" src="./styles/images/places/${url}" alt="${title}">
-        </div>
-        <div class="notes">
-            <h2 id="name">${title}</h2> <!-- Change to h2 for the title -->
-            <span id="type">${type.name}</span>
-            <span class="rating">${starRating} ★</span> <!-- Add the rating class -->
-            <span id="address">${address}</span>
-            <span class="distance">${proximity}m</span> <!-- Change to distance class -->
-            <span id="opening-hours">${openingHours}</span>
-            <span class="status">${status}</span> <!-- Change to status class -->
-        </div>
-    `;
+    function createMarker(title, lat, lng) {
+      // Define the content for the info window (HTML structure similar to the image)
+      const contentString = `
+        <div class="info-window">
+          <div class="info-window-header">
+            <img src="https://example.com/photo.jpg" alt="${title}">
+            <div class="info-window-title-container">
+              <h2 class="info-window-title">${title}</h2>
+              <span class="info-window-category">Hotels</span>
+              <div class="info-window-rating">
+                <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span> <!-- Star Rating -->
+                <span style="font-size: 12px; padding-left: 5px;">4.5</span>
+              </div>
+            </div>
+          </div>
+          <div class="info-window-details">
+            <p>J.W. Diokno Blvd, Parañaque, Metro Manila</p>
+            <p>560m away from you</p>
+            <p>8:00AM - 10:30PM: M-F, 8:00AM - 11:00PM: Sa-Su</p>
+            <p class="info-window-status">Status: Closed</p>
+          </div>
+        </div>`;
 
-      // Create a marker on the map
+      // Create a new marker on the map
       const marker = new google.maps.Marker({
-        position: position,
-        map: map,
-        title: title,
-        icon: `./styles/icons/${type.icon}.png`
+        position: { lat: lat, lng: lng }, // LatLng object
+        map: map, // Ensure map is initialized
+        title: title
       });
 
-      // Attach a click listener to the marker
-      marker.addListener("click", () => {
-        const infoWindow = new google.maps.InfoWindow({
-          content: content
-        });
-        infoWindow.open(map, marker);
+      // Create an info window to display the content
+      const infoWindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      // Event listener to show info window on hover
+      marker.addListener("mouseover", () => {
+        infoWindow.open(map, marker); // Open the info window on hover
+      });
+
+      // Event listener to close the info window when not hovering
+      marker.addListener("mouseout", () => {
+        infoWindow.close(); // Close the info window when the mouse is out
       });
     }
+
 
 
   </script>
