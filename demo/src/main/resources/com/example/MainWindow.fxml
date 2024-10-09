@@ -31,7 +31,7 @@
             <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="791.0" HBox.hgrow="ALWAYS" />
             <VBox alignment="CENTER" prefHeight="31.0" prefWidth="47.0" styleClass="windowBtn">
                <children>
-                  <Button id="minimizeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="49.0" style="-fx-background-color: none;">
+                  <Button fx:id="minimizeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="49.0" style="-fx-background-color: none;">
                      <graphic>
                         <ImageView fx:id="minimizeIcon" fitHeight="22.0" fitWidth="19.0" preserveRatio="true">
                            <image>
