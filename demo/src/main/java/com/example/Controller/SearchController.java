@@ -257,12 +257,8 @@ public class SearchController {
                     int itemHeight = 25; // Example: height per item
                     int padding = 20; // Additional padding
                     resultsListView.setPrefHeight(Math.min(itemCount * itemHeight + padding, 400)); // Example max height of 400px
-<<<<<<< HEAD
-                    resultsListView.toFront();
-=======
                 
                     
->>>>>>> 9dfbe1f2883fbbfecf5567954d1ee5a4ae1c4683
                 }
             } catch (Exception e) {
                 e.printStackTrace();
