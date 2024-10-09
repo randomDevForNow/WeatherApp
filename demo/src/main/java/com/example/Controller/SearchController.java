@@ -18,6 +18,23 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 
+
+import javafx.geometry.Insets;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.Region;
+
 public class SearchController {
 
     @FXML
@@ -28,8 +45,51 @@ public class SearchController {
     private Button searchButton; // Button for initiating the search
 
     private final ObjectMapper objectMapper = new ObjectMapper(); // Jackson ObjectMapper
+    public void styleSearchComponents() {
+    // Styling the search field
+    searchField.setPromptText("Search for a location...");
+    searchField.setPadding(new Insets(10)); // Add padding inside the search field
+    searchField.setBorder(new Border(new BorderStroke(
+        Color.LIGHTBLUE, // Border color
+        BorderStrokeStyle.SOLID, // Border style
+        new CornerRadii(20), // Rounded corners (adjust the number for more/less rounding)
+        new BorderWidths(2) // Border thickness
+    )));
+    searchField.setBackground(new Background(new BackgroundFill(
+        Color.WHITE, // Background color
+        new CornerRadii(20), // Rounded corners
+        Insets.EMPTY
+    )));
+    
+    // Styling the search button with an icon
+    Image searchIcon = new Image("file:/path-to-your-image/search_icon.png"); // Replace with your icon file path
+    ImageView searchIconView = new ImageView(searchIcon);
+    searchIconView.setFitWidth(20); // Set icon size
+    searchIconView.setFitHeight(20);
+
+    searchButton.setGraphic(searchIconView); // Set the button graphic
+    searchButton.setPadding(new Insets(10)); // Add padding
+    searchButton.setBackground(new Background(new BackgroundFill(
+        Color.LIGHTBLUE, // Button background color
+        new CornerRadii(20), // Rounded corners
+        Insets.EMPTY
+    )));
+    searchButton.setBorder(new Border(new BorderStroke(
+        Color.LIGHTBLUE, // Border color
+        BorderStrokeStyle.SOLID, // Border style
+        new CornerRadii(20), // Rounded corners
+        new BorderWidths(2) // Border thickness
+    )));
+    searchButton.setPrefSize(40, 40); // Set button size
+
+    // Combine the TextField and Button in an HBox
+    HBox searchBox = new HBox(searchField, searchButton);
+    searchBox.setSpacing(5); // Set spacing between TextField and Button
+    searchBox.setPadding(new Insets(5));
+}
 
     public void initialize() {
+        
         // Add a listener for key events on the search field
         searchField.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
@@ -56,15 +116,15 @@ public class SearchController {
 
         // Set up the search button action
         // Set up the search button action
-searchButton.setOnAction(event -> {
-    // Get the selected place name from the search field
-    String selectedPlace = searchField.getText();
+        searchButton.setOnAction(event -> {
+        // Get the selected place name from the search field
+        String selectedPlace = searchField.getText();
 
-    // Hide the ListView when the "Choose" button is pressed
-    resultsListView.setVisible(false);
-    resultsListView.setManaged(false); // Adjusts layout calculations
+        // Hide the ListView when the "Choose" button is pressed
+        resultsListView.setVisible(false);
+        resultsListView.setManaged(false); // Adjusts layout calculations
 
-    if (selectedPlace != null && !selectedPlace.isEmpty()) {
+        if (selectedPlace != null && !selectedPlace.isEmpty()) {
         System.out.println("Search button pressed for: " + selectedPlace);
 
         new Thread(() -> {
@@ -110,6 +170,7 @@ searchButton.setOnAction(event -> {
                 e.printStackTrace();
             }
         }).start();
+        
     }
 });
 
@@ -190,12 +251,18 @@ searchButton.setOnAction(event -> {
                 } else {
                     resultsListView.setVisible(true);
                     resultsListView.setManaged(true);
+                    
                     // Resize ListView to fit the content
                     int itemCount = resultsListView.getItems().size();
                     int itemHeight = 25; // Example: height per item
                     int padding = 20; // Additional padding
                     resultsListView.setPrefHeight(Math.min(itemCount * itemHeight + padding, 400)); // Example max height of 400px
+<<<<<<< HEAD
                     resultsListView.toFront();
+=======
+                
+                    
+>>>>>>> 9dfbe1f2883fbbfecf5567954d1ee5a4ae1c4683
                 }
             } catch (Exception e) {
                 e.printStackTrace();

@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<<<<<<< HEAD
 <VBox alignment="TOP_CENTER" prefHeight="235.0" prefWidth="354.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.example.Controller.SearchController">
    <HBox>
       <children>
@@ -14,4 +15,10 @@
       </children>
    </HBox>
     <ListView fx:id="resultsListView" prefHeight="206.0" prefWidth="240.0" visible="false" /> <!-- Set initially hidden -->
+=======
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.Controller.SearchController" spacing="10" alignment="center" prefWidth="202">
+    <TextField fx:id="searchField" promptText="Enter a location..." />
+    <Button fx:id="searchButton" text="Choose" />
+    <ListView fx:id="resultsListView" prefHeight="200" visible="false" /> 
+>>>>>>> 9dfbe1f2883fbbfecf5567954d1ee5a4ae1c4683
 </VBox>
