@@ -38,3 +38,8 @@
     -fx-background-color: blue1; 
 }
 
+.searchContainer{
+    -fx-border-color:#50b8e7;
+    -fx-border-radius: 30;
+
+}
