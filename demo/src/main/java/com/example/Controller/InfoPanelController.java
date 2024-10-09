@@ -179,16 +179,19 @@ public class InfoPanelController {
                     HBox cellLayout = new HBox(10);
                     cellLayout.setPrefHeight(100); // Set preferred height if needed
 
-                    // Create an empty ImageView for the place photo
-                    ImageView coverImage = new ImageView();
-                    coverImage.setFitHeight(100); // Set a height for the image
-                    coverImage.setPreserveRatio(true); // Maintain the aspect ratio
+            // Create an empty ImageView for the place photo
+            ImageView coverImage = new ImageView();
+            coverImage.setFitHeight(100); // Set a height for the image
+            coverImage.setPreserveRatio(true); // Maintain the aspect ratio
+            
+            Image loadingImage = new Image(getClass().getResourceAsStream("/path/to/loadingimage.png"));
+            coverImage.setImage(loadingImage);
 
-                    VBox infoBox = new VBox(5);
-                    Label nameLabel = new Label(place.getName());
-                    Label typeLabel = new Label(String.join(", ", place.getTypes()));
-                    Label ratingLabel = new Label("Rating: " + place.getRating());
-                    Label vicinityLabel = new Label(place.getVicinity());
+            VBox infoBox = new VBox(5);
+            Label nameLabel = new Label(place.getName());
+            Label typeLabel = new Label(String.join(", ", place.getTypes()));
+            Label ratingLabel = new Label("Rating: " + place.getRating());
+            Label vicinityLabel = new Label(place.getVicinity());
 
                     infoBox.getChildren().addAll(nameLabel, typeLabel, ratingLabel, vicinityLabel);
                     VBox.setVgrow(nameLabel, Priority.ALWAYS); // Makes labels grow as necessary
