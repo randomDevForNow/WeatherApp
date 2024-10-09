@@ -135,13 +135,20 @@ public class MapController {
         });
     }
 
+    private void moveToCenter(){
+
+    }
+
     private void getMapCen(String latitude, String longitude) {
+
 
         double lat = Double.parseDouble(latitude);
         double lng = Double.parseDouble(longitude);
 
         System.out.println("Latitude: " + lat);
         System.out.println("Longitude: " + lng);
+
+        
         model.setCenterCoordinates(lat, lng);
 
     }

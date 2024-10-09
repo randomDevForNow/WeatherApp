@@ -90,6 +90,8 @@ public class App extends Application {
     // Load places_search.fxml
     FXMLLoader searchLoader = new FXMLLoader(App.class.getResource("places_search.fxml"));
     Parent searchPane = searchLoader.load();
+    SearchController searchController = searchLoader.getController();
+    searchController.setModel(connectingModel);
 
     // Assuming you have VBox or similar containers in FirstWindow.fxml
     // Add the children to their respective containers

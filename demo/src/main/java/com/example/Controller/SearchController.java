@@ -1,5 +1,6 @@
 package com.example.Controller;
 
+import com.example.Model.ConnectingModel;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Platform;
@@ -19,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class SearchController {
+    
 
     @FXML
     private TextField searchField;  // TextField for user input
@@ -28,6 +30,12 @@ public class SearchController {
     private Button searchButton; // Button for initiating the search
 
     private final ObjectMapper objectMapper = new ObjectMapper(); // Jackson ObjectMapper
+
+    private ConnectingModel model;
+
+    public void setModel(ConnectingModel model) {
+        this.model = model;
+    }
 
     public void initialize() {
         // Add a listener for key events on the search field
@@ -100,6 +108,7 @@ searchButton.setOnAction(event -> {
 
                         // Output the latitude and longitude to the console
                         System.out.println("Latitude: " + latitude + ", Longitude: " + longitude);
+                        model.setCenterCoordinates(latitude, longitude);
                     } else {
                         System.out.println("No location data found for the selected place.");
                     }
