@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -61,40 +62,35 @@ public class App extends Application {
 
     }
 
-    public void setMain(Stage stage) throws IOException{
-        System.out.println("Opening next window...");
-            ConnectingModel connectingModel = new ConnectingModel();
+    public void setMain(Stage stage) throws IOException {
+    System.out.println("Opening next window...");
+    ConnectingModel connectingModel = new ConnectingModel();
 
-            HBox root = new HBox();
+    // Create an instance of the ConnectingModel
+    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MapView.fxml"));
+    Parent mapPane = fxmlLoader.load();
+    MapController mapController = fxmlLoader.getController();
+    mapController.setModel(connectingModel); // Set the model for MapController
 
-            // Create an instance of the ConnectingModel
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MapView.fxml"));
-            Parent mapPane = fxmlLoader.load();
-            System.out.println(mapPane.getId());
-            MapController mapController = fxmlLoader.getController();
-            mapController.setModel(connectingModel); // Set the model for MapController
+    // Load Info Panel scene
+    FXMLLoader infoPanelLoader = new FXMLLoader(App.class.getResource("InfoPanelView.fxml"));
+    Parent infoPanelPane = infoPanelLoader.load();
+    InfoPanelController infoPanelController = infoPanelLoader.getController();
+    infoPanelController.setModel(connectingModel); // Set the model for InfoPanelController
 
-            // Load Info Panel scene (assuming it has its own FXML file)
-            FXMLLoader infoPanelLoader = new FXMLLoader(App.class.getResource("InfoPanelView.fxml")); 
- 
-            Parent infoPanelPane = infoPanelLoader.load();
-            InfoPanelController infoPanelController = infoPanelLoader.getController();
-            infoPanelController.setModel(connectingModel); // Set the model for InfoPanelController
+    // Load Search scene
+    FXMLLoader searchLoader = new FXMLLoader(App.class.getResource("places_search.fxml"));
+    Parent searchPane = searchLoader.load();
 
-            // Load Search scene
-            FXMLLoader searchLoader = new FXMLLoader(App.class.getResource("places_search.fxml"));
-            Parent searchPane = searchLoader.load();
+    // Create a container pane to hold all views
+    VBox pane = new VBox(); // Change this to HBox if you prefer a horizontal layout
+    pane.getChildren().addAll(mapPane, infoPanelPane, searchPane); // Add all loaded panes to the VBox
 
-            System.out.println(mapPane.getId());
-
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/FirstWindow.fxml"));
-            root.getChildren().addAll(mapPane, infoPanelPane, searchPane); // Add infoPanelPane to the root
-            Scene scene = new Scene(root, 1500, 700);
-            
-            stage.setScene(scene);
-            stage.show();
-    
-    }
+    // Set up the scene with the container pane
+    Scene scene = new Scene(pane, 1500, 700);
+    stage.setScene(scene);
+    stage.show();
+}
 
     public static void main(String[] args) {
         launch(args); // Launch the application
