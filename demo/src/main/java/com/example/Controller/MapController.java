@@ -2,6 +2,7 @@ package com.example.Controller;
 
 import javafx.util.Duration;
 
+import com.example.DistanceCalculator;
 import com.example.Model.ConnectingModel;
 import com.example.Model.PlaceModel;
 import com.teamdev.jxbrowser.browser.Browser;
@@ -44,7 +45,8 @@ public class MapController {
 
     // User Variables
     private ConnectingModel model;
-    private String center;
+    private double lat;
+    private double lng;
 
     @FXML
     public void initialize() {
@@ -71,31 +73,23 @@ public class MapController {
     }
 
     private void createMarkerForPlace(PlaceModel place) {
-        // Construct the JavaScript call to create a marker
-        // String jsFunction2 = String.format(
-        // "createMarker('%s', '%s', '%s', %f, '%s', %s, '%s', '%s', %f, %f);",
-        // place.getName(), // title
-        // place.getTypes() != null ? String.join(",", place.getTypes()) : "", // types,
-        // convert list to string
-        // place.getPhotoUrl(), // url (for the place's image)
-        // place.getRating(), // starRating
-        // place.getVicinity(), // address
-        // "proxi",
-        // "hours",
-        // "status",
-        // place.getGeometry().getLocation().getLat(),
-        // place.getGeometry().getLocation().getLng());
-        String jsFunction2 = "setName('" + place.getName() + "');";
         String jsFunction = String.format(
-                "createMarker('%s', %f, %f)", place.getName(),
+                "createMarker('%s', '%s', %f, %f, %f,'%s', '%s', %.1f, '%s')",
+                place.getName(),
+                place.getPhotoUrl(),
                 place.getGeometry().getLocation().getLat(),
-                place.getGeometry().getLocation().getLng());
-        System.out.println(place.getGeometry().getLocation().getLng());
-
+                place.getGeometry().getLocation().getLng(),
+                DistanceCalculator.getDistance(place, lat, lng),
+                place.getVicinity(),
+                place.getTypes().toString(), // change to FIX
+                place.getRating(),
+                "Open");
         // Execute the JavaScript function in the frame
         frame.executeJavaScript(jsFunction);
 
     }
+
+    // compute for distance
 
     private void goToMarker() {
 
@@ -127,23 +121,22 @@ public class MapController {
                 // Call the method to show the button with animation
                 getMapCen(latitude, longitude);
 
-            } else {
-                // Otherwise, just store the message in 'center'
-                // Otherwise, just store the message in 'center'
-                center = message;
             }
+            // other code
+            /*
+             * else if {
+             * 
+             * }
+             */
         });
     }
 
     private void getMapCen(String latitude, String longitude) {
 
-        double lat = Double.parseDouble(latitude);
-        double lng = Double.parseDouble(longitude);
+        lat = Double.parseDouble(latitude);
+        lng = Double.parseDouble(longitude);
 
-        System.out.println("Latitude: " + lat);
-        System.out.println("Longitude: " + lng);
         model.setCenterCoordinates(lat, lng);
-
     }
 
     private void appendScenes() {

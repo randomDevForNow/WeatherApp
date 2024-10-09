@@ -440,26 +440,25 @@
       });
     }
 
-    function createMarker(title, lat, lng) {
-      // Define the content for the info window (HTML structure similar to the image)
+    function createMarker(title, photo_url, lat, lng, address, distance, types, ratings, status) {
+
       const contentString = `
         <div class="info-window">
           <div class="info-window-header">
-            <img src="https://example.com/photo.jpg" alt="${title}">
+            <img src="${photo_url}" alt="${title}" onerror="this.src='no-image-found.png'">
             <div class="info-window-title-container">
               <h2 class="info-window-title">${title}</h2>
-              <span class="info-window-category">Hotels</span>
+              <span class="info-window-category">${types}</span>
               <div class="info-window-rating">
-                <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span> <!-- Star Rating -->
-                <span style="font-size: 12px; padding-left: 5px;">4.5</span>
+                <span>&#9733;</span> <!-- Star Rating -->
+                <span style="font-size: 12px; padding-left: 5px;">${ratings}</span>
               </div>
             </div>
           </div>
           <div class="info-window-details">
-            <p>J.W. Diokno Blvd, Parañaque, Metro Manila</p>
-            <p>560m away from you</p>
-            <p>8:00AM - 10:30PM: M-F, 8:00AM - 11:00PM: Sa-Su</p>
-            <p class="info-window-status">Status: Closed</p>
+            <p>${address}</p>
+            <p>${distance}m away from you</p>
+            <p class="info-window-status">Status: ${status}</p>
           </div>
         </div>`;
 
@@ -478,6 +477,7 @@
       // Event listener to show info window on hover
       marker.addListener("mouseover", () => {
         infoWindow.open(map, marker); // Open the info window on hover
+
       });
 
       // Event listener to close the info window when not hovering
@@ -485,8 +485,6 @@
         infoWindow.close(); // Close the info window when the mouse is out
       });
     }
-
-
 
   </script>
 </head>
