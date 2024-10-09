@@ -17,16 +17,57 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class App extends Application {
+
+
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage stage) {
         try {
+
+            
             // Create the root container for the scenes
             HBox root = new HBox();
 
-            // Create an instance of the ConnectingModel
+            // Add both panes to the root container
+            FXMLLoader fxmlLoader2 = new FXMLLoader(App.class.getResource("Dialog.fxml"));
+            Parent pane = fxmlLoader2.load();
+            DialogController controller = fxmlLoader2.getController();
+            controller.someValueProperty().addListener((observable, oldValue, newValue) -> {
+                try {
+                    setMain(stage);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+            root.getChildren().addAll(pane);
+
+            //root.getChildren().addAll(mapPane, infoPanelPane, searchPane); // Add infoPanelPane to the root
+
+            // Set up the main scene
+            Scene scene = new Scene(root, 879, 544);
+            scene.getStylesheets().add(getClass().getResource("windowStyles.css").toExternalForm());
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("JxBrowser JavaFX");
+            stage.setScene(scene);
+            stage.show();
+            controller.setDraggable2();
+        } catch (IOException e) {
+            e.printStackTrace(); // Print stack trace for debugging
+        } catch (Exception e) {
+            System.err.println("An unexpected error occurred: " + e.getMessage()); // Handle unexpected exceptions
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void setMain(Stage stage) throws IOException{
+        System.out.println("Opening next window...");
             ConnectingModel connectingModel = new ConnectingModel();
 
-            // Load Map scene
+            HBox root = new HBox();
+
+            // Create an instance of the ConnectingModel
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("MapView.fxml"));
             Parent mapPane = fxmlLoader.load();
             MapController mapController = fxmlLoader.getController();
@@ -42,37 +83,16 @@ public class App extends Application {
             // Load Search scene
             FXMLLoader searchLoader = new FXMLLoader(App.class.getResource("places_search.fxml"));
             Parent searchPane = searchLoader.load();
-            SearchController searchController = searchLoader.getController();
 
-            // Close the engine when the window is closing
-            primaryStage.setOnCloseRequest(event -> {
-                if (mapController.engine != null) {
-                    mapController.engine.close(); // Ensure the engine is closed to free resources
-                }
-            });
+            System.out.println(mapPane.getId());
 
-            // Add both panes to the root container
-            FXMLLoader fxmlLoader2 = new FXMLLoader(App.class.getResource("Dialog.fxml"));
-            Parent pane = fxmlLoader2.load();
-            root.getChildren().addAll(pane);
-
-            //root.getChildren().addAll(mapPane, infoPanelPane, searchPane); // Add infoPanelPane to the root
-
-            // Set up the main scene
-            Scene scene = new Scene(root, 879, 544);
-            scene.getStylesheets().add(getClass().getResource("windowStyles.css").toExternalForm());
-            DialogController controller = fxmlLoader2.getController();
-            primaryStage.initStyle(StageStyle.UNDECORATED);
-            primaryStage.setTitle("JxBrowser JavaFX");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            controller.setDraggable2();
-        } catch (IOException e) {
-            e.printStackTrace(); // Print stack trace for debugging
-        } catch (Exception e) {
-            System.err.println("An unexpected error occurred: " + e.getMessage()); // Handle unexpected exceptions
-            e.printStackTrace();
-        }
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/FirstWindow.fxml"));
+            root.getChildren().addAll(mapPane, infoPanelPane, searchPane); // Add infoPanelPane to the root
+            Scene scene = new Scene(root, 1500, 700);
+            
+            stage.setScene(scene);
+            stage.show();
+    
     }
 
     public static void main(String[] args) {

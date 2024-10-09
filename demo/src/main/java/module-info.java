@@ -2,7 +2,8 @@ module com.example {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
-    requires jxbrowser;
+    requires javafx.base;
+    requires jxbrowser; // Use only this line
     requires jxbrowser.javafx;
     requires javafx.graphics;
     requires com.fasterxml.jackson.core;
@@ -13,5 +14,4 @@ module com.example {
     exports com.example.Model;
 
     opens com.example.Controller to javafx.fxml;
-
 }
