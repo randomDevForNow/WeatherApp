@@ -5,6 +5,7 @@
 /Users/aaron/WeatherApp/demo/src/main/java/module-info.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Model/PlaceFetcher.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Controller/ListViewController.java
+/Users/aaron/WeatherApp/demo/src/main/java/com/example/Controller/MainWindowController.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Controller/SearchController.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Model/ConnectingModel.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Model/PlaceResponse.java
@@ -13,4 +14,3 @@
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Controller/WeatherController.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/DistanceCalculator.java
 /Users/aaron/WeatherApp/demo/src/main/java/com/example/Model/PlaceFilter.java
-/Users/aaron/WeatherApp/demo/src/main/java/com/example/Controller/FirstWindowController.java

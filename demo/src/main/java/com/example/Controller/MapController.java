@@ -126,14 +126,6 @@ public class MapController {
 
     }
 
-    // compute for distance
-
-    // compute for distance
-
-    private void OnClickMarker() {
-
-    }
-
     private void setupBrowser() {
 
         browser = engine.newBrowser();
