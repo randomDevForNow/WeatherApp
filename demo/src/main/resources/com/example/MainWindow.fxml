@@ -29,7 +29,7 @@
             <VBox prefHeight="33.0" prefWidth="1069.0" />
             <VBox alignment="TOP_RIGHT" prefHeight="31.0" prefWidth="47.0">
                <children>
-                  <Button id="minimizeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="49.0" style="-fx-background-color: none;">
+                  <Button fx:id="minimizeButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="49.0" style="-fx-background-color: none;">
                      <graphic>
                         <ImageView fx:id="minimizeButton" fitHeight="25.0" fitWidth="24.0">
                            <image>
