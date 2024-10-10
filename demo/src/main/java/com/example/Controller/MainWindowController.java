@@ -23,6 +23,8 @@ public class MainWindowController {
     private Button minimizeButton;
     @FXML
     private Button maximizeButton;
+    @FXML
+    private HBox videoContainer;
 
     
     public BorderPane getMapContainer() {

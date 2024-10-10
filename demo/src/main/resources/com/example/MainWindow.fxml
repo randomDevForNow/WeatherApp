@@ -111,7 +111,8 @@
                               <HBox prefHeight="122.0" prefWidth="250.0" />
                               <HBox prefHeight="17.0" prefWidth="203.0" />
                               <HBox prefHeight="27.0" prefWidth="203.0" />
-                              <HBox prefHeight="206.0" prefWidth="203.0">
+                              <HBox fx:id="videoContainer" prefHeight="206.0" prefWidth="203.0">
+                                 <fx:include source="VideoView.fxml"/>
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
