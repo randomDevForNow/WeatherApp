@@ -180,6 +180,10 @@ public class InfoPanelController {
                     coverImage.setFitWidth(60);
                     coverImage.setFitHeight(130);
                     coverImage.setPreserveRatio(true); // Maintain the aspect ratio
+                    
+                    
+                    Image loadingImage = new Image(getClass().getResourceAsStream("/com/example/icons/loadingImage.gif"));
+                    coverImage.setImage(loadingImage);
 
                     VBox infoBox = new VBox(5);
                     Label nameLabel = new Label(place.getName());
