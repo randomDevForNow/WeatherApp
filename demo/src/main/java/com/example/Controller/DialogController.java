@@ -1,20 +1,12 @@
 package com.example.Controller;
 
-import com.example.App;
-import com.example.Model.ConnectingModel;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.scene.Node;
 
 public class DialogController {
     @FXML
@@ -71,7 +63,8 @@ public class DialogController {
             closeButton.setOnAction(event -> {
                 System.out.println("Closing window...");
                 Stage stage = (Stage) closeButton.getScene().getWindow(); 
-                stage.close(); 
+                stage.close();
+                System.exit(0);
             });
         }
 

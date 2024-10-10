@@ -1,8 +1,21 @@
 package com.example.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.example.Model.ConnectingModel;
+import com.example.Model.PlaceFetcher;
+import com.example.Model.PlaceFilter;
+import com.example.Model.PlaceModel;
+import com.example.Model.WeatherModel;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -17,6 +30,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +41,7 @@ import com.example.Model.PlaceFetcher;
 import com.example.Model.PlaceFilter;
 import com.example.Model.PlaceModel;
 import com.example.Model.WeatherModel;
+import com.teamdev.jxbrowser.deps.org.checkerframework.checker.units.qual.s;
 
 public class InfoPanelController {
 
@@ -108,12 +123,15 @@ public class InfoPanelController {
 
                     // Set ToggleButton Styling
                     toggleButton.setBackground(
-                            new Background(new BackgroundFill(Color.rgb(80, 184, 231), CornerRadii.EMPTY, null)));
+                        new Background(new BackgroundFill(
+                            Color.rgb(80, 184, 231),  
+                            new CornerRadii(7),     
+                            null                       
+                        ))
+                    );
                     toggleButton.setTextFill(Color.WHITE);
-                    toggleButton.setPadding(new Insets(1, 2, 1, 2));
-
-                    // Add to toggle group so only one filter is selected at a time
-                    toggleButton.setToggleGroup(toggleGroup);
+                    toggleButton.setPadding(new Insets(5, 5, 5, 5));
+            
 
                     toggleButton.setOnAction(event -> {
                         if (toggleButton.isSelected()) {
@@ -183,27 +201,51 @@ public class InfoPanelController {
                     setGraphic(null);
                 } else {
                     HBox cellLayout = new HBox(10);
-                    cellLayout.setPrefHeight(100); // Set preferred height if needed
+                    cellLayout.setStyle("-fx-padding: 10; ");
 
-                    // Create an empty ImageView for the place photo
+                    cellLayout.setPrefHeight(140); // Set preferred height if needed
+                    cellLayout.setPrefWidth(180);
+                    cellLayout.setStyle("--fx-border-color: #e0e0e0;"); // Light blue background
+
+
+                    // Create an empty ImageView fo r the place photo
+                    HBox imageViewContainer = new HBox();
+                    imageViewContainer.setPrefSize(60, 140);
+                    imageViewContainer.setStyle("-fx-background-color: transparent; -fx-clip: auto;");
+                    
                     ImageView coverImage = new ImageView();
-                    coverImage.setFitHeight(100); // Set a height for the image
-                    coverImage.setPreserveRatio(true); // Maintain the aspect ratio
 
-                    Image loadingImage = new Image(getClass().getResourceAsStream("/com/example/loadingimage.png"));
-                    coverImage.setImage(loadingImage);
+                    
+                    coverImage.setFitHeight(140);
+                    coverImage.setFitWidth(110);
+                    coverImage.setPreserveRatio(false); // Maintain the aspect ratio
+
+                    imageViewContainer.getChildren().addAll(coverImage);
 
                     VBox infoBox = new VBox(5);
+                    infoBox.setAlignment(Pos.CENTER_LEFT);
                     Label nameLabel = new Label(place.getName());
+                    nameLabel.setWrapText(true);
+                    nameLabel.setStyle("-fx-font-family: \"Arial\"; -fx-text-fill: black; -fx-font-size: 16px; -fx-font-weight:bold; ");
+
                     Label typeLabel = new Label(String.join(", ", place.getTypes()));
-                    Label ratingLabel = new Label("Rating: " + place.getRating());
+                    typeLabel.setWrapText(true);
+                    typeLabel.setStyle("-fx-font-family: \"Arial\"; -fx-text-fill: #50b8e7; -fx-font-weight:bold;");
+
+
+                    Label ratingLabel = new Label("Rating: " + place.getRating() + " ★");
+                    ratingLabel.setWrapText(true);
+                    ratingLabel.setStyle("-fx-font-family: \"Arial\"; -fx-text-fill: #FFAA1D; ");
+
                     Label vicinityLabel = new Label(place.getVicinity());
+                    vicinityLabel.setWrapText(true);
+                    vicinityLabel.setStyle("-fx-font-family: \"Arial\"; -fx-text-fill: black; ");
 
                     infoBox.getChildren().addAll(nameLabel, typeLabel, ratingLabel, vicinityLabel);
                     VBox.setVgrow(nameLabel, Priority.ALWAYS); // Makes labels grow as necessary
-
+                    
                     // Add image and info box to cell layout
-                    cellLayout.getChildren().addAll(coverImage, infoBox);
+                    cellLayout.getChildren().addAll(imageViewContainer, infoBox);
                     setGraphic(cellLayout);
 
                     // If the place has photos, fetch the image in a background thread
@@ -223,23 +265,76 @@ public class InfoPanelController {
                                 e.printStackTrace();
                             }
                         }).start();
+                        
+                        Rectangle clip = new Rectangle();
+                        clip.setWidth(60);  // Set clipping width
+                        clip.setHeight(140); // Set clipping height
+                        ///// eto na background image
+                        
+
+
+                        cellLayout.setOnMouseEntered(event -> {
+                            if (!isSelected()) {
+                                cellLayout.setBackground(
+                                        new Background(new BackgroundFill(Color.rgb(220,240,250), CornerRadii.EMPTY, null)));
+                            }
+                        });
+                        cellLayout.setOnMouseExited(event -> {
+                            if (!isSelected()) {
+                                cellLayout.setBackground(
+                                        new Background(new BackgroundFill(Color.rgb(255,255,255), CornerRadii.EMPTY, null)));
+                            }
+                           });
+                        if (isSelected()) {
+                            // apply the yellow background and black text when selected
+                            cellLayout.setStyle("-fx-border-color: #ffffff");
+                            cellLayout.setBackground(new Background(new BackgroundFill(
+                                    Color.rgb(220,240,250), CornerRadii.EMPTY, null)));
+                            nameLabel.setTextFill(Color.rgb(0, 0, 0));
+                            
+                            typeLabel.setTextFill(Color.rgb(0, 0, 0));
+                            ratingLabel.setTextFill(Color.rgb(0, 0, 0));    
+                            vicinityLabel.setTextFill(Color.rgb(0, 0, 0));
+                        } else {
+                            // When not selected, reset background and text colors
+                            cellLayout.setBackground(new Background(new BackgroundFill(
+                                    Color.rgb(255,255,255), CornerRadii.EMPTY, null)));
+                        
+                        }
+    
+                        // Set the click event to trigger selection
+                        cellLayout.setOnMouseClicked(event -> {
+                            getListView().requestFocus();
+                            getListView().getSelectionModel().select(getIndex());
+                        });
                     }
+                
+                    // cellLayout.setOnMouseEntered(event -> {
+                    //     if (!isSelected()) {
+                    //         cellLayout.setStyle("-fx-background-color: #dfefff;"); // Light blue hover effect
+                    //     }
+                    // });
+
+                    // cellLayout.setOnMouseExited(event -> {
+                    //     if (!isSelected()) {
+                    //         cellLayout.setStyle("-fx-background-color: #f0f8ff;");
+                    //     }
+                    // });
+
+                    // if (isSelected()) {
+                    //     cellLayout.setStyle("-fx-background-color: #dfefff; -fx-border-color: #add8e6;");
+                    // }
+
                 }
+
             }
         });
-
-        placeList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
-                onPlaceSelected(newSelection); // Call the method with the selected place
-            }
-        });
+        placeList.setStyle(
+            "-fx-control-inner-background: #ffffff; -fx-background-insets: 0; -fx-selection-bar: transparent; -fx-selection-bar-non-focused: transparent;-fx-padding: 0; -fx-background-padding: 0; -fx-background-color: transparent; -fx-border-insets: 0; -fx-overflow-x: hidden; -fx-selection-bar: transparent; -fx-selection-bar-non-focused: transparent;");
+    
+    
     }
-
-    private void onPlaceSelected(PlaceModel place) {
-        model.setSelectedCoordinates(place.getGeometry().getLocation().getLat(),
-                place.getGeometry().getLocation().getLng());
-    }
-
+    
     private void appendScenes() {
         // Logic to append scenes if needed
     }

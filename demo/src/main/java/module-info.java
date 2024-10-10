@@ -8,6 +8,7 @@ module com.example {
     requires javafx.graphics;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
+    requires  java.net.http;
 
     exports com.example;
     exports com.example.Controller;

@@ -5,17 +5,21 @@ import java.io.IOException;
 import com.example.Controller.DialogController;
 import com.example.Controller.MainWindowController;
 import com.example.Controller.InfoPanelController;
+import com.example.Controller.MainWindowController;
 import com.example.Controller.MapController;
-import com.example.Controller.SearchController; // Import InfoPanelController
-import com.example.Model.ConnectingModel; // Import ConnectingModel
+import com.example.Model.ConnectingModel; // Import InfoPanelController
+import com.example.Controller.WeatherController2;
 
-import javafx.application.Application;
+import javafx.application.Application; // Import ConnectingModel
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 
 public class App extends Application {
 
@@ -52,6 +56,8 @@ public class App extends Application {
             stage.setScene(scene);
             stage.show();
             controller.setDraggable2();
+
+            
         } catch (IOException e) {
             e.printStackTrace(); // Print stack trace for debugging
         } catch (Exception e) {
@@ -86,23 +92,39 @@ public class App extends Application {
     Parent infoPanelPane = infoPanelLoader.load();
     InfoPanelController infoPanelController = infoPanelLoader.getController();
     infoPanelController.setModel(connectingModel);
+
+    // Load weather.fxml and set the model
+    FXMLLoader weatherLoader = new FXMLLoader(App.class.getResource("weather.fxml"));
+    Parent weatherPane = weatherLoader.load();
+    //WeatherController2 weathercontroller = weatherLoader.getController();
+    //weathercontroller.setModel(connectingModel);
     
     // Load places_search.fxml
     FXMLLoader searchLoader = new FXMLLoader(App.class.getResource("places_search.fxml"));
     Parent searchPane = searchLoader.load();
-    SearchController searchController = searchLoader.getController();
-    searchController.setModel(connectingModel);
 
     // Assuming you have VBox or similar containers in FirstWindow.fxml
     // Add the children to their respective containers
+    firstWindowController.getWeatherContainer().getChildren().addAll(weatherPane);
     firstWindowController.getMapContainer().getChildren().add(mapPane);
     firstWindowController.getInfoPanelContainer().getChildren().add(infoPanelPane);
     firstWindowController.getSearchContainer().getChildren().add(searchPane);
 
     // Create the scene and set it in the stage
-    Scene scene = new Scene(firstWindowPane, 1500, 700);
+    Scene scene = new Scene(firstWindowPane);
+    scene.getStylesheets().add(getClass().getResource("windowStyles.css").toExternalForm());
     stage.setScene(scene);
+    Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+    // Calculate the center position
+    double x = (screenBounds.getWidth() - stage.getWidth()) / 2;
+    double y = (screenBounds.getHeight() - stage.getHeight()) / 2;
+
+    // Set the position of the stage
+    stage.setX(x);
+    stage.setY(y);
     stage.show();
+
 }
 
 
