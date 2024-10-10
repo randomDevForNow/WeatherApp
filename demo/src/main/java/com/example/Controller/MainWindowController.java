@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -16,6 +17,8 @@ public class MainWindowController {
     private HBox searchContainer;
     @FXML
     private Button closeButton;
+    @FXML
+    private Pane weatherContainer;
     @FXML
     private Button minimizeButton;
     @FXML
@@ -33,6 +36,12 @@ public class MainWindowController {
     public HBox getSearchContainer() {
         return searchContainer;
     }
+
+    public Pane getWeatherContainer(){
+        return  weatherContainer;
+    }
+
+
 
     @FXML
     public void initialize(){
