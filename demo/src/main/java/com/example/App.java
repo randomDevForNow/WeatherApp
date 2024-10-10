@@ -3,22 +3,20 @@ package com.example;
 import java.io.IOException;
 
 import com.example.Controller.DialogController;
-import com.example.Controller.MainWindowController;
 import com.example.Controller.InfoPanelController;
+import com.example.Controller.MainWindowController;
 import com.example.Controller.MapController;
-import com.example.Controller.SearchController; // Import InfoPanelController
-import com.example.Model.ConnectingModel; // Import ConnectingModel
+import com.example.Model.ConnectingModel; // Import InfoPanelController
 
-import javafx.application.Application;
+import javafx.application.Application; // Import ConnectingModel
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.geometry.Rectangle2D;
-import javafx.stage.Screen;
 
 
 public class App extends Application {
