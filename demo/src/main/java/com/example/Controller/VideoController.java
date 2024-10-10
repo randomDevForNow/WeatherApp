@@ -28,7 +28,7 @@ public class VideoController {
     @FXML
     public void initialize() {
         System.out.println("VideoController initialized");
-        String embeddedUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";  // Replace with the desired video URL
+        String embeddedUrl = "https://www.youtube.com/embed/T9v23AayXU0?autoplay=1&mute=1";
         
         Platform.runLater(() -> {
             WebEngine webEngine = videoWebView.getEngine();
