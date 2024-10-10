@@ -7,6 +7,7 @@ import com.example.Controller.InfoPanelController;
 import com.example.Controller.MainWindowController;
 import com.example.Controller.MapController;
 import com.example.Model.ConnectingModel; // Import InfoPanelController
+import com.example.Controller.WeatherController2;
 
 import javafx.application.Application; // Import ConnectingModel
 import javafx.fxml.FXMLLoader;
@@ -90,6 +91,12 @@ public class App extends Application {
     Parent infoPanelPane = infoPanelLoader.load();
     InfoPanelController infoPanelController = infoPanelLoader.getController();
     infoPanelController.setModel(connectingModel);
+
+    // Load weather.fxml and set the model
+    FXMLLoader weatherLoader = new FXMLLoader(App.class.getResource("weather.fxml"));
+    Parent weatherPane = weatherLoader.load();
+    //WeatherController2 weathercontroller = weatherLoader.getController();
+    //weathercontroller.setModel(connectingModel);
     
     // Load places_search.fxml
     FXMLLoader searchLoader = new FXMLLoader(App.class.getResource("places_search.fxml"));
@@ -97,6 +104,7 @@ public class App extends Application {
 
     // Assuming you have VBox or similar containers in FirstWindow.fxml
     // Add the children to their respective containers
+    firstWindowController.getWeatherContainer().getChildren().addAll(weatherPane);
     firstWindowController.getMapContainer().getChildren().add(mapPane);
     firstWindowController.getInfoPanelContainer().getChildren().add(infoPanelPane);
     firstWindowController.getSearchContainer().getChildren().add(searchPane);

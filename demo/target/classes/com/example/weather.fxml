@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.WeatherController2">
+   <children>
+      <VBox fx:id="body" layoutX="173.0" layoutY="28.0" prefHeight="345.0" prefWidth="255.0" stylesheets="@style.css">
+         <children>
+            <AnchorPane prefHeight="385.0" prefWidth="273.0">
+               <children>
+                  <VBox layoutX="25.0" layoutY="240.0" prefHeight="116.0" prefWidth="201.0">
+                     <children>
+                        <AnchorPane fx:id="body2" prefHeight="111.0" prefWidth="207.0">
+                           <children>
+                              <Label layoutX="42.0" layoutY="5.0" text="Expect to experience">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="90.0" layoutY="47.0" text="and">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="word2" alignment="CENTER" layoutX="5.0" layoutY="64.0" prefHeight="19.0" prefWidth="192.0" text="windy." textFill="#50b8e7">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="word1" alignment="CENTER" layoutY="22.0" prefHeight="25.0" prefWidth="201.0" text="a bit hot" textFill="#50b8e7">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+
+                  <!-- Updated Labels with fx:id for dynamic content -->
+                  <Label fx:id="locationLabel" alignment="TOP_CENTER" layoutX="39.0" layoutY="30.0" prefHeight="0.0" prefWidth="173.0" text="YOUR LOCATION">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="timer" alignment="CENTER" layoutX="42.0" layoutY="51.0" prefHeight="17.0" prefWidth="161.0" text="Date and Time" />
+                  <Label fx:id="des1" layoutX="80.0" layoutY="68.0" text="Good for staying" textFill="#50b8e7">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="37.0" layoutY="108.0" text="It's a">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                  </Label>
+                  
+                  <!-- Weather description label -->
+                  <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="-8.0" layoutY="124.0" prefHeight="21.0" prefWidth="115.0" text="Clear day" textFill="#50b8e7">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+
+                  <!-- Temperature label -->
+                  <Label fx:id="temperatureLabel" layoutX="14.0" layoutY="178.0" text="23.5 C" textFill="#50b8e7">
+                     <font>
+                        <Font name="Arial Black" size="27.0" />
+                     </font>
+                  </Label>
+
+                  <!-- Humidity label -->
+                  <Label fx:id="humidityLabel" layoutX="142.0" layoutY="189.0" text="Humidity 97%" />
+
+                  <!-- Wind Speed label -->
+                  <Label fx:id="windSpeedLabel" layoutX="107.0" layoutY="209.0" text="Wind Speed: 34km/hr" />
+                  
+                  <ImageView fx:id="weatherIcon" fitHeight="89.0" fitWidth="108.0" layoutX="123.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@sunny-icon..png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="12.0" layoutY="145.0" text="in this location">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox fx:id="body3" layoutX="204.0" layoutY="7.0" prefHeight="33.0" prefWidth="183.0" style="-fx-background-color: #4ccaea;">
+         <children>
+            <AnchorPane prefHeight="28.0" prefWidth="183.0">
+               <children>
+                  <Label layoutX="12.0" layoutY="6.0" text="WEATHER UPDATE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      
+      <!-- Add TextField for location input -->
+      <TextField fx:id="cityInput" layoutX="14.0" layoutY="40.0" promptText="Enter city or country" />
+   </children>
+</Pane>

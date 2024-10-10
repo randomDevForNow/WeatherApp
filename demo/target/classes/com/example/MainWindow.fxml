@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1473.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.MainWindowController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1473.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.MainWindowController">
    <children>
       <HBox prefHeight="43.0" prefWidth="982.0" style="-fx-background-color: #50b8e7;">
          <children>
@@ -105,7 +105,7 @@
                      <children>
                         <VBox prefHeight="731.0" prefWidth="205.0">
                            <children>
-                              <HBox prefHeight="359.0" prefWidth="372.0" />
+                              <HBox fx:id="weatherContainer" prefHeight="545.0" prefWidth="398.0" />
                               <HBox prefHeight="17.0" prefWidth="203.0" />
                               <HBox prefHeight="122.0" prefWidth="250.0" />
                               <HBox prefHeight="17.0" prefWidth="203.0" />
