@@ -105,7 +105,9 @@
                      <children>
                         <VBox prefHeight="731.0" prefWidth="205.0">
                            <children>
-                              <HBox prefHeight="359.0" prefWidth="372.0" />
+                              <HBox fx:id="videoContainer" prefHeight="359.0" prefWidth="372.0">
+                                 <fx:include source="VideoView.fxml"/>
+                              </HBox>
                               <HBox prefHeight="17.0" prefWidth="203.0" />
                               <HBox prefHeight="122.0" prefWidth="250.0" />
                               <HBox prefHeight="17.0" prefWidth="203.0" />
