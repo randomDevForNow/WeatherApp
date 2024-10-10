@@ -26,29 +26,29 @@ public class MainWindowController {
     @FXML
     private VideoController videoController; // Add reference to VideoController
 
-    @ FXML
+    @FXML
     public void initialize() {
         // Manually load the VideoView.fxml to ensure the VideoController is instantiated
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/VideoView.fxml"));
             VBox videoView = loader.load();
             videoController = loader.getController();
-
+    
             if (videoController != null) {
                 System.out.println("VideoController successfully integrated.");
             } else {
                 System.err.println("Failed to initialize VideoController.");
             }
-
+    
             // Add the loaded VideoView to the videoContainer
             videoContainer.getChildren().add(videoView);
-
+    
         } catch (IOException e) {
             System.err.println("Error loading VideoView.fxml: " + e.getMessage());
             e.printStackTrace();
         }
     }
-
+    
     // Method to trigger video update
     public void updateVideoBasedOnLocationAndWeather(String location, String weatherCondition) {
         if (videoController != null) {
