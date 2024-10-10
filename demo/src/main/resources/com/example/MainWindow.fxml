@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1473.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.MainWindowController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="821.0" prefWidth="1473.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.MainWindowController">
    <children>
       <HBox prefHeight="43.0" prefWidth="982.0" style="-fx-background-color: #50b8e7;">
          <children>
@@ -108,11 +108,10 @@
                                     <Insets top="-43.0" />
                                  </VBox.margin></HBox>
                               <HBox prefHeight="17.0" prefWidth="203.0" />
-                              <HBox prefHeight="122.0" prefWidth="250.0" />
                               <HBox prefHeight="17.0" prefWidth="203.0" />
                               <HBox prefHeight="27.0" prefWidth="203.0" />
-                              <HBox fx:id="videoContainer" prefHeight="206.0" prefWidth="203.0">
-                                 <fx:include source="VideoView.fxml"/>
+                              <HBox fx:id="videoContainer" prefHeight="230.0" prefWidth="400.0">
+                                 <fx:include source="VideoView.fxml" />
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
