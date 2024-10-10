@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.WeatherController2">
    <children>
-      <VBox fx:id="body" layoutX="173.0" layoutY="28.0" prefHeight="345.0" prefWidth="255.0" stylesheets="@../../style.css">
+      <VBox fx:id="body" layoutX="173.0" layoutY="28.0" prefHeight="345.0" prefWidth="255.0" stylesheets="@style.css">
          <children>
             <AnchorPane prefHeight="385.0" prefWidth="273.0">
                <children>
