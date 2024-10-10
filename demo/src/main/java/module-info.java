@@ -6,6 +6,7 @@ module com.example {
     requires jxbrowser; // Use only this line
     requires jxbrowser.javafx;
     requires javafx.graphics;
+    requires java.net.http;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
 
