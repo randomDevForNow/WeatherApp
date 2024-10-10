@@ -28,8 +28,14 @@ public class VideoController {
     @FXML
     public void initialize() {
         System.out.println("VideoController initialized");
+        String embeddedUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";  // Replace with the desired video URL
+        
+        Platform.runLater(() -> {
+            WebEngine webEngine = videoWebView.getEngine();
+            webEngine.load(embeddedUrl);
+        });
     }
-
+    
     public void fetchAndPlayVideo(String location, String weatherCondition) {
         // Construct the search query based on location and weather condition
         String query = location + " " + weatherCondition + " weather today";
