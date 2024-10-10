@@ -63,7 +63,8 @@ public class DialogController {
             closeButton.setOnAction(event -> {
                 System.out.println("Closing window...");
                 Stage stage = (Stage) closeButton.getScene().getWindow(); 
-                stage.close(); 
+                stage.close();
+                System.exit(0);
             });
         }
 

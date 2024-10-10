@@ -14,7 +14,14 @@ public class MainWindowController {
     private VBox infoPanelContainer;
     @FXML
     private HBox searchContainer;
+    @FXML
+    private Button closeButton;
+    @FXML
+    private Button minimizeButton;
+    @FXML
+    private Button maximizeButton;
 
+    
     public BorderPane getMapContainer() {
         return mapContainer;
     }
@@ -27,4 +34,35 @@ public class MainWindowController {
         return searchContainer;
     }
 
+    @FXML
+    public void initialize(){
+        if (closeButton != null) {
+            closeButton.setOnAction(event -> {
+                System.out.println("Closing window...");
+                Stage stage = (Stage) closeButton.getScene().getWindow(); 
+                stage.close();
+                System.exit(0);
+            });
+        }
+
+        if (minimizeButton != null) {
+            minimizeButton.setOnAction(event -> {
+                System.out.println("Minimizing window...");
+                Stage stage = (Stage) minimizeButton.getScene().getWindow(); 
+                stage.setIconified(true);
+            });
+        }
+        if (maximizeButton != null) {
+            maximizeButton.setOnAction(event -> {
+                System.out.println("Maximizing window...");
+                Stage stage = (Stage) maximizeButton.getScene().getWindow();
+                if (stage.isMaximized()) {
+                    stage.setMaximized(false);
+                } else {
+                    stage.setMaximized(true);
+                }
+            });
+        }
+   
+    }
 }
