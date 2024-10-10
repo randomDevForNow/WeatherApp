@@ -104,9 +104,15 @@ public class InfoPanelController {
 
                     // Set ToggleButton Styling
                     toggleButton.setBackground(
-                            new Background(new BackgroundFill(Color.rgb(80, 184, 231), CornerRadii.EMPTY, null)));
+                        new Background(new BackgroundFill(
+                            Color.rgb(80, 184, 231),  
+                            new CornerRadii(7),     
+                            null                       
+                        ))
+                    );
                     toggleButton.setTextFill(Color.WHITE);
-                    toggleButton.setPadding(new Insets(1, 2, 1, 2));
+                    toggleButton.setPadding(new Insets(5, 5, 5, 5));
+            
 
                     toggleButton.setOnAction(event -> {
                         // Handle toggle button selection/deselection

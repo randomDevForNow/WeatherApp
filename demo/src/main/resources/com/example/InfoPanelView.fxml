@@ -9,13 +9,13 @@
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623" prefWidth="346" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.InfoPanelController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="346">
-         <Label text="Recommended Tags:" />
-         <ScrollPane fx:id="filterScrollPane" hbarPolicy="AS_NEEDED" prefHeight="623" prefWidth="346" vbarPolicy="NEVER">
+         <Label prefHeight="17.0" prefWidth="251.0" text="Recommended Tags:" textFill="#50b8e7" />
+         <ScrollPane fx:id="filterScrollPane" hbarPolicy="AS_NEEDED" prefHeight="623" prefWidth="346" style="-fx-background-color: transparent; -fx-border-color: transparent;" vbarPolicy="NEVER">
             <content>
                <HBox fx:id="filterListContainer" spacing="10.0" />
             </content>
          </ScrollPane>
       </HBox>
-      <ListView fx:id="placeList" prefHeight="623" prefWidth="346" />
+      <ListView fx:id="placeList" prefHeight="623" prefWidth="346" style="-fx-background-color: transparent;" />
    </children>
 </VBox>
