@@ -20,6 +20,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Timer;
 import java.util.concurrent.CompletableFuture;
 
+import com.example.App;
+
 public class WeatherController2 {
 
     private static final String WEATHER_API_KEY = "3d29ec11647646df94e93355240410";  
@@ -109,6 +111,7 @@ public class WeatherController2 {
         // Run the weather fetching task asynchronously
         CompletableFuture.runAsync(() -> {
             try {
+                System.out.println("LAAAAAAAAAAH");
                 String weatherData = getWeatherData(city);
                 Platform.runLater(() -> updateWeatherUIFromResponse(city, weatherData));
             } catch (IOException | InterruptedException ex) {
@@ -164,6 +167,7 @@ public class WeatherController2 {
 
             updateWeatherUI(city, temperature, humidity, windSpeed, condition);
         } else {
+            System.out.println("Running else");
             updateWeatherUI("Weather data incomplete", "", "", "", "");
         }
     }
@@ -217,21 +221,21 @@ public class WeatherController2 {
         String iconPath;
 
         if (condition.contains("sunny")) {
-            iconPath = "/com/example/sunny-icon.png";
+            iconPath = App.class.getResource("sunny-icon.png").toString();
         } else if (condition.contains("rain") || condition.contains("showers")) {
-            iconPath = "/com/example/rainy-icon.png";
+            iconPath = App.class.getResource("rainy-icon.png").toString();
         } else if (condition.contains("cloudy")) {
-            iconPath = "/com/example/cloudy-icon.png";
+            iconPath = App.class.getResource("cloudy-icon.png").toString();
         } else if (condition.contains("windy")) {
-            iconPath = "/com/example/windy-icon.png";
+            iconPath = App.class.getResource("windy-icon.png").toString();
         } else if (condition.contains("snow")) {
-            iconPath = "/com/example/snowy-icon.png";
+            iconPath = App.class.getResource("snowy-icon.png").toString();
         } else {
-            iconPath = "/com/example/default-weather-icon.png";
+            iconPath = App.class.getResource("default-weather-icon.png").toString();
         }
 
         try {
-            Image icon = new Image(getClass().getResource(iconPath).toExternalForm());
+            Image icon = new Image(iconPath);
             weatherIcon.setImage(icon);
             System.out.println("Icon loaded successfully: " + iconPath);
         } catch (Exception e) {

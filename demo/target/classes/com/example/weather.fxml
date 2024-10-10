@@ -47,7 +47,7 @@
                   </Label>
                   
                         <!-- Weather description label -->
-                  <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="16.0" layoutY="158.0" prefHeight="25.0" prefWidth="130.0" text="Clear day" textFill="#50b8e7">
+                  <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="16.0" layoutY="158.0" prefHeight="25.0" prefWidth="130.0" text="Clear day" textFill="#50b8e7" wrapText="true">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
@@ -128,8 +128,8 @@
          </children>
       </VBox>
       
-                                                                              <!-- Add TextField for location input -->
-      <TextField fx:id="cityInput" layoutX="178.0" layoutY="528.0" prefHeight="26.0" prefWidth="41.0" style="-fx-background-color: transparent;" />
+                                                                                                <!-- Add TextField for location input -->
+      <TextField fx:id="cityInput" layoutX="178.0" layoutY="528.0" prefHeight="26.0" prefWidth="118.0" style="-fx-background-color: transparent;" />
    </children>
    <padding>
       <Insets left="20.0" right="20.0" />

@@ -108,7 +108,6 @@ public class DialogController {
             System.out.println("Working");
         });
     }
-
     public void setDraggable(Node root, Stage stage) {
         root.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
@@ -119,6 +118,7 @@ public class DialogController {
             stage.setY(event.getScreenY() - yOffset);
         });
     }
+
     private void openNextWindow() {
         setSomeValue("true");
     }
