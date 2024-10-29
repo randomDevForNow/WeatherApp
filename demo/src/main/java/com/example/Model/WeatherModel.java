@@ -2,7 +2,7 @@ package com.example.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown = true) // Ignore fields that aren't mapped
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WeatherModel {
 
     private Coord coord;
@@ -12,7 +12,6 @@ public class WeatherModel {
     private Weather[] weather;
     private Rain rain;
 
-    // Getters and setters for the top-level fields
     public Coord getCoord() {
         return coord;
     }
@@ -66,7 +65,6 @@ public class WeatherModel {
         private double lon;
         private double lat;
 
-        // Getters and setters
         public double getLon() {
             return lon;
         }
@@ -129,7 +127,6 @@ public class WeatherModel {
     public static class Wind {
         private double speed;
 
-        // Getters and setters
         public double getSpeed() {
             return speed;
         }
@@ -144,7 +141,6 @@ public class WeatherModel {
         private long sunrise;
         private long sunset;
 
-        // Getters and setters
         public long getSunrise() {
             return sunrise;
         }
@@ -167,7 +163,6 @@ public class WeatherModel {
         private String main;
         private String description;
 
-        // Getters and setters
         public String getMain() {
             return main;
         }
@@ -189,7 +184,6 @@ public class WeatherModel {
     public static class Rain {
         private double _1h;
 
-        // Getters and setters
         public double get_1h() {
             return _1h;
         }

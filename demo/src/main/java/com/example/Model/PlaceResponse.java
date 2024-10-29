@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PlaceResponse {
-    private PlaceModel[] results; // Array of PlaceModel
+    private PlaceModel[] results;
 
     public PlaceModel[] getResults() {
         return results;

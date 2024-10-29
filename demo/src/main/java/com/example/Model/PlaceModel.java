@@ -11,9 +11,7 @@ public class PlaceModel {
     private List<Photo> photos;
     private String photoUrl;
     private List<String> types;
-    private Geometry geometry; // Add this for coordinates
-
-    // Getters and setters for name, vicinity, rating, etc.
+    private Geometry geometry;
 
     public String getName() {
         return name;
@@ -71,7 +69,6 @@ public class PlaceModel {
         this.geometry = geometry;
     }
 
-    // Nested class for Geometry (coordinates)
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Geometry {
         private Location location;
@@ -84,7 +81,6 @@ public class PlaceModel {
             this.location = location;
         }
 
-        // Nested class for Location (lat/lng)
         @JsonIgnoreProperties(ignoreUnknown = true)
         public static class Location {
             private double lat;
@@ -114,7 +110,6 @@ public class PlaceModel {
         private int height;
         private int width;
 
-        // Getters and setters for photo attributes
         public String getPhoto_reference() {
             return photo_reference;
         }

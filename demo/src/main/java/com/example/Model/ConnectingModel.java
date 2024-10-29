@@ -12,16 +12,13 @@ public class ConnectingModel {
     private double Xs;
     private double Ys;
 
-    // Listener for changes in coordinates
     private List<CoordinateListener> coordinateListeners = new ArrayList<>();
 
-    // Listener for changes in coordinates
     private List<SelectedListener> selectedListeners = new ArrayList<>();
 
-    // Listener for changes in places data
     private List<Consumer<List<PlaceModel>>> placeListeners = new ArrayList<>();
 
-    private List<PlaceModel> placesData = new ArrayList<>(); // List to hold PlaceModel objects
+    private List<PlaceModel> placesData = new ArrayList<>();
 
     public interface CoordinateListener {
         void onCoordinatesChanged(double x, double y);
@@ -32,7 +29,7 @@ public class ConnectingModel {
         coordinateListeners.add(listener);
     }
 
-    // Set the center coordinates and notify listeners
+    // Set center coordinates and notify listeners
     public void setCenterCoordinates(double x, double y) {
         this.centerX = x;
         this.centerY = y;
@@ -58,12 +55,12 @@ public class ConnectingModel {
         void onSelectedChanged(double x, double y);
     }
 
-    // Add a selected listener
+    // Add selected listener
     public void addSelectedListener(SelectedListener listener) {
         selectedListeners.add(listener);
     }
 
-    // Set the center coordinates and notify listeners
+    // Set center coordinates and notify listeners
     public void setSelectedCoordinates(double x, double y) {
         this.Xs = x;
         this.Ys = y;
@@ -85,12 +82,12 @@ public class ConnectingModel {
         }
     }
 
-    // Add a place listener
+    // Add place listener
     public void addPlaceListener(Consumer<List<PlaceModel>> listener) {
         placeListeners.add(listener);
     }
 
-    // Set the places data and notify listeners
+    // Set places data and notify listeners
     public void setPlacesData(List<PlaceModel> placesData) {
         this.placesData = placesData;
         notifyPlaceListeners();
@@ -103,7 +100,7 @@ public class ConnectingModel {
     // Notify place listeners
     private void notifyPlaceListeners() {
         for (Consumer<List<PlaceModel>> listener : placeListeners) {
-            listener.accept(placesData); // Notify with the current list of PlaceModel
+            listener.accept(placesData); // Notify with current list of PlaceModel
         }
     }
 }

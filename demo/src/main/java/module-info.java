@@ -3,12 +3,12 @@ module com.example {
     requires javafx.fxml;
     requires javafx.web;
     requires javafx.base;
-    requires jxbrowser; // Use only this line
+    requires jxbrowser;
     requires jxbrowser.javafx;
     requires javafx.graphics;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
-    requires  java.net.http;
+    requires java.net.http;
 
     exports com.example;
     exports com.example.Controller;

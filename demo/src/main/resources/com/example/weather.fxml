@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.WeatherController2">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.WeatherController">
    <children>
       <VBox fx:id="body" layoutX="-4.0" layoutY="41.0" prefHeight="505.0" prefWidth="294.0" stylesheets="@style.css">
          <children>
@@ -71,7 +71,7 @@
                         
                               <ImageView fx:id="weatherIcon" fitHeight="89.0" fitWidth="108.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@sunny-icon..png" />
+                              <Image url="@com/example/loadingImage.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -129,7 +129,7 @@
       </VBox>
       
                                                                               <!-- Add TextField for location input -->
-      <TextField fx:id="cityInput" layoutX="178.0" layoutY="528.0" prefHeight="26.0" prefWidth="41.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="cityInput" layoutX="178.0" layoutY="528.0" prefHeight="26.0" prefWidth="41.0" />
    </children>
    <padding>
       <Insets left="20.0" right="20.0" />

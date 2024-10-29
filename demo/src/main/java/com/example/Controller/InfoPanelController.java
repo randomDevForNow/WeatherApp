@@ -13,9 +13,7 @@ import com.example.Model.WeatherModel;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -32,17 +30,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import com.example.Model.ConnectingModel;
-import com.example.Model.PlaceFetcher;
-import com.example.Model.PlaceFilter;
-import com.example.Model.PlaceModel;
-import com.example.Model.WeatherModel;
-import com.teamdev.jxbrowser.deps.org.checkerframework.checker.units.qual.s;
-
 public class InfoPanelController {
 
     /* FXML Elements */
@@ -50,16 +37,17 @@ public class InfoPanelController {
     private HBox filterListContainer = new HBox();
 
     @FXML
-    private ListView<PlaceModel> placeList = new ListView<>(); // ListView for displaying PlaceModel objects
+    private ListView<PlaceModel> placeList = new ListView<>();
+
     /* FXML Elements */
 
     private ConnectingModel model;
 
     @FXML
-    private WeatherController weatherController; // Injected from FXML
+    private WeatherController weatherController;
 
     @FXML
-    private SearchController searchController; // Injected from FXML
+    private SearchController searchController;
 
     // User Variables
     private WeatherModel weather;
@@ -84,7 +72,7 @@ public class InfoPanelController {
             weather = weatherController.getWeather();
 
             // Fetch places based on the updated weather
-            fetchPlacesBasedOnWeather(); // change move this to init or somewhere
+            fetchPlacesBasedOnWeather();
         });
     }
 
@@ -102,14 +90,10 @@ public class InfoPanelController {
         }
     }
 
-    // FIRST THREAD EXAMPLE
     private void setFilterList(List<PlaceModel> placesData) {
-        // Ensure this runs on the JavaFX Application Thread
         Platform.runLater(() -> {
-            // Clear previous items in the HBox
             filterListContainer.getChildren().clear();
 
-            // Create a ToggleGroup to manage the toggle buttons
             final ToggleGroup toggleGroup = new ToggleGroup();
 
             if (PlaceFilter.placeTypes != null) {
@@ -158,15 +142,13 @@ public class InfoPanelController {
     }
 
     private void resetPlaceList() {
-        placeList.getItems().clear(); // Assuming placeList is your ListView or container for the places
+        placeList.getItems().clear();
     }
 
     private List<PlaceModel> filterPlacesByType(List<PlaceModel> placesData, String placeType) {
         // Filter the placesData based on the placeType
         return placesData.stream()
-                .filter(place -> place.getTypes() != null && place.getTypes().contains(placeType)) // Check if types
-                                                                                                   // list contains
-                                                                                                   // placeType
+                .filter(place -> place.getTypes() != null && place.getTypes().contains(placeType))
                 .collect(Collectors.toList());
     }
 
@@ -176,11 +158,6 @@ public class InfoPanelController {
             placeList.getItems().addAll(placesData);
             System.out.println(placeList.getItems().size());
         });
-    }
-
-    // Scenes
-    private void setupPanel() {
-        // Setup logic for the panel if needed
     }
 
     // Listeners
@@ -196,9 +173,9 @@ public class InfoPanelController {
                     HBox cellLayout = new HBox(10);
                     cellLayout.setStyle("-fx-padding: 10; ");
 
-                    cellLayout.setPrefHeight(140); // Set preferred height if needed
+                    cellLayout.setPrefHeight(140);
                     cellLayout.setPrefWidth(180);
-                    cellLayout.setStyle("--fx-border-color: #e0e0e0;"); // Light blue background
+                    cellLayout.setStyle("--fx-border-color: #e0e0e0;");
 
                     // Create an empty ImageView fo r the place photo
                     HBox imageViewContainer = new HBox();
@@ -209,7 +186,7 @@ public class InfoPanelController {
 
                     coverImage.setFitHeight(140);
                     coverImage.setFitWidth(110);
-                    coverImage.setPreserveRatio(false); // Maintain the aspect ratio
+                    coverImage.setPreserveRatio(false);
 
                     imageViewContainer.getChildren().addAll(coverImage);
 
@@ -233,24 +210,18 @@ public class InfoPanelController {
                     vicinityLabel.setStyle("-fx-font-family: \"Arial\"; -fx-text-fill: black; ");
 
                     infoBox.getChildren().addAll(nameLabel, typeLabel, ratingLabel, vicinityLabel);
-                    VBox.setVgrow(nameLabel, Priority.ALWAYS); // Makes labels grow as necessary
+                    VBox.setVgrow(nameLabel, Priority.ALWAYS);
 
-                    // Add image and info box to cell layout
                     cellLayout.getChildren().addAll(imageViewContainer, infoBox);
                     setGraphic(cellLayout);
 
-                    // If the place has photos, fetch the image in a background thread
                     if (place.getPhotos() != null && !place.getPhotos().isEmpty()) {
                         String photoReference = place.getPhotos().get(0).getPhoto_reference();
                         String photoUrl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="
-                                + photoReference + "&key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8"; // Replace with your
-                                                                                                   // API key
-
-                        // Fetch the image in a separate thread
+                                + photoReference + "&key=AIzaSyBjQu-Q3qNLAtrktpgHcmtrH4WLLS7gEo8";
                         new Thread(() -> {
                             try {
                                 Image image = new Image(photoUrl);
-                                // Update the UI on the JavaFX Application Thread
                                 Platform.runLater(() -> coverImage.setImage(image));
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -258,9 +229,8 @@ public class InfoPanelController {
                         }).start();
 
                         Rectangle clip = new Rectangle();
-                        clip.setWidth(60); // Set clipping width
-                        clip.setHeight(140); // Set clipping height
-                        ///// eto na background image
+                        clip.setWidth(60);
+                        clip.setHeight(140);
 
                         cellLayout.setOnMouseEntered(event -> {
                             if (!isSelected()) {
@@ -277,7 +247,6 @@ public class InfoPanelController {
                             }
                         });
                         if (isSelected()) {
-                            // apply the yellow background and black text when selected
                             cellLayout.setStyle("-fx-border-color: #ffffff");
                             cellLayout.setBackground(new Background(new BackgroundFill(
                                     Color.rgb(220, 240, 250), CornerRadii.EMPTY, null)));
@@ -286,18 +255,18 @@ public class InfoPanelController {
                             typeLabel.setTextFill(Color.rgb(0, 0, 0));
                             ratingLabel.setTextFill(Color.rgb(0, 0, 0));
                             vicinityLabel.setTextFill(Color.rgb(0, 0, 0));
+                            model.setSelectedCoordinates(place.getGeometry().getLocation().getLat(),
+                                    place.getGeometry().getLocation().getLng());
                         } else {
-                            // When not selected, reset background and text colors
                             cellLayout.setBackground(new Background(new BackgroundFill(
                                     Color.rgb(255, 255, 255), CornerRadii.EMPTY, null)));
 
                         }
 
-                        // Set the click event to trigger selection
                         cellLayout.setOnMouseClicked(event -> {
                             getListView().requestFocus();
                             getListView().getSelectionModel().select(getIndex());
-                            
+
                         });
                     }
 
@@ -310,7 +279,4 @@ public class InfoPanelController {
 
     }
 
-    private void appendScenes() {
-        // Logic to append scenes if needed
-    }
 }
